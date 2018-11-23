@@ -234,7 +234,7 @@
     <dimen name="notification_panel_width">@dimen/match_parent</dimen>
 
     <!-- The width of the panel that holds the quick settings. -->
-    <dimen name="qs_panel_width">match_parent</dimen>
+    <dimen name="qs_panel_width">@dimen/match_parent</dimen>
 
     <dimen name="volume_dialog_panel_width">@dimen/standard_notification_panel_width</dimen>
 
