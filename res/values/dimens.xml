@@ -160,7 +160,7 @@
     <dimen name="global_screenshot_bg_padding">20dp</dimen>
 
     <!-- The width of the view containing navigation buttons -->
-    <dimen name="navigation_key_width">70dp</dimen>
+    <dimen name="navigation_key_width">50px</dimen>
 
     <dimen name="navigation_key_padding">0dp</dimen>
 
@@ -234,7 +234,7 @@
     <dimen name="notification_panel_width">@dimen/match_parent</dimen>
 
     <!-- The width of the panel that holds the quick settings. -->
-    <dimen name="qs_panel_width">@dimen/notification_panel_width</dimen>
+    <dimen name="qs_panel_width">match_parent</dimen>
 
     <dimen name="volume_dialog_panel_width">@dimen/standard_notification_panel_width</dimen>
 
@@ -856,6 +856,6 @@
     <dimen name="stat_sys_mobile_signal_circle_inset">0.9dp</dimen>
 
     <!-- Home button padding for sizing -->
-    <dimen name="home_padding">15dp</dimen>
+    <dimen name="home_padding">4px</dimen>
 
 </resources>
