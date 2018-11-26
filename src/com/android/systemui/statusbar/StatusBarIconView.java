@@ -180,7 +180,7 @@ public class StatusBarIconView extends AnimatedImageView {
 
     private void updateIconScaleDimens() {
         Resources res = mContext.getResources();
-        mStatusBarIconSize = res.getDimensionPixelSize(R.dimen.status_bar_icon_size);
+        mStatusBarIconSize = 40;
         mStatusBarIconDrawingSizeDark =
                 res.getDimensionPixelSize(R.dimen.status_bar_icon_drawing_size_dark);
         mStatusBarIconDrawingSize =
