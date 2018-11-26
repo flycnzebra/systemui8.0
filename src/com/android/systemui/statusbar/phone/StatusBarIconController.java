@@ -150,8 +150,7 @@ public interface StatusBarIconController {
         public IconManager(ViewGroup group) {
             mGroup = group;
             mContext = group.getContext();
-            mIconSize = mContext.getResources().getDimensionPixelSize(
-                    com.android.internal.R.dimen.status_bar_icon_size);
+            mIconSize = 40;
         }
 
         protected void onIconAdded(int index, String slot, boolean blocked,
@@ -163,7 +162,6 @@ public interface StatusBarIconController {
                 StatusBarIcon icon) {
             StatusBarIconView view = onCreateStatusBarIconView(slot, blocked);
             view.set(icon);
-            mGroup.setBackgroundColor(0xFFFF0000);
             mGroup.addView(view, index, onCreateLayoutParams());
             return view;
         }

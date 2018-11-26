@@ -144,7 +144,7 @@ public class StatusBarIconControllerImpl extends StatusBarIconList implements Tu
         int viewIndex = getViewIndex(getSlotIndex(slot));
         int height = mContext.getResources().getDimensionPixelSize(
                 R.dimen.status_bar_icon_drawing_size);
-        mIconGroups.forEach(l -> l.onIconExternal(viewIndex, 40));
+        mIconGroups.forEach(l -> l.onIconExternal(viewIndex, height));
     }
 
     @Override
@@ -216,8 +216,7 @@ public class StatusBarIconControllerImpl extends StatusBarIconList implements Tu
     public void dispatchDemoCommand(String command, Bundle args) {
         if (mDemoStatusIcons == null) {
             // TODO: Rework how we handle demo mode.
-            int iconSize = mContext.getResources().getDimensionPixelSize(
-                    com.android.internal.R.dimen.status_bar_icon_size);
+            int iconSize = 40;
             mDemoStatusIcons = new DemoStatusIcons((LinearLayout) mIconGroups.get(0).mGroup,
                     iconSize);
         }
