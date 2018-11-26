@@ -39,6 +39,7 @@ import android.annotation.Nullable;
 import android.app.ActivityManager;
 import android.app.ActivityManager.StackId;
 import android.app.ActivityOptions;
+import android.app.ActivityThread;
 import android.app.INotificationManager;
 import android.app.KeyguardManager;
 import android.app.Notification;
@@ -62,6 +63,7 @@ import android.content.om.IOverlayManager;
 import android.content.om.OverlayInfo;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.IPackageManager;
+import android.content.pm.LauncherActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.UserInfo;
@@ -181,6 +183,8 @@ import com.android.systemui.doze.DozeLog;
 import com.android.systemui.doze.DozeReceiver;
 import com.android.systemui.fragments.ExtensionFragmentListener;
 import com.android.systemui.fragments.FragmentHostManager;
+import com.android.systemui.jancar.FlyLog;
+import com.android.systemui.jancar.PkUtils;
 import com.android.systemui.keyguard.KeyguardViewMediator;
 import com.android.systemui.keyguard.ScreenLifecycle;
 import com.android.systemui.keyguard.WakefulnessLifecycle;
@@ -658,6 +662,8 @@ public class StatusBar extends SystemUI implements DemoMode,
     private boolean mIsOccluded;
     private boolean mWereIconsJustHidden;
     private boolean mBouncerWasShowingWhenHidden;
+    private ImageView btn_back;
+    private TextView apptitle;
 
     public boolean isStartedGoingToSleep() {
         return mStartedGoingToSleep;
@@ -951,6 +957,12 @@ public class StatusBar extends SystemUI implements DemoMode,
         internalFilter.addAction(NOTIFICATION_UNLOCKED_BY_WORK_CHALLENGE_ACTION);
         internalFilter.addAction(BANNER_ACTION_CANCEL);
         internalFilter.addAction(BANNER_ACTION_SETUP);
+
+        /**
+         * 监听Activity变化
+         */
+        internalFilter.addAction(ActivityThread.ACTION_ACTIVITY_STATE_CHANGED);
+
         mContext.registerReceiver(mBaseBroadcastReceiver, internalFilter, PERMISSION_SELF, null);
 
         IntentFilter allUsersFilter = new IntentFilter();
@@ -1027,6 +1039,18 @@ public class StatusBar extends SystemUI implements DemoMode,
 
         // TODO: Deal with the ugliness that comes from having some of the statusbar broken out
         // into fragments, but the rest here, it leaves some awkward lifecycle and whatnot.
+
+        /**
+         * ADD By @FlyZebra
+         */
+        try {
+            btn_back = mStatusBarWindow.findViewById(R.id.back);
+            apptitle = mStatusBarWindow.findViewById(R.id.app_title);
+            apptitle.setText(PkUtils.getFocusActivityLabel(context));
+        }catch (Exception e){
+            FlyLog.e(e.toString());
+        }
+
         mNotificationPanel = (NotificationPanelView) mStatusBarWindow.findViewById(
                 R.id.notification_panel);
         mStackScroller = (NotificationStackScrollLayout) mStatusBarWindow.findViewById(
@@ -6323,6 +6347,55 @@ public class StatusBar extends SystemUI implements DemoMode,
                     } catch (RemoteException e) {
                         /* ignore */
                     }
+                }
+            }
+
+            /**
+             * Add By @FlyZebra
+             */
+            else if (action.equals(ActivityThread.ACTION_ACTIVITY_STATE_CHANGED)) {
+                try {
+                    Bundle bundle = intent.getExtras();
+                    if (bundle != null) {
+                        String strpackage = bundle.getString("package");
+                        String strclass = bundle.getString("class");
+                        String strstate = bundle.getString("state");
+                        FlyLog.d("Activity change intent=%s", intent.toUri(0));
+                        if (strstate.equals("foreground")) {
+                            /**
+                             * 显示标题
+                             */
+                            switch (strpackage) {
+                                case "com.android.systemui":
+                                    break;
+                                case "com.jancar.launcher":
+                                case "com.android.launcher3":
+                                    apptitle.setText(context.getString(R.string.launcher));
+                                    break;
+                                default:
+                                    List<LauncherActivityInfo> list = PkUtils.getLauncgerActivitys(strpackage, context);
+                                    for (LauncherActivityInfo info : list) {
+                                        if (strclass.equals(info.getComponentName().getClassName())) {
+                                            FlyLog.d("activity info =%s", info.getName());
+                                            apptitle.setText(info.getLabel());
+                                            break;
+                                        }
+                                    }
+                                    break;
+                            }
+                            /**
+                             * 隐藏返回图标
+                             */
+                            if ("com.jancar.launcher".equals(strpackage)) {
+                                btn_back.setVisibility(View.GONE);
+                            } else {
+                                btn_back.setVisibility(View.VISIBLE);
+                            }
+
+                        }
+                    }
+                } catch (Exception e) {
+                    FlyLog.e(e.toString());
                 }
             }
         }

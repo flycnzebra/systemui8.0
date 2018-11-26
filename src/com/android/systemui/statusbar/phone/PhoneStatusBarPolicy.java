@@ -55,9 +55,6 @@ import android.telecom.TelecomManager;
 import android.util.ArraySet;
 import android.util.Log;
 import android.util.Pair;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.internal.messages.nano.SystemMessageProto.SystemMessage;
@@ -158,22 +155,8 @@ public class PhoneStatusBarPolicy implements Callback, Callbacks,
 
     private BluetoothController mBluetooth;
 
-    private ImageView btn_back;
-    private TextView apptitle;
-
     @VisibleForTesting
     public PhoneStatusBarPolicy(PhoneStatusBarView view, Context context, StatusBarIconController iconController) {
-        /**
-         * ADD By @FlyZebra
-         */
-        try {
-            btn_back = view.findViewById(R.id.back);
-            apptitle = view.findViewById(R.id.app_title);
-            apptitle.setText(PkUtils.getFocusActivityLabel(context));
-        }catch (Exception e){
-            FlyLog.e(e.toString());
-        }
-
         mContext = context;
         mIconController = iconController;
         mCast = Dependency.get(CastController.class);
@@ -224,11 +207,6 @@ public class PhoneStatusBarPolicy implements Callback, Callbacks,
 
         /// M: Add icon for embms session.
         filter.addAction(MtkTelephonyIntents.ACTION_EMBMS_SESSION_STATUS_CHANGED);
-
-        /**
-         * 监听Activity变化
-         */
-        filter.addAction(ActivityThread.ACTION_ACTIVITY_STATE_CHANGED);
 
         mContext.registerReceiver(mIntentReceiver, filter, null, mHandler);
         /// M: [Multi-User] Register Alarm intent by user
@@ -864,51 +842,6 @@ public class PhoneStatusBarPolicy implements Callback, Callbacks,
                 updateEmbmsState(intent);
             }
             /// M: @}
-            else if (action.equals(ActivityThread.ACTION_ACTIVITY_STATE_CHANGED)) {
-                try {
-                    Bundle bundle = intent.getExtras();
-                    if (bundle != null) {
-                        String strpackage = bundle.getString("package");
-                        String strclass = bundle.getString("class");
-                        String strstate = bundle.getString("state");
-                        FlyLog.d("Activity change intent=%s", intent.toUri(0));
-                        if (strstate.equals("foreground")) {
-                            /**
-                             * 显示标题
-                             */
-                            switch (strpackage) {
-                                case "com.android.systemui":
-                                    break;
-                                case "com.jancar.launcher":
-                                case "com.android.launcher3":
-                                    apptitle.setText(context.getString(R.string.launcher));
-                                    break;
-                                default:
-                                    List<LauncherActivityInfo> list = PkUtils.getLauncgerActivitys(strpackage, context);
-                                    for (LauncherActivityInfo info : list) {
-                                        if (strclass.equals(info.getComponentName().getClassName())) {
-                                            FlyLog.d("activity info =%s", info.getName());
-                                            apptitle.setText(info.getLabel());
-                                            break;
-                                        }
-                                    }
-                                    break;
-                            }
-                            /**
-                             * 隐藏返回图标
-                             */
-                            if ("com.jancar.launcher".equals(strpackage)) {
-                                btn_back.setVisibility(View.GONE);
-                            } else {
-                                btn_back.setVisibility(View.VISIBLE);
-                            }
-
-                        }
-                    }
-                } catch (Exception e) {
-                    FlyLog.e(e.toString());
-                }
-            }
         }
     };
 
