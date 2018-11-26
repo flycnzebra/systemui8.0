@@ -19,6 +19,7 @@ package com.android.systemui.statusbar.phone;
 import android.app.ActivityManager;
 import android.app.ActivityManager.StackId;
 import android.app.ActivityManager.StackInfo;
+import android.app.ActivityThread;
 import android.app.AlarmManager;
 import android.app.AlarmManager.AlarmClockInfo;
 import android.app.AppGlobals;
@@ -34,6 +35,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.IPackageManager;
+import android.content.pm.LauncherActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.UserInfo;
 import android.graphics.drawable.Icon;
@@ -53,6 +55,9 @@ import android.telecom.TelecomManager;
 import android.util.ArraySet;
 import android.util.Log;
 import android.util.Pair;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.internal.messages.nano.SystemMessageProto.SystemMessage;
@@ -63,6 +68,8 @@ import com.android.systemui.DockedStackExistsListener;
 import com.android.systemui.R;
 import com.android.systemui.SysUiServiceProvider;
 import com.android.systemui.UiOffloadThread;
+import com.android.systemui.jancar.FlyLog;
+import com.android.systemui.jancar.PkUtils;
 import com.android.systemui.qs.tiles.DndTile;
 import com.android.systemui.qs.tiles.RotationLockTile;
 import com.android.systemui.recents.misc.SystemServicesProxy;
@@ -151,8 +158,18 @@ public class PhoneStatusBarPolicy implements Callback, Callbacks,
 
     private BluetoothController mBluetooth;
 
+    private ImageView btn_back;
+    private TextView apptitle;
+
     @VisibleForTesting
-    public PhoneStatusBarPolicy(Context context, StatusBarIconController iconController) {
+    public PhoneStatusBarPolicy(PhoneStatusBarView view, Context context, StatusBarIconController iconController) {
+        /**
+         * ADD By @FlyZebra
+         */
+        btn_back = view.findViewById(R.id.back);
+        apptitle = view.findViewById(R.id.app_title);
+        apptitle.setText(PkUtils.getFocusActivityLabel(mContext));
+
         mContext = context;
         mIconController = iconController;
         mCast = Dependency.get(CastController.class);
@@ -203,6 +220,12 @@ public class PhoneStatusBarPolicy implements Callback, Callbacks,
 
         /// M: Add icon for embms session.
         filter.addAction(MtkTelephonyIntents.ACTION_EMBMS_SESSION_STATUS_CHANGED);
+
+        /**
+         * 监听Activity变化
+         */
+        filter.addAction(ActivityThread.ACTION_ACTIVITY_STATE_CHANGED);
+
         mContext.registerReceiver(mIntentReceiver, filter, null, mHandler);
         /// M: [Multi-User] Register Alarm intent by user
         registerAlarmClockChanged(UserHandle.USER_OWNER, false);
@@ -282,6 +305,7 @@ public class PhoneStatusBarPolicy implements Callback, Callbacks,
             mDockedStackExists = exists;
             updateForegroundInstantApps();
         });
+
     }
 
     public void destroy() {
@@ -836,6 +860,51 @@ public class PhoneStatusBarPolicy implements Callback, Callbacks,
                 updateEmbmsState(intent);
             }
             /// M: @}
+            else if (intent.getAction().equals(ActivityThread.ACTION_ACTIVITY_STATE_CHANGED)) {
+                try {
+                    Bundle bundle = intent.getExtras();
+                    if (bundle != null) {
+                        String strpackage = bundle.getString("package");
+                        String strclass = bundle.getString("class");
+                        String strstate = bundle.getString("state");
+                        FlyLog.d("Activity change intent=%s", intent.toUri(0));
+                        if (strstate.equals("foreground")) {
+                            /**
+                             * 隐藏返回图标
+                             */
+                            if ("com.jancar.launcher".equals(strpackage)) {
+                                btn_back.setVisibility(View.GONE);
+                            } else {
+                                btn_back.setVisibility(View.VISIBLE);
+                            }
+                            /**
+                             * 显示标题
+                             */
+                            switch (strpackage) {
+                                case "com.android.systemui":
+                                    break;
+                                case "com.jancar.launcher":
+                                case "com.android.launcher3":
+                                    apptitle.setText(context.getString(R.string.launcher));
+                                    break;
+                                default:
+                                    List<LauncherActivityInfo> list = PkUtils.getLauncgerActivitys(strpackage, context);
+                                    for (LauncherActivityInfo info : list) {
+                                        if (strclass.equals(info.getComponentName().getClassName())) {
+                                            FlyLog.d("activity info =%s", info.getName());
+                                            apptitle.setText(info.getLabel());
+                                            break;
+                                        }
+                                    }
+                                    break;
+                            }
+
+                        }
+                    }
+                } catch (Exception e) {
+                    FlyLog.e(e.toString());
+                }
+            }
         }
     };
 

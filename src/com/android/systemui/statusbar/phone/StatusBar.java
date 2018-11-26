@@ -980,7 +980,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         // in session state
 
         // Lastly, call to the icon policy to install/update all the icons.
-        mIconPolicy = new PhoneStatusBarPolicy(mContext, mIconController);
+        mIconPolicy = new PhoneStatusBarPolicy(mStatusBarView, mContext, mIconController);
         mSettingsObserver.onChange(false); // set up
 
         mHeadsUpObserver.onChange(true); // set up

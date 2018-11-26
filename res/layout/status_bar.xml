@@ -57,6 +57,16 @@
 
         <!-- The alpha of this area is controlled from both PhoneStatusBarTransitions and
              PhoneStatusBar (DISABLE_NOTIFICATION_ICONS). -->
+        <TextView
+            android:id="@+id/app_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="start|center"
+            android:singleLine="true"
+            android:textSize="22px"
+            android:text="@string/launcher"
+            android:textColor="#ffffff" />
+
         <LinearLayout
             android:layout_width="0dip"
             android:layout_height="match_parent"
