@@ -32,6 +32,7 @@ import com.android.internal.statusbar.StatusBarIcon;
 import com.android.settingslib.Utils;
 import com.android.systemui.Dependency;
 import com.android.systemui.R;
+import com.android.systemui.jancar.FlyLog;
 import com.android.systemui.statusbar.StatusBarIconView;
 import com.android.systemui.statusbar.policy.DarkIconDispatcher;
 
@@ -162,7 +163,9 @@ public interface StatusBarIconController {
                 StatusBarIcon icon) {
             StatusBarIconView view = onCreateStatusBarIconView(slot, blocked);
             view.set(icon);
-            mGroup.addView(view, index, onCreateLayoutParams());
+            LinearLayout.LayoutParams lp = onCreateLayoutParams();
+            FlyLog.e(lp.toString());
+            mGroup.addView(view, index, lp);
             return view;
         }
 
