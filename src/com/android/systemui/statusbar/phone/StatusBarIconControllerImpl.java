@@ -216,7 +216,8 @@ public class StatusBarIconControllerImpl extends StatusBarIconList implements Tu
     public void dispatchDemoCommand(String command, Bundle args) {
         if (mDemoStatusIcons == null) {
             // TODO: Rework how we handle demo mode.
-            int iconSize = 40;
+            int iconSize = mContext.getResources().getDimensionPixelSize(
+                    R.dimen.status_bar_icon_size);
             mDemoStatusIcons = new DemoStatusIcons((LinearLayout) mIconGroups.get(0).mGroup,
                     iconSize);
         }

@@ -96,7 +96,7 @@ public class NotificationIconAreaController implements DarkReceiver {
 
     private void reloadDimens(Context context) {
         Resources res = context.getResources();
-        mIconSize = res.getDimensionPixelSize(com.android.internal.R.dimen.status_bar_icon_size);
+        mIconSize = res.getDimensionPixelSize(R.dimen.status_bar_icon_size);
         mIconHPadding = res.getDimensionPixelSize(R.dimen.status_bar_icon_padding);
     }
 
