@@ -874,14 +874,6 @@ public class PhoneStatusBarPolicy implements Callback, Callbacks,
                         FlyLog.d("Activity change intent=%s", intent.toUri(0));
                         if (strstate.equals("foreground")) {
                             /**
-                             * 隐藏返回图标
-                             */
-                            if ("com.jancar.launcher".equals(strpackage)) {
-                                btn_back.setVisibility(View.GONE);
-                            } else {
-                                btn_back.setVisibility(View.VISIBLE);
-                            }
-                            /**
                              * 显示标题
                              */
                             switch (strpackage) {
@@ -901,6 +893,14 @@ public class PhoneStatusBarPolicy implements Callback, Callbacks,
                                         }
                                     }
                                     break;
+                            }
+                            /**
+                             * 隐藏返回图标
+                             */
+                            if ("com.jancar.launcher".equals(strpackage)) {
+                                btn_back.setVisibility(View.GONE);
+                            } else {
+                                btn_back.setVisibility(View.VISIBLE);
                             }
 
                         }
