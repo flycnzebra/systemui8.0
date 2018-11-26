@@ -176,7 +176,7 @@ public interface StatusBarIconController {
             /**
              * Edit By @FlyZebra
              */
-            return new LinearLayout.LayoutParams(80, 40);
+            return new LinearLayout.LayoutParams(40, 40);
         }
 
         protected void destroy() {
@@ -185,7 +185,7 @@ public interface StatusBarIconController {
 
         protected void onIconExternal(int viewIndex, int height) {
             ImageView imageView = (ImageView) mGroup.getChildAt(viewIndex);
-            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageView.setAdjustViewBounds(true);
             setHeightAndCenter(imageView, height);
         }
@@ -193,8 +193,7 @@ public interface StatusBarIconController {
         protected void onDensityOrFontScaleChanged() {
             for (int i = 0; i < mGroup.getChildCount(); i++) {
                 View child = mGroup.getChildAt(i);
-                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.WRAP_CONTENT, mIconSize);
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(40,40);
                 child.setLayoutParams(lp);
             }
         }

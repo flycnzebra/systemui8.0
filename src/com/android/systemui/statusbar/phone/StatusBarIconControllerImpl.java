@@ -144,7 +144,7 @@ public class StatusBarIconControllerImpl extends StatusBarIconList implements Tu
         int viewIndex = getViewIndex(getSlotIndex(slot));
         int height = mContext.getResources().getDimensionPixelSize(
                 R.dimen.status_bar_icon_drawing_size);
-        mIconGroups.forEach(l -> l.onIconExternal(viewIndex, height));
+        mIconGroups.forEach(l -> l.onIconExternal(viewIndex, 40));
     }
 
     @Override
