@@ -19,6 +19,7 @@ package com.android.systemui.statusbar.phone;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.EventLog;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ import com.android.systemui.EventLogTags;
 import com.android.systemui.R;
 import com.android.systemui.statusbar.policy.DarkIconDispatcher;
 import com.android.systemui.statusbar.policy.DarkIconDispatcher.DarkReceiver;
+import com.jancar.JancarManager;
 
 public class PhoneStatusBarView extends PanelBar {
     private static final String TAG = "PhoneStatusBarView";
@@ -59,6 +61,7 @@ public class PhoneStatusBarView extends PanelBar {
     private ImageView mHome;
     private ImageView mBack;
     private ImageView mRecent;
+    private ImageView mClose;
 
     public PhoneStatusBarView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -87,6 +90,14 @@ public class PhoneStatusBarView extends PanelBar {
             mHome = findViewById(R.id.home);
             mBack = findViewById(R.id.back);
             mRecent = findViewById(R.id.recent_apps007);
+            mClose = findViewById(R.id.close_screen);
+            mClose.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (DEBUG) Log.v(TAG, "btn_close_screen: onClick");
+                    ((JancarManager) getContext()).getSystemService("jancar_manager").requestDisplay(false);
+                }
+            });
         }
     }
 
@@ -105,6 +116,9 @@ public class PhoneStatusBarView extends PanelBar {
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
+        if(mClose!=null){
+            mClose.setOnClickListener(null);
+        }
         Dependency.get(DarkIconDispatcher.class).removeDarkReceiver(mBattery);
         if (atcEnhancementSupport()) {
             Dependency.get(DarkIconDispatcher.class).removeDarkReceiver(mHome);

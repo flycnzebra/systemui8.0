@@ -52,7 +52,7 @@
         <!--com.android.systemui.statusbar.policy.KeyButtonView /-->
         <com.android.systemui.statusbar.policy.KeyButtonView
             android:id="@+id/home"
-            android:layout_width="50px"
+            android:layout_width="59px"
             android:layout_height="match_parent"
             android:contentDescription="@string/accessibility_home"
             android:src="@drawable/jac_sbt_home_01"
@@ -91,16 +91,24 @@
 
         <com.android.systemui.statusbar.policy.KeyButtonView
             android:id="@+id/recent_apps007"
-            android:layout_width="50dp"
+            android:layout_width="59px"
             android:layout_height="match_parent"
             android:src="@drawable/jac_sbt_bake_recent_01"
             android:scaleType="center"
             android:contentDescription="@string/accessibility_recent"
             />
 
+        <com.android.systemui.statusbar.policy.KeyButtonView
+            android:id="@+id/close_screen"
+            android:layout_width="59px"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/accessibility_recent"
+            android:src="@drawable/jac_sbt_close_screen_01"
+            android:visibility="visible" />
+
          <com.android.systemui.statusbar.policy.KeyButtonView
             android:id="@+id/back"
-            android:layout_width="50dp"
+            android:layout_width="59px"
             android:layout_height="match_parent"
             android:contentDescription="@string/accessibility_back"
             android:src="@drawable/jac_sbt_bake_01"
