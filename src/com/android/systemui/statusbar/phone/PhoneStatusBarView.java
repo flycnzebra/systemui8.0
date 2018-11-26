@@ -33,6 +33,7 @@ import com.android.systemui.DejankUtils;
 import com.android.systemui.Dependency;
 import com.android.systemui.EventLogTags;
 import com.android.systemui.R;
+import com.android.systemui.jancar.FlyLog;
 import com.android.systemui.statusbar.policy.DarkIconDispatcher;
 import com.android.systemui.statusbar.policy.DarkIconDispatcher.DarkReceiver;
 import com.jancar.JancarManager;
@@ -94,9 +95,13 @@ public class PhoneStatusBarView extends PanelBar {
             mClose.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (DEBUG) Log.v(TAG, "btn_close_screen: onClick");
-                    JancarManager jancarManager = (JancarManager) getContext().getSystemService("jancar_manager");
-                    jancarManager.requestDisplay(false);
+                    try {
+                        if (DEBUG) Log.v(TAG, "btn_close_screen: onClick");
+                        JancarManager jancarManager = (JancarManager) getContext().getSystemService("jancar_manager");
+                        jancarManager.requestDisplay(false);
+                    }catch (Exception e){
+                        FlyLog.e(e.toString());
+                    }
                 }
             });
         }
