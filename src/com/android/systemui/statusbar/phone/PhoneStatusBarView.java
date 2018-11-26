@@ -95,9 +95,9 @@ public class PhoneStatusBarView extends PanelBar {
                 @Override
                 public void onClick(View v) {
                     if (DEBUG) Log.v(TAG, "btn_close_screen: onClick");
-                    ((JancarManager) getContext()).getSystemService("jancar_manager").requestDisplay(false);
+                    JancarManager jancarManager = (JancarManager) getContext().getSystemService("jancar_manager");
+                    jancarManager.requestDisplay(false);
                 }
-            });
         }
     }
 
