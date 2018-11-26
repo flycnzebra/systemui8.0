@@ -52,10 +52,10 @@
         <!--com.android.systemui.statusbar.policy.KeyButtonView /-->
         <com.android.systemui.statusbar.policy.KeyButtonView
             android:id="@+id/home"
-            android:layout_width="50dp"
+            android:layout_width="50px"
             android:layout_height="match_parent"
             android:contentDescription="@string/accessibility_home"
-            android:src="@drawable/ic_sysbar_home"
+            android:src="@drawable/jac_sbt_home_01"
             systemui:keyCode="3"
             systemui:keyRepeat="false" />
 
@@ -93,7 +93,7 @@
             android:id="@+id/recent_apps007"
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_sysbar_recent"
+            android:src="@drawable/jac_sbt_bake_recent_01"
             android:scaleType="center"
             android:contentDescription="@string/accessibility_recent"
             />
@@ -103,7 +103,7 @@
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:contentDescription="@string/accessibility_back"
-            android:src="@drawable/ic_sysbar_back"
+            android:src="@drawable/jac_sbt_bake_01"
             systemui:keyCode="4"/>
 
     </LinearLayout>
