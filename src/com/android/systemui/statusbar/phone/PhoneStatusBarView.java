@@ -93,11 +93,12 @@ public class PhoneStatusBarView extends PanelBar {
             mClose = findViewById(R.id.close_screen);
             mClose.setOnClickListener(new OnClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void onClick(View view) {
                     if (DEBUG) Log.v(TAG, "btn_close_screen: onClick");
                     JancarManager jancarManager = (JancarManager) getContext().getSystemService("jancar_manager");
                     jancarManager.requestDisplay(false);
                 }
+            });
         }
     }
 
@@ -116,7 +117,7 @@ public class PhoneStatusBarView extends PanelBar {
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        if(mClose!=null){
+        if (mClose != null) {
             mClose.setOnClickListener(null);
         }
         Dependency.get(DarkIconDispatcher.class).removeDarkReceiver(mBattery);
