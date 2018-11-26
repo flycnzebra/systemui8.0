@@ -1047,6 +1047,7 @@ public class StatusBar extends SystemUI implements DemoMode,
             btn_back = mStatusBarWindow.findViewById(R.id.back);
             apptitle = mStatusBarWindow.findViewById(R.id.app_title);
             apptitle.setText(PkUtils.getFocusActivityLabel(context));
+            FlyLog.e("btn_back=%s,apptitle=%s",btn_back,apptitle);
         }catch (Exception e){
             FlyLog.e(e.toString());
         }
