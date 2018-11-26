@@ -1040,18 +1040,6 @@ public class StatusBar extends SystemUI implements DemoMode,
         // TODO: Deal with the ugliness that comes from having some of the statusbar broken out
         // into fragments, but the rest here, it leaves some awkward lifecycle and whatnot.
 
-        /**
-         * ADD By @FlyZebra
-         */
-        try {
-            btn_back = mStatusBarWindow.findViewById(R.id.back);
-            apptitle = mStatusBarWindow.findViewById(R.id.app_title);
-            apptitle.setText(PkUtils.getFocusActivityLabel(context));
-            FlyLog.e("btn_back=%s,apptitle=%s",btn_back,apptitle);
-        }catch (Exception e){
-            FlyLog.e(e.toString());
-        }
-
         mNotificationPanel = (NotificationPanelView) mStatusBarWindow.findViewById(
                 R.id.notification_panel);
         mStackScroller = (NotificationStackScrollLayout) mStatusBarWindow.findViewById(
@@ -1079,6 +1067,19 @@ public class StatusBar extends SystemUI implements DemoMode,
                     mStatusBarView.setPanel(mNotificationPanel);
                     mStatusBarView.setScrimController(mScrimController);
                     mStatusBarView.setBouncerShowing(mBouncerShowing);
+
+                    /**
+                     * ADD By @FlyZebra
+                     */
+                    try {
+                        btn_back = mStatusBarWindow.findViewById(R.id.back);
+                        apptitle = mStatusBarWindow.findViewById(R.id.app_title);
+                        apptitle.setText(PkUtils.getFocusActivityLabel(context));
+                        FlyLog.e("btn_back=%s,apptitle=%s",btn_back,apptitle);
+                    }catch (Exception e){
+                        FlyLog.e(e.toString());
+                    }
+
                     setAreThereNotifications();
                     checkBarModes();
                     /// M: add for plmn display feature @{
