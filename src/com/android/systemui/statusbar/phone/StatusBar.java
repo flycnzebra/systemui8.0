@@ -2815,10 +2815,10 @@ public class StatusBar extends SystemUI implements DemoMode,
             if (btn_recent != null) {
                 btn_recent.setVisibility(visible ? View.VISIBLE : View.GONE);
             }
-            ImageView btn_back = (ImageView)mStatusBarView.findViewById(R.id.back);
-            if (btn_back != null) {
-                btn_back.setVisibility(visible ? View.VISIBLE : View.GONE);
-            }
+//            ImageView btn_back = (ImageView)mStatusBarView.findViewById(R.id.back);
+//            if (btn_back != null) {
+//                btn_back.setVisibility(visible ? View.VISIBLE : View.GONE);
+//            }
             ImageView btn_home = (ImageView)mStatusBarView.findViewById(R.id.home);
             if (btn_home != null) {
                 btn_home.setVisibility(visible ? View.VISIBLE : View.GONE);
