@@ -23,10 +23,12 @@ public class WifiIcons {
             {R.drawable.jac_statusbar_icon_wifi_0,
                     R.drawable.jac_statusbar_icon_wifi_1,
                     R.drawable.jac_statusbar_icon_wifi_2,
+                    R.drawable.jac_statusbar_icon_wifi_3,
                     R.drawable.jac_statusbar_icon_wifi_3},
             {R.drawable.jac_statusbar_icon_wifi_0,
                     R.drawable.jac_statusbar_icon_wifi_1,
                     R.drawable.jac_statusbar_icon_wifi_2,
+                    R.drawable.jac_statusbar_icon_wifi_3,
                     R.drawable.jac_statusbar_icon_wifi_3}
     };
 
@@ -34,10 +36,12 @@ public class WifiIcons {
             {R.drawable.jac_statusbar_icon_wifi_0,
                     R.drawable.jac_statusbar_icon_wifi_1,
                     R.drawable.jac_statusbar_icon_wifi_2,
+                    R.drawable.jac_statusbar_icon_wifi_3,
                     R.drawable.jac_statusbar_icon_wifi_3},
             {R.drawable.jac_statusbar_icon_wifi_0,
                     R.drawable.jac_statusbar_icon_wifi_1,
                     R.drawable.jac_statusbar_icon_wifi_2,
+                    R.drawable.jac_statusbar_icon_wifi_3,
                     R.drawable.jac_statusbar_icon_wifi_3}
     };
 
