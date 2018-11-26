@@ -43,14 +43,16 @@
         <com.android.systemui.statusbar.AlphaOptimizedImageView
             android:theme="?attr/lightIconTheme"
             android:id="@+id/ethernet"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
+            android:layout_height="40px"
+            android:layout_width="40px"
+            android:scaleType="centerCrop"
             />
         <com.android.systemui.statusbar.AlphaOptimizedImageView
             android:theme="?attr/darkIconTheme"
             android:id="@+id/ethernet_dark"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
+            android:layout_height="40px"
+            android:layout_width="40px"
+            android:scaleType="centerCrop"
             android:alpha="0.0"
             />
     </FrameLayout>
@@ -59,16 +61,18 @@
         android:layout_width="wrap_content">
         <ImageView
             android:id="@+id/wifi_in"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
+            android:layout_height="40px"
+            android:layout_width="40px"
+            android:scaleType="centerCrop"
             android:src="@drawable/ic_activity_down"
             android:visibility="gone"
             android:paddingEnd="2dp"
             />
         <ImageView
             android:id="@+id/wifi_out"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
+            android:layout_height="40px"
+            android:layout_width="40px"
+            android:scaleType="centerCrop"
             android:src="@drawable/ic_activity_up"
             android:paddingEnd="2dp"
             android:visibility="gone"
@@ -82,14 +86,16 @@
         <com.android.systemui.statusbar.AlphaOptimizedImageView
             android:theme="?attr/lightIconTheme"
             android:id="@+id/wifi_signal"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
+            android:layout_height="40px"
+            android:layout_width="40px"
+            android:scaleType="centerCrop"
             />
         <com.android.systemui.statusbar.AlphaOptimizedImageView
             android:theme="?attr/darkIconTheme"
             android:id="@+id/wifi_signal_dark"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
+            android:layout_height="40px"
+            android:layout_width="40px"
+            android:scaleType="centerCrop"
             android:alpha="0.0"
             />
         <ImageView
@@ -123,15 +129,17 @@
         <com.android.systemui.statusbar.AlphaOptimizedImageView
             android:theme="?attr/lightIconTheme"
             android:id="@+id/no_sims"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
+            android:layout_height="40px"
+            android:layout_width="40px"
+            android:scaleType="centerCrop"
             android:src="@drawable/stat_sys_no_sims"
             />
         <com.android.systemui.statusbar.AlphaOptimizedImageView
             android:theme="?attr/darkIconTheme"
             android:id="@+id/no_sims_dark"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
+            android:layout_height="40px"
+            android:layout_width="40px"
+            android:scaleType="centerCrop"
             android:src="@drawable/stat_sys_no_sims"
             android:alpha="0.0"
             />
@@ -144,7 +152,8 @@
         />
     <ImageView
         android:id="@+id/airplane"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
+        android:layout_height="40px"
+        android:layout_width="40px"
+        android:scaleType="centerCrop"
         />
 </com.android.systemui.statusbar.SignalClusterView>

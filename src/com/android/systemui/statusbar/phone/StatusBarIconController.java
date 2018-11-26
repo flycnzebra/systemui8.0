@@ -176,7 +176,7 @@ public interface StatusBarIconController {
             /**
              * Edit By @FlyZebra
              */
-            return new LinearLayout.LayoutParams(40, 40);
+            return new LinearLayout.LayoutParams(80, 40);
         }
 
         protected void destroy() {
