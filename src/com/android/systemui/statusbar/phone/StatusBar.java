@@ -1075,7 +1075,7 @@ public class StatusBar extends SystemUI implements DemoMode,
                         btn_back = (ImageView) mStatusBarView.findViewById(R.id.back);
                         apptitle = (TextView) mStatusBarView.findViewById(R.id.app_title);
                         apptitle.setText(PkUtils.getFocusActivityLabel(context));
-                        FlyLog.e("btn_back=%s,apptitle=%s",btn_back,apptitle);
+                        FlyLog.d("btn_back=%s,apptitle=%s",btn_back,apptitle);
                     }catch (Exception e){
                         FlyLog.e(e.toString());
                     }
@@ -6371,8 +6371,12 @@ public class StatusBar extends SystemUI implements DemoMode,
                                 case "com.android.systemui":
                                     break;
                                 case "com.jancar.launcher":
+                                    apptitle.setText(context.getString(R.string.launcher));
+                                    btn_back.setVisibility(View.GONE);
+                                    break;
                                 case "com.android.launcher3":
                                     apptitle.setText(context.getString(R.string.launcher));
+                                    btn_back.setVisibility(View.VISIBLE);
                                     break;
                                 default:
                                     List<LauncherActivityInfo> list = PkUtils.getLauncgerActivitys(strpackage, context);
@@ -6383,15 +6387,8 @@ public class StatusBar extends SystemUI implements DemoMode,
                                             break;
                                         }
                                     }
+                                    btn_back.setVisibility(View.VISIBLE);
                                     break;
-                            }
-                            /**
-                             * 隐藏返回图标
-                             */
-                            if ("com.jancar.launcher".equals(strpackage)) {
-                                btn_back.setVisibility(View.GONE);
-                            } else {
-                                btn_back.setVisibility(View.VISIBLE);
                             }
 
                         }
