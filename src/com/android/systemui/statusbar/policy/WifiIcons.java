@@ -20,26 +20,26 @@ import com.android.systemui.R;
 
 public class WifiIcons {
     static final int[][] WIFI_SIGNAL_STRENGTH = {
-            { R.drawable.jac_statusbar_icon_wifi_0,
-              R.drawable.jac_statusbar_icon_wifi_1,
-              R.drawable.jac_statusbar_icon_wifi_2,
-              R.drawable.jac_statusbar_icon_wifi_3},
-            {  R.drawable.jac_statusbar_icon_wifi_0,
+            {R.drawable.jac_statusbar_icon_wifi_0,
                     R.drawable.jac_statusbar_icon_wifi_1,
                     R.drawable.jac_statusbar_icon_wifi_2,
-                    R.drawable.jac_statusbar_icon_wifi_3 }
-        };
+                    R.drawable.jac_statusbar_icon_wifi_3},
+            {R.drawable.jac_statusbar_icon_wifi_0,
+                    R.drawable.jac_statusbar_icon_wifi_1,
+                    R.drawable.jac_statusbar_icon_wifi_2,
+                    R.drawable.jac_statusbar_icon_wifi_3}
+    };
 
     public static final int[][] QS_WIFI_SIGNAL_STRENGTH = {
-            { R.drawable.jac_statusbar_icon_wifi_0,
+            {R.drawable.jac_statusbar_icon_wifi_0,
                     R.drawable.jac_statusbar_icon_wifi_1,
                     R.drawable.jac_statusbar_icon_wifi_2,
-                    R.drawable.jac_statusbar_icon_wifi_3 },
-            { R.drawable.jac_statusbar_icon_wifi_0,
+                    R.drawable.jac_statusbar_icon_wifi_3},
+            {R.drawable.jac_statusbar_icon_wifi_0,
                     R.drawable.jac_statusbar_icon_wifi_1,
                     R.drawable.jac_statusbar_icon_wifi_2,
-                    R.drawable.jac_statusbar_icon_wifi_3 }
-        };
+                    R.drawable.jac_statusbar_icon_wifi_3}
+    };
 
     static final int QS_WIFI_NO_NETWORK = R.drawable.ic_qs_wifi_no_network;
     static final int WIFI_NO_NETWORK = R.drawable.stat_sys_wifi_signal_null;
@@ -48,30 +48,30 @@ public class WifiIcons {
 
     /// M: [WIFI StatusBar Active Icon] add icons for feature @ {
     static final int[][] WIFI_SIGNAL_STRENGTH_INOUT = {
-        { R.drawable.stat_sys_wifi_signal_0_fully,
-          R.drawable.stat_sys_wifi_signal_0_fully,
-          R.drawable.stat_sys_wifi_signal_0_fully,
-          R.drawable.stat_sys_wifi_signal_0_fully },
+            {R.drawable.stat_sys_wifi_signal_0_fully,
+                    R.drawable.stat_sys_wifi_signal_0_fully,
+                    R.drawable.stat_sys_wifi_signal_0_fully,
+                    R.drawable.stat_sys_wifi_signal_0_fully},
 
-        { R.drawable.stat_sys_wifi_signal_1_fully,
-          R.drawable.stat_sys_wifi_signal_1_fully_in,
-          R.drawable.stat_sys_wifi_signal_1_fully_out,
-          R.drawable.stat_sys_wifi_signal_1_fully_inout },
+            {R.drawable.stat_sys_wifi_signal_1_fully,
+                    R.drawable.stat_sys_wifi_signal_1_fully_in,
+                    R.drawable.stat_sys_wifi_signal_1_fully_out,
+                    R.drawable.stat_sys_wifi_signal_1_fully_inout},
 
-        { R.drawable.stat_sys_wifi_signal_2_fully,
-          R.drawable.stat_sys_wifi_signal_2_fully_in,
-          R.drawable.stat_sys_wifi_signal_2_fully_out,
-          R.drawable.stat_sys_wifi_signal_2_fully_inout },
+            {R.drawable.stat_sys_wifi_signal_2_fully,
+                    R.drawable.stat_sys_wifi_signal_2_fully_in,
+                    R.drawable.stat_sys_wifi_signal_2_fully_out,
+                    R.drawable.stat_sys_wifi_signal_2_fully_inout},
 
-        { R.drawable.stat_sys_wifi_signal_3_fully,
-          R.drawable.stat_sys_wifi_signal_3_fully_in,
-          R.drawable.stat_sys_wifi_signal_3_fully_out,
-          R.drawable.stat_sys_wifi_signal_3_fully_inout },
+            {R.drawable.stat_sys_wifi_signal_3_fully,
+                    R.drawable.stat_sys_wifi_signal_3_fully_in,
+                    R.drawable.stat_sys_wifi_signal_3_fully_out,
+                    R.drawable.stat_sys_wifi_signal_3_fully_inout},
 
-        { R.drawable.stat_sys_wifi_signal_4_fully,
-          R.drawable.stat_sys_wifi_signal_4_fully_in,
-          R.drawable.stat_sys_wifi_signal_4_fully_out,
-          R.drawable.stat_sys_wifi_signal_4_fully_inout }
+            {R.drawable.stat_sys_wifi_signal_4_fully,
+                    R.drawable.stat_sys_wifi_signal_4_fully_in,
+                    R.drawable.stat_sys_wifi_signal_4_fully_out,
+                    R.drawable.stat_sys_wifi_signal_4_fully_inout}
     };
     /// @ }
 }
