@@ -864,7 +864,7 @@ public class PhoneStatusBarPolicy implements Callback, Callbacks,
                 updateEmbmsState(intent);
             }
             /// M: @}
-            else if (intent.getAction().equals(ActivityThread.ACTION_ACTIVITY_STATE_CHANGED)) {
+            else if (action.equals(ActivityThread.ACTION_ACTIVITY_STATE_CHANGED)) {
                 try {
                     Bundle bundle = intent.getExtras();
                     if (bundle != null) {
