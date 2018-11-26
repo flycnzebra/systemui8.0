@@ -32,7 +32,6 @@ import com.android.internal.statusbar.StatusBarIcon;
 import com.android.settingslib.Utils;
 import com.android.systemui.Dependency;
 import com.android.systemui.R;
-import com.android.systemui.jancar.FlyLog;
 import com.android.systemui.statusbar.StatusBarIconView;
 import com.android.systemui.statusbar.policy.DarkIconDispatcher;
 
@@ -150,7 +149,8 @@ public interface StatusBarIconController {
         public IconManager(ViewGroup group) {
             mGroup = group;
             mContext = group.getContext();
-            mIconSize = 40;
+            mIconSize = mContext.getResources().getDimensionPixelSize(
+                    com.android.internal.R.dimen.status_bar_icon_size);
         }
 
         protected void onIconAdded(int index, String slot, boolean blocked,
@@ -172,11 +172,7 @@ public interface StatusBarIconController {
         }
 
         protected LinearLayout.LayoutParams onCreateLayoutParams() {
-            /**
-             * Edit By @FlyZebra
-             */
-            FlyLog.e("onCreateLayoutParams 40 40");
-            return new LinearLayout.LayoutParams(40, 40);
+            return new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, mIconSize);
         }
 
         protected void destroy() {
@@ -185,7 +181,7 @@ public interface StatusBarIconController {
 
         protected void onIconExternal(int viewIndex, int height) {
             ImageView imageView = (ImageView) mGroup.getChildAt(viewIndex);
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
             imageView.setAdjustViewBounds(true);
             setHeightAndCenter(imageView, height);
         }
@@ -193,8 +189,8 @@ public interface StatusBarIconController {
         protected void onDensityOrFontScaleChanged() {
             for (int i = 0; i < mGroup.getChildCount(); i++) {
                 View child = mGroup.getChildAt(i);
-                FlyLog.e("onDensityOrFontScaleChanged 40, 40");
-                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(40,40);
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT, mIconSize);
                 child.setLayoutParams(lp);
             }
         }

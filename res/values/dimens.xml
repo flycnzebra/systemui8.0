@@ -31,7 +31,7 @@
     <dimen name="navigation_bar_deadzone_size_max">32dp</dimen>
 
     <!-- Height of notification icons in the status bar -->
-    <dimen name="status_bar_icon_size">@*android:dimen/status_bar_icon_size</dimen>
+    <dimen name="status_bar_icon_size">40px</dimen>
 
     <!-- Height of the battery icon in the status bar. -->
     <dimen name="status_bar_battery_icon_height">14.5dp</dimen>
