@@ -162,6 +162,7 @@ public interface StatusBarIconController {
                 StatusBarIcon icon) {
             StatusBarIconView view = onCreateStatusBarIconView(slot, blocked);
             view.set(icon);
+            mGroup.setBackgroundColor(0xFFFF0000);
             mGroup.addView(view, index, onCreateLayoutParams());
             return view;
         }
