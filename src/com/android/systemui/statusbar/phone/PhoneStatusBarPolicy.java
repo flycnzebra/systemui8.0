@@ -166,9 +166,13 @@ public class PhoneStatusBarPolicy implements Callback, Callbacks,
         /**
          * ADD By @FlyZebra
          */
-        btn_back = view.findViewById(R.id.back);
-        apptitle = view.findViewById(R.id.app_title);
-        apptitle.setText(PkUtils.getFocusActivityLabel(context));
+        try {
+            btn_back = view.findViewById(R.id.back);
+            apptitle = view.findViewById(R.id.app_title);
+            apptitle.setText(PkUtils.getFocusActivityLabel(context));
+        }catch (Exception e){
+            FlyLog.e(e.toString());
+        }
 
         mContext = context;
         mIconController = iconController;
