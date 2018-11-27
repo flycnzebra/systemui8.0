@@ -77,10 +77,9 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:visibility="visible"/>
+            android:visibility="gone"/>
 
         <com.android.keyguard.AlphaOptimizedLinearLayout
-            android:background="#7FFF00F0"
             android:id="@+id/system_icon_area"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
