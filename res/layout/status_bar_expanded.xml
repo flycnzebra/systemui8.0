@@ -36,7 +36,7 @@
         android:clipToPadding="false">
 
         <FrameLayout
-            android:id="@+id/qs_frame"
+            android:id="@+id/qs_frame11"
             android:layout_width="@dimen/qs_panel_width"
             android:layout_height="match_parent"
             android:layout_gravity="@integer/notification_panel_layout_gravity"
@@ -44,7 +44,8 @@
             android:clipToPadding="false"
             android:layout="@layout/qs_panel"
             android:visibility="visible"
-            systemui:viewType="com.android.systemui.plugins.qs.QS" />
+            systemui:viewType="com.android.systemui.plugins.qs.QS"
+            />
 
         <com.android.systemui.statusbar.stack.NotificationStackScrollLayout
             android:id="@+id/notification_stack_scroller"
