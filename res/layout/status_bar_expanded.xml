@@ -46,8 +46,6 @@
             android:visibility="visible"
             systemui:viewType="com.android.systemui.plugins.qs.QS" />
 
-        <include layout="@layout/qs_setting_layout" />
-
         <com.android.systemui.statusbar.stack.NotificationStackScrollLayout
             android:id="@+id/notification_stack_scroller"
             android:layout_width="match_parent"

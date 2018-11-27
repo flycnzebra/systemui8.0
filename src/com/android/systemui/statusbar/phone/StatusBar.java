@@ -192,7 +192,7 @@ import com.android.systemui.plugins.ActivityStarter;
 import com.android.systemui.plugins.qs.QS;
 import com.android.systemui.plugins.statusbar.NotificationMenuRowPlugin.MenuItem;
 import com.android.systemui.plugins.statusbar.NotificationSwipeActionHelper.SnoozeOption;
-import com.android.systemui.qs.CarQSFragment;
+import com.android.systemui.qs.QSFragment;
 import com.android.systemui.qs.QSPanel;
 import com.android.systemui.qs.QSTileHost;
 import com.android.systemui.qs.car.CarQSFragment;
@@ -1247,7 +1247,7 @@ public class StatusBar extends SystemUI implements DemoMode,
                                         .withPlugin(QS.class)
                                         .withFeature(
                                                 PackageManager.FEATURE_AUTOMOTIVE, () -> new CarQSFragment())
-                                        .withDefault(() -> new CarQSFragment())
+                                        .withDefault(() -> new QSFragment())
                                         .build());
                         final QSTileHost qsh = SystemUIFactory.getInstance().createQSTileHost(mContext, this,
                                 mIconController);
@@ -1255,9 +1255,9 @@ public class StatusBar extends SystemUI implements DemoMode,
                                 mScrimController);
                         fragmentHostManager.addTagListener(QS.TAG, (tag, f) -> {
                             QS qs = (QS) f;
-                            if (qs instanceof CarQSFragment) {
-                                ((CarQSFragment) qs).setHost(qsh);
-                                mQSPanel = ((CarQSFragment) qs).getQsPanel();
+                            if (qs instanceof QSFragment) {
+                                ((QSFragment) qs).setHost(qsh);
+                                mQSPanel = ((QSFragment) qs).getQsPanel();
                                 mQSPanel.setBrightnessMirror(mBrightnessMirrorController);
                                 mKeyguardStatusBar.setQSPanel(mQSPanel);
                             }
@@ -1273,7 +1273,7 @@ public class StatusBar extends SystemUI implements DemoMode,
                                 .withPlugin(QS.class)
                                 .withFeature(
                                         PackageManager.FEATURE_AUTOMOTIVE, () -> new CarQSFragment())
-                                .withDefault(() -> new CarQSFragment())
+                                .withDefault(() -> new QSFragment())
                                 .build());
                 final QSTileHost qsh = SystemUIFactory.getInstance().createQSTileHost(mContext, this,
                         mIconController);
@@ -1281,9 +1281,9 @@ public class StatusBar extends SystemUI implements DemoMode,
                         mScrimController);
                 fragmentHostManager.addTagListener(QS.TAG, (tag, f) -> {
                     QS qs = (QS) f;
-                    if (qs instanceof CarQSFragment) {
-                        ((CarQSFragment) qs).setHost(qsh);
-                        mQSPanel = ((CarQSFragment) qs).getQsPanel();
+                    if (qs instanceof QSFragment) {
+                        ((QSFragment) qs).setHost(qsh);
+                        mQSPanel = ((QSFragment) qs).getQsPanel();
                         mQSPanel.setBrightnessMirror(mBrightnessMirrorController);
                         mKeyguardStatusBar.setQSPanel(mQSPanel);
                     }
