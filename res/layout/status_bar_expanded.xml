@@ -21,7 +21,7 @@
     android:id="@+id/notification_panel"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/transparent">
+    android:background="@android:color/black">
 
     <include
         layout="@layout/keyguard_status_view"
@@ -43,7 +43,8 @@
             android:clipChildren="false"
             android:clipToPadding="false"
             android:layout="@layout/qs_panel"
-            systemui:viewType="com.android.systemui.plugins.qs.QS" />
+            systemui:viewType="com.android.systemui.plugins.qs.QS"
+            android:background="#F00"/>
 
         <com.android.systemui.statusbar.stack.NotificationStackScrollLayout
             android:id="@+id/notification_stack_scroller"
@@ -51,7 +52,8 @@
             android:layout_height="match_parent"
             android:layout_gravity="@integer/notification_panel_layout_gravity"
             android:layout_marginTop="@dimen/notification_panel_margin_top"
-            android:layout_marginBottom="@dimen/close_handle_underlap" />
+            android:layout_marginBottom="@dimen/close_handle_underlap"
+            android:background="#0F0"/>
 
         <include
             android:id="@+id/ambient_indication_container"
