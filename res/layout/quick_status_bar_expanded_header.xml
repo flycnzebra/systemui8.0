@@ -46,7 +46,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:focusable="true"
-        android:background="#7F00FF00"
         android:importantForAccessibility="yes" />
 
     <com.android.systemui.statusbar.AlphaOptimizedImageView
@@ -55,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:alpha="0"
-        android:background="#7F00FFFF"
+        android:background="@color/qs_detail_progress_track"
         android:src="@drawable/indeterminate_anim"/>
 
     <TextView

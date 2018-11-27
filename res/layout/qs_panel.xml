@@ -28,6 +28,7 @@
         android:layout_marginTop="28dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#00FF00"
         android:layout_marginBottom="48dp" />
 
     <include layout="@layout/quick_status_bar_expanded_header" />
