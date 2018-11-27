@@ -28,7 +28,7 @@
     <dimen name="battery_detail_graph_space_top">9dp</dimen>
     <dimen name="battery_detail_graph_space_bottom">9dp</dimen>
 
-    <integer name="quick_settings_num_columns">4</integer>
+    <integer name="quick_settings_num_columns">6</integer>
     <bool name="quick_settings_wide">true</bool>
     <dimen name="qs_detail_margin_top">0dp</dimen>
 </resources>
