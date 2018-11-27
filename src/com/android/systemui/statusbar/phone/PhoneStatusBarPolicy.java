@@ -432,14 +432,14 @@ public class PhoneStatusBarPolicy implements Callback, Callbacks,
     }
 
     private final void updateBluetooth() {
-        int iconId = R.drawable.stat_sys_data_bluetooth;
+        int iconId = R.drawable.jac_ic_bluetooth_n;
         String contentDescription =
                 mContext.getString(R.string.accessibility_quick_settings_bluetooth_on);
         boolean bluetoothEnabled = false;
         if (mBluetooth != null) {
             bluetoothEnabled = mBluetooth.isBluetoothEnabled();
             if (mBluetooth.isBluetoothConnected()) {
-                iconId = R.drawable.stat_sys_data_bluetooth_connected;
+                iconId = R.drawable.jac_ic_bluetooth_d;
                 contentDescription = mContext.getString(R.string.accessibility_bluetooth_connected);
             }
         }
