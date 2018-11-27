@@ -102,9 +102,9 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
 
         setOrientation(VERTICAL);
 
-        mBrightnessView = LayoutInflater.from(context).inflate(
-                R.layout.quick_settings_brightness_dialog, this, false);
+        mBrightnessView = LayoutInflater.from(context).inflate(R.layout.quick_settings_brightness_dialog, this, false);
         addView(mBrightnessView);
+        mBrightnessView.setVisibility(GONE);
 
         // M: @ {
         mQuickSettingsExt = OpSystemUICustomizationFactoryBase
@@ -196,8 +196,8 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     @Override
     public void onTuningChanged(String key, String newValue) {
         if (QS_SHOW_BRIGHTNESS.equals(key)) {
-            mBrightnessView.setVisibility(newValue == null || Integer.parseInt(newValue) != 0
-                    ? VISIBLE : GONE);
+//            mBrightnessView.setVisibility(newValue == null || Integer.parseInt(newValue) != 0
+//                    ? VISIBLE : GONE);
         }
     }
 
