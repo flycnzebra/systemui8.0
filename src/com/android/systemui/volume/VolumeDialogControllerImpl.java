@@ -50,6 +50,7 @@ import com.android.internal.annotations.GuardedBy;
 import com.android.systemui.Dumpable;
 import com.android.systemui.R;
 import com.android.systemui.SysUiServiceProvider;
+import com.android.systemui.jancar.FlyLog;
 import com.android.systemui.keyguard.ScreenLifecycle;
 import com.android.systemui.keyguard.WakefulnessLifecycle;
 import com.android.systemui.plugins.VolumeDialogController;
@@ -117,6 +118,9 @@ public class VolumeDialogControllerImpl implements VolumeDialogController, Dumpa
     private UserActivityListener mUserActivityListener;
 
     protected final VC mVolumeController = new VC();
+
+    public static int currentVolume = 0;
+    public static int currentStream = AudioManager.STREAM_MUSIC;
 
     public VolumeDialogControllerImpl(Context context) {
         mContext = context.getApplicationContext();
@@ -362,7 +366,7 @@ public class VolumeDialogControllerImpl implements VolumeDialogController, Dumpa
             changed |= updateActiveStreamW(stream);
         }
         int lastAudibleStreamVolume = getAudioManagerStreamVolume(stream);
-        changed |= updateStreamLevelW(stream, lastAudibleStreamVolume);
+        changed |= updateStreamLevelW(stream, currentVolume);
         changed |= checkRoutedToBluetoothW(showUI ? AudioManager.STREAM_MUSIC : stream);
         if (changed) {
             mCallbacks.onStateChanged(mState);
@@ -583,8 +587,12 @@ public class VolumeDialogControllerImpl implements VolumeDialogController, Dumpa
 
         @Override
         public void volumeChanged(int streamType, int flags) throws RemoteException {
-            if (D.BUG) Log.d(TAG, "volumeChanged " + AudioSystem.streamToString(streamType)
-                    + " " + Util.audioManagerFlagsToString(flags));
+            FlyLog.d("volumeChanged " + AudioSystem.streamToString(streamType)
+                    + " " + Util.audioManagerFlagsToString(flags) + " flag :" + flags);
+            final boolean showUI = (flags & AudioManager.FLAG_SHOW_UI) != 0;
+            currentStream = streamType;
+            currentVolume = mAudio.getStreamVolume(streamType);
+            FlyLog.d("currentVolume: " + currentVolume);
             if (mDestroyed) return;
             mWorker.obtainMessage(W.VOLUME_CHANGED, streamType, flags).sendToTarget();
         }
@@ -867,12 +875,11 @@ public class VolumeDialogControllerImpl implements VolumeDialogController, Dumpa
             final String action = intent.getAction();
             boolean changed = false;
             if (action.equals(AudioManager.VOLUME_CHANGED_ACTION)) {
-                final int stream = intent.getIntExtra(AudioManager.EXTRA_VOLUME_STREAM_TYPE, -1);
-                final int level = intent.getIntExtra(AudioManager.EXTRA_VOLUME_STREAM_VALUE, -1);
-                final int oldLevel = intent
-                        .getIntExtra(AudioManager.EXTRA_PREV_VOLUME_STREAM_VALUE, -1);
-                if (D.BUG) Log.d(TAG, "onReceive VOLUME_CHANGED_ACTION stream=" + stream
-                        + " level=" + level + " oldLevel=" + oldLevel);
+//                final int stream = intent.getIntExtra(AudioManager.EXTRA_VOLUME_STREAM_TYPE, -1);
+//                final int level = intent.getIntExtra(AudioManager.EXTRA_VOLUME_STREAM_VALUE, -1);
+//                final int oldLevel = intent.getIntExtra(AudioManager.EXTRA_PREV_VOLUME_STREAM_VALUE, -1);
+//                if (D.BUG) Log.d(TAG, "onReceive VOLUME_CHANGED_ACTION stream=" + stream
+//                        + " level=" + level + " oldLevel=" + oldLevel);
 //                changed = updateStreamLevelW(stream, level);
             } else if (action.equals(AudioManager.STREAM_DEVICES_CHANGED_ACTION)) {
                 final int stream = intent.getIntExtra(AudioManager.EXTRA_VOLUME_STREAM_TYPE, -1);
