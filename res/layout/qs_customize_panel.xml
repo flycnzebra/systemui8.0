@@ -23,5 +23,6 @@
     android:orientation="vertical"
     android:background="@drawable/qs_customizer_background"
     android:gravity="center_horizontal">
+    <include layout="@layout/qs_setting_layout"/>
 
 </com.android.systemui.qs.customize.QSCustomizer>
