@@ -389,7 +389,7 @@ public class VolumeDialogControllerImpl implements VolumeDialogController, Dumpa
         if (D.BUG) Log.d(TAG, "updateActiveStreamW " + activeStream);
         final int s = activeStream < DYNAMIC_STREAM_START_INDEX ? activeStream : -1;
         if (D.BUG) Log.d(TAG, "forceVolumeControlStream " + s);
-        mAudio.forceVolumeControlStream(s);
+//        mAudio.forceVolumeControlStream(s);
         return true;
     }
 
@@ -873,7 +873,7 @@ public class VolumeDialogControllerImpl implements VolumeDialogController, Dumpa
                         .getIntExtra(AudioManager.EXTRA_PREV_VOLUME_STREAM_VALUE, -1);
                 if (D.BUG) Log.d(TAG, "onReceive VOLUME_CHANGED_ACTION stream=" + stream
                         + " level=" + level + " oldLevel=" + oldLevel);
-                changed = updateStreamLevelW(stream, level);
+//                changed = updateStreamLevelW(stream, level);
             } else if (action.equals(AudioManager.STREAM_DEVICES_CHANGED_ACTION)) {
                 final int stream = intent.getIntExtra(AudioManager.EXTRA_VOLUME_STREAM_TYPE, -1);
                 final int devices = intent
