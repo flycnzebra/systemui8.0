@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:alpha="0"
-        android:background="@color/qs_detail_progress_track"
+        android:background="#7F00FFFF"
         android:src="@drawable/indeterminate_anim"/>
 
     <TextView
