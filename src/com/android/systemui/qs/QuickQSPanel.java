@@ -186,8 +186,8 @@ public class QuickQSPanel extends QSPanel {
 
         private LayoutParams generateSpaceParams() {
             int size = mContext.getResources().getDimensionPixelSize(R.dimen.qs_quick_tile_size);
-            LayoutParams lp = new LayoutParams(0, size);
-            lp.weight = 1f/6f;
+            LayoutParams lp = new LayoutParams(170, size);
+//            lp.weight = 1f/6f;
             lp.gravity = Gravity.CENTER;
             return lp;
         }
