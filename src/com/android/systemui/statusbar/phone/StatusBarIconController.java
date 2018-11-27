@@ -175,7 +175,7 @@ public interface StatusBarIconController {
         }
 
         protected LinearLayout.LayoutParams onCreateLayoutParams() {
-            return new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, mIconSize);
+            return new LinearLayout.LayoutParams(40, mIconSize);
         }
 
         protected void destroy() {
