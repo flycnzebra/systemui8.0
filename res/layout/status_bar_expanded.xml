@@ -35,17 +35,18 @@
         android:clipChildren="false"
         android:clipToPadding="false">
 
-        <!--<FrameLayout-->
-            <!--android:id="@+id/qs_frame"-->
-            <!--android:layout_width="@dimen/qs_panel_width"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_gravity="@integer/notification_panel_layout_gravity"-->
-            <!--android:clipChildren="false"-->
-            <!--android:clipToPadding="false"-->
-            <!--android:layout="@layout/qs_panel"-->
-            <!--systemui:viewType="com.android.systemui.plugins.qs.QS"-->
-            <!--android:visibility="visible"/>-->
-        <include layout="@layout/qs_setting_layout"/>
+        <FrameLayout
+            android:id="@+id/qs_frame"
+            android:layout_width="@dimen/qs_panel_width"
+            android:layout_height="match_parent"
+            android:layout_gravity="@integer/notification_panel_layout_gravity"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:layout="@layout/qs_panel"
+            android:visibility="visible"
+            systemui:viewType="com.android.systemui.plugins.qs.QS" />
+
+        <include layout="@layout/qs_setting_layout" />
 
         <com.android.systemui.statusbar.stack.NotificationStackScrollLayout
             android:id="@+id/notification_stack_scroller"
