@@ -16,6 +16,7 @@
 
 package com.android.systemui.statusbar.phone;
 
+import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.app.ActivityManager.StackId;
 import android.app.ActivityManager.StackInfo;
@@ -92,6 +93,8 @@ import com.android.systemui.statusbar.policy.UserInfoController;
 import com.android.systemui.statusbar.policy.ZenModeController;
 import com.android.systemui.util.NotificationChannels;
 
+import com.jancar.JancarManager;
+import com.jancar.state.JacState;
 import com.mediatek.internal.telephony.MtkTelephonyIntents;
 
 import java.util.List;
@@ -155,8 +158,13 @@ public class PhoneStatusBarPolicy implements Callback, Callbacks,
 
     private BluetoothController mBluetooth;
 
+
+    private JacState jacState = null;
+    private JancarManager jancarManager;
+
+    @SuppressLint("WrongConstant")
     @VisibleForTesting
-    public PhoneStatusBarPolicy(PhoneStatusBarView view, Context context, StatusBarIconController iconController) {
+    public PhoneStatusBarPolicy(Context context, StatusBarIconController iconController) {
         mContext = context;
         mIconController = iconController;
         mCast = Dependency.get(CastController.class);
@@ -180,8 +188,7 @@ public class PhoneStatusBarPolicy implements Callback, Callbacks,
         mSlotZen = context.getString(com.android.internal.R.string.status_bar_zen);
         mSlotVolume = context.getString(com.android.internal.R.string.status_bar_volume);
         mSlotAlarmClock = context.getString(com.android.internal.R.string.status_bar_alarm_clock);
-        mSlotManagedProfile = context.getString(
-                com.android.internal.R.string.status_bar_managed_profile);
+        mSlotManagedProfile = context.getString(com.android.internal.R.string.status_bar_managed_profile);
         mSlotRotate = context.getString(com.android.internal.R.string.status_bar_rotate);
         mSlotHeadset = context.getString(com.android.internal.R.string.status_bar_headset);
         mSlotDataSaver = context.getString(com.android.internal.R.string.status_bar_data_saver);
@@ -189,6 +196,12 @@ public class PhoneStatusBarPolicy implements Callback, Callbacks,
         // M: ignor for BSP+
         // mSlotEmbms = context.getString(com.android.internal.R.string.status_bar_embms);
         mSlotEmbms = "embms";
+
+
+
+        jacState = new SystemStates();
+        jancarManager = (JancarManager) context.getSystemService("jancar_manager");
+        jancarManager.registerJacStateListener(jacState.asBinder());
 
         // listen for broadcasts
         IntentFilter filter = new IntentFilter();
@@ -291,6 +304,7 @@ public class PhoneStatusBarPolicy implements Callback, Callbacks,
     }
 
     public void destroy() {
+        jancarManager.unregisterJacStateListener(jacState.asBinder());
         mRotationLockController.removeCallback(this);
         mBluetooth.removeCallback(this);
         mProvisionedController.removeCallback(this);
@@ -782,19 +796,25 @@ public class PhoneStatusBarPolicy implements Callback, Callbacks,
     }
 
     private void updateHeadsetPlug(Intent intent) {
-        boolean connected = intent.getIntExtra("state", 0) != 0;
-        boolean hasMic = intent.getIntExtra("microphone", 0) != 0;
-        Log.d(TAG, "updateHeadsetPlug connected:" + connected + ",hasMic:" + hasMic);
-        if (connected) {
-            String contentDescription = mContext.getString(hasMic
-                    ? R.string.accessibility_status_bar_headset
-                    : R.string.accessibility_status_bar_headphones);
-            mIconController.setIcon(mSlotHeadset, hasMic ? R.drawable.ic_headset_mic
-                    : R.drawable.ic_headset, contentDescription);
-            mIconController.setIconVisibility(mSlotHeadset, true);
-        } else {
-            mIconController.setIconVisibility(mSlotHeadset, false);
-        }
+//        boolean connected = intent.getIntExtra("state", 0) != 0;
+//        boolean hasMic = intent.getIntExtra("microphone", 0) != 0;
+//        Log.d(TAG, "updateHeadsetPlug connected:" + connected + ",hasMic:" + hasMic);
+//        if (connected) {
+//            String contentDescription = mContext.getString(hasMic
+//                    ? R.string.accessibility_status_bar_headset
+//                    : R.string.accessibility_status_bar_headphones);
+//            mIconController.setIcon(mSlotHeadset, hasMic ? R.drawable.ic_headset_mic
+//                    : R.drawable.ic_headset, contentDescription);
+//            mIconController.setIconVisibility(mSlotHeadset, true);
+//        } else {
+//            mIconController.setIconVisibility(mSlotHeadset, false);
+//        }
+    }
+
+    private final void updateUsb(boolean mounted) {
+        String contentDescription = "";
+        mIconController.setIcon(mSlotHeadset, R.drawable.jac_ic_usb_d, contentDescription);
+        mIconController.setIconVisibility(mSlotHeadset, mounted);
     }
 
     @Override
@@ -878,5 +898,19 @@ public class PhoneStatusBarPolicy implements Callback, Callbacks,
             null /* permission */, mHandler /* scheduler */);
     }
     /// M: @}
+
+    public class SystemStates extends JacState {
+        @Override
+        public void OnBackCar(boolean bState) {
+            super.OnBackCar(bState);
+        }
+
+        @Override
+        public void OnStorage(StorageState state) {
+            FlyLog.d("usb state:" + state.isUsbMounted());
+            updateUsb(state.isUsbMounted());
+            super.OnStorage(state);
+        }
+    }
 
 }
