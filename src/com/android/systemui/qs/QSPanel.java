@@ -63,7 +63,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
 
     protected final Context mContext;
     protected final ArrayList<TileRecord> mRecords = new ArrayList<TileRecord>();
-    protected final View mBrightnessView;
+//    protected final View mBrightnessView;
     private final H mHandler = new H();
     private final View mPageIndicator;
     private final MetricsLogger mMetricsLogger = Dependency.get(MetricsLogger.class);
@@ -102,9 +102,9 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
 
         setOrientation(VERTICAL);
 
-        mBrightnessView = LayoutInflater.from(context).inflate(
-                R.layout.quick_settings_brightness_dialog, this, false);
-        addView(mBrightnessView);
+//        mBrightnessView = LayoutInflater.from(context).inflate(
+//                R.layout.quick_settings_brightness_dialog, this, false);
+//        addView(mBrightnessView);
 
         // M: @ {
         mQuickSettingsExt = OpSystemUICustomizationFactoryBase
@@ -195,10 +195,10 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
 
     @Override
     public void onTuningChanged(String key, String newValue) {
-        if (QS_SHOW_BRIGHTNESS.equals(key)) {
-            mBrightnessView.setVisibility(newValue == null || Integer.parseInt(newValue) != 0
-                    ? VISIBLE : GONE);
-        }
+//        if (QS_SHOW_BRIGHTNESS.equals(key)) {
+//            mBrightnessView.setVisibility(newValue == null || Integer.parseInt(newValue) != 0
+//                    ? VISIBLE : GONE);
+//        }
     }
 
     public void openDetails(String subPanel) {
@@ -232,7 +232,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     }
 
     View getBrightnessView() {
-        return mBrightnessView;
+        return null;
     }
 
     public void setCallback(QSDetail.Callback callback) {
@@ -323,13 +323,13 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
         if (mListening) {
             refreshAllTiles();
         }
-        if (mBrightnessView.getVisibility() == View.VISIBLE) {
-            if (listening) {
-                mBrightnessController.registerCallbacks();
-            } else {
-                mBrightnessController.unregisterCallbacks();
-            }
-        }
+//        if (mBrightnessView.getVisibility() == View.VISIBLE) {
+//            if (listening) {
+//                mBrightnessController.registerCallbacks();
+//            } else {
+//                mBrightnessController.unregisterCallbacks();
+//            }
+//        }
         //M: @{
         if (mQuickSettingsExt != null) {
             if (listening) {
