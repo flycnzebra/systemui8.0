@@ -165,7 +165,7 @@ public interface StatusBarIconController {
             view.set(icon);
             LinearLayout.LayoutParams lp = onCreateLayoutParams();
             lp.weight=40;
-            FlyLog.e("width=%s,height=%s",lp.weight,lp.height);
+            FlyLog.e("width=%f,height=%f",lp.weight,lp.height);
             mGroup.addView(view, index, lp);
             return view;
         }
