@@ -119,6 +119,7 @@
         android:id="@+id/mobile_signal_group"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
+        android:visibility="gone"
         >
     </LinearLayout>
     <FrameLayout
@@ -134,6 +135,7 @@
             android:layout_width="40px"
             android:scaleType="centerCrop"
             android:src="@drawable/stat_sys_no_sims"
+            android:visibility="gone"
             />
         <com.android.systemui.statusbar.AlphaOptimizedImageView
             android:theme="?attr/darkIconTheme"
@@ -143,6 +145,7 @@
             android:scaleType="centerCrop"
             android:src="@drawable/stat_sys_no_sims"
             android:alpha="0.0"
+            android:visibility="gone"
             />
     </FrameLayout>
     <View
