@@ -69,7 +69,7 @@
     <dimen name="status_bar_connected_device_signal_margin_end">16dp</dimen>
 
     <!-- The size of a bluetooth indicator icon that displays next to the RSSI status icon. -->
-    <dimen name="status_bar_connected_device_bt_indicator_size">17dp</dimen>
+    <dimen name="status_bar_connected_device_bt_indicator_size">40px</dimen>
 
     <!-- Height of a small notification in the status bar-->
     <dimen name="notification_min_height">92dp</dimen>
