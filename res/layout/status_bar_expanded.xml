@@ -24,13 +24,6 @@
     android:background="@android:color/transparent">
 
     <include
-        android:id="@+id/qs_setting_layout"
-        layout="@layout/qs_setting_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="45px" />
-
-    <include
         layout="@layout/keyguard_status_view"
         android:visibility="gone" />
 
@@ -40,7 +33,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="@integer/notification_panel_layout_gravity"
         android:clipChildren="false"
-        android:clipToPadding="false">
+        android:clipToPadding="false"
+        android:visibility="gone">
 
         <FrameLayout
             android:id="@+id/qs_frame"
