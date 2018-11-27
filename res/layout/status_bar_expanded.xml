@@ -44,7 +44,7 @@
             android:clipToPadding="false"
             android:layout="@layout/qs_panel"
             systemui:viewType="com.android.systemui.plugins.qs.QS"
-            android:visibility="gone"/>
+            android:visibility="visible"/>
 
         <com.android.systemui.statusbar.stack.NotificationStackScrollLayout
             android:id="@+id/notification_stack_scroller"
