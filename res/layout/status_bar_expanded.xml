@@ -43,7 +43,7 @@
             android:clipChildren="false"
             android:clipToPadding="false"
             android:layout="@layout/qs_panel"
-            android:visibility="gone"
+            android:visibility="visible"
             systemui:viewType="com.android.systemui.plugins.qs.QS"
             />
 
