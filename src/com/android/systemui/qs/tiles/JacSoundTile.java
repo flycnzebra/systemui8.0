@@ -30,8 +30,8 @@ public class JacSoundTile extends QSTileImpl<QSTile.BooleanState> {
     @Override
     protected void handleUpdateState(BooleanState state, Object arg) {
         state.icon = ResourceIcon.get(R.drawable.jac_qs_sound_01);
-        state.label = "jancar1";
-        state.contentDescription = "jancar2";
+        state.label = mContext.getResources().getString(R.string.qs_volume_value);
+        state.contentDescription = state.label;
     }
 
     @Override
