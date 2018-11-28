@@ -221,8 +221,8 @@ public class SlashDrawable extends Drawable {
 
     @Override
     public void setColorFilter(@Nullable ColorFilter colorFilter) {
-        mDrawable.setColorFilter(colorFilter);
-        mPaint.setColorFilter(colorFilter);
+//        mDrawable.setColorFilter(colorFilter);
+//        mPaint.setColorFilter(colorFilter);
     }
 
     @Override
