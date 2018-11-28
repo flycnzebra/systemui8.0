@@ -249,8 +249,8 @@ public class NotificationPanelView extends PanelView implements
     /**
      * 添加高斯模糊Start
      */
-    private static final int BLUR_START = 200;
-    private static final int BLUR_END = 500;
+    private static final int BLUR_START = 400;
+    private static final int BLUR_END = 600;
     private View mAlphaView;
     private ImageView mBlurView;
     private boolean mIsFullClose;
