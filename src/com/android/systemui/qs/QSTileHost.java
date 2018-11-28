@@ -251,9 +251,9 @@ public class QSTileHost implements QSHost, Tunable, PluginListener<QSFactory> {
     }
 
     public void addTile(String spec) {
-//        final String setting = Settings.Secure.getStringForUser(mContext.getContentResolver(),
-//                TILES_SETTING, ActivityManager.getCurrentUser());
-        final List<String> tileSpecs = loadTileSpecs(mContext, null);
+        final String setting = Settings.Secure.getStringForUser(mContext.getContentResolver(),
+                TILES_SETTING, ActivityManager.getCurrentUser());
+        final List<String> tileSpecs = loadTileSpecs(mContext, setting);
         if (tileSpecs.contains(spec)) {
             return;
         }
@@ -326,8 +326,7 @@ public class QSTileHost implements QSHost, Tunable, PluginListener<QSFactory> {
     protected List<String> loadTileSpecs(Context context, String tileList) {
         final Resources res = context.getResources();
         String defaultTileList = res.getString(R.string.quick_settings_tiles_default);
-        FlyLog.d("loadTileSpecs tileList = %s",tileList);
-        FlyLog.d("loadTileSpecs defaultTileList = %s",defaultTileList);
+        FlyLog.d("loadTileSpecs string = %s",defaultTileList);
         /// M: Customize the quick settings tile order for operator. @{
         /**
          * 取消加载自定义
@@ -339,6 +338,7 @@ public class QSTileHost implements QSHost, Tunable, PluginListener<QSFactory> {
 //        }
         /// M: Customize the quick settings tile order for operator. @}
 
+        tileList = defaultTileList;
         if (tileList == null) {
             tileList = res.getString(R.string.quick_settings_tiles);
             if (DEBUG) Log.d(TAG, "Loaded tile specs from config: " + tileList);
@@ -350,16 +350,16 @@ public class QSTileHost implements QSHost, Tunable, PluginListener<QSFactory> {
         for (String tile : tileList.split(",")) {
             tile = tile.trim();
             if (tile.isEmpty()) continue;
-            if (tile.equals("default")) {
-                if (!addedDefault) {
-                    tiles.addAll(Arrays.asList(defaultTileList.split(",")));
-                    addedDefault = true;
-                }
-            } else {
+//            if (tile.equals("default")) {
+//                if (!addedDefault) {
+//                    tiles.addAll(Arrays.asList(defaultTileList.split(",")));
+//                    addedDefault = true;
+//                }
+//            } else {
                 tiles.add(tile);
-            }
+//            }
         }
-        FlyLog.d("tiles lenght=%d, s=%s",tiles.size(),tiles.toString());
+        FlyLog.d("tiles=%s",tiles.toString());
         return tiles;
     }
 }
