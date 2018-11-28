@@ -179,6 +179,7 @@ public class QuickQSPanel extends QSPanel {
                 // Add a spacer.
                 addView(new Space(mContext), getChildCount(), generateSpaceParams());
             }
+            tile.tileView.setGravity(Gravity.CENTER);
             addView(tile.tileView, getChildCount(), generateLayoutParams());
             mRecords.add(tile);
             tile.tile.setListening(this, mListening);
@@ -187,14 +188,14 @@ public class QuickQSPanel extends QSPanel {
         private LayoutParams generateSpaceParams() {
             int size = mContext.getResources().getDimensionPixelSize(R.dimen.qs_quick_tile_size);
             LayoutParams lp = new LayoutParams(0, size);
-            lp.weight = 1;
+//            lp.weight = 1;
             lp.gravity = Gravity.CENTER;
             return lp;
         }
 
         private LayoutParams generateLayoutParams() {
             int size = mContext.getResources().getDimensionPixelSize(R.dimen.qs_quick_tile_size);
-            LayoutParams lp = new LayoutParams(size, size);
+            LayoutParams lp = new LayoutParams((int) (1024/6f), size);
             lp.gravity = Gravity.CENTER;
             return lp;
         }

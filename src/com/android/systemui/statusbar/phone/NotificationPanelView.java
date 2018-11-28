@@ -250,7 +250,7 @@ public class NotificationPanelView extends PanelView implements
      * 添加高斯模糊Start
      */
     private static final int BLUR_START = 200;
-    private static final int BLUR_END = 700;
+    private static final int BLUR_END = 500;
     private View mAlphaView;
     private ImageView mBlurView;
     private boolean mIsFullClose;
@@ -278,7 +278,8 @@ public class NotificationPanelView extends PanelView implements
                 FlyLog.d("setBlurBackground bitmap == null");
                 return;
             }
-            Bitmap blurBitmap = BlurUtil.blur(getContext(), BlurUtil.blur(getContext(), bitmap, BlurUtil.BLUR_RADIUS_MAX), BlurUtil.BLUR_RADIUS_MAX);
+            Bitmap blurBitmap = BlurUtil.blur(getContext(), BlurUtil.blur(getContext(),
+                    bitmap, BlurUtil.BLUR_RADIUS_MAX), BlurUtil.BLUR_RADIUS_MAX);
             BitmapUtils.recycleImageView(mBlurView);
             mBlurView.setImageBitmap(blurBitmap);
         }
