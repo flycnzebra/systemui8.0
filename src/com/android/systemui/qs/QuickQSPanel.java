@@ -48,7 +48,6 @@ public class QuickQSPanel extends QSPanel {
 
     public QuickQSPanel(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setWeightSum(6);
         if (mFooter != null) {
             removeView((View) mFooter.getView());
         }
@@ -176,10 +175,10 @@ public class QuickQSPanel extends QSPanel {
 
         @Override
         public void addTile(TileRecord tile) {
-//            if (getChildCount() != 0) {
-//                // Add a spacer.
-//                addView(new Space(mContext), getChildCount(), generateSpaceParams());
-//            }
+            if (getChildCount() != 0) {
+                // Add a spacer.
+                addView(new Space(mContext), getChildCount(), generateSpaceParams());
+            }
             addView(tile.tileView, getChildCount(), generateLayoutParams());
             mRecords.add(tile);
             tile.tile.setListening(this, mListening);
@@ -195,10 +194,7 @@ public class QuickQSPanel extends QSPanel {
 
         private LayoutParams generateLayoutParams() {
             int size = mContext.getResources().getDimensionPixelSize(R.dimen.qs_quick_tile_size);
-//            LayoutParams lp = new LayoutParams(size, size);
-//            lp.gravity = Gravity.CENTER;
-            LayoutParams lp = new LayoutParams(0, size);
-            lp.weight = 1;
+            LayoutParams lp = new LayoutParams(170, size);
             lp.gravity = Gravity.CENTER;
             return lp;
         }
