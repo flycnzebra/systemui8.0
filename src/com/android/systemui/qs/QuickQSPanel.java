@@ -160,7 +160,7 @@ public class QuickQSPanel extends QSPanel {
             super(context);
             setClipChildren(false);
             setClipToPadding(false);
-            setGravity(Gravity.CENTER);
+            setGravity(Gravity.CENTER_VERTICAL);
             setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
         }
 
@@ -187,14 +187,14 @@ public class QuickQSPanel extends QSPanel {
         private LayoutParams generateSpaceParams() {
             int size = mContext.getResources().getDimensionPixelSize(R.dimen.qs_quick_tile_size);
             LayoutParams lp = new LayoutParams(0, size);
-//            lp.weight = 1;
+            lp.weight = 1;
             lp.gravity = Gravity.CENTER;
             return lp;
         }
 
         private LayoutParams generateLayoutParams() {
             int size = mContext.getResources().getDimensionPixelSize(R.dimen.qs_quick_tile_size);
-            LayoutParams lp = new LayoutParams(170, size);
+            LayoutParams lp = new LayoutParams(size, size);
             lp.gravity = Gravity.CENTER;
             return lp;
         }
