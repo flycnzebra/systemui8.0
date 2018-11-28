@@ -192,9 +192,12 @@ public class QSIconViewImpl extends QSIconView {
     }
 
     protected View createIcon() {
-        final ImageView icon = new SlashImageView(mContext);
+        /**
+         * @FlyZebra 修改图标大小
+         */
+        final ImageView icon = new ImageView(mContext);
         icon.setId(android.R.id.icon);
-        icon.setScaleType(ScaleType.FIT_CENTER);
+        icon.setScaleType(ScaleType.FIT_XY);
         return icon;
     }
 
