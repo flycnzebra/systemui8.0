@@ -111,7 +111,7 @@ public class QSFactoryImpl implements QSFactory {
         else if (tileSpec.startsWith(CustomTile.PREFIX)) return CustomTile.create(mHost, tileSpec);
         else {
             Log.w(TAG, "Bad tile spec: " + tileSpec);
-            FlyLog.e("createTile %s failed!");
+            FlyLog.e("createTile %s failed!",tileSpec);
             return null;
         }
     }
