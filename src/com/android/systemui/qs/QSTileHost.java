@@ -56,7 +56,9 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-/** Platform implementation of the quick settings tile host **/
+/**
+ * Platform implementation of the quick settings tile host
+ **/
 public class QSTileHost implements QSHost, Tunable, PluginListener<QSFactory> {
     private static final String TAG = "QSTileHost";
     private static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG);
@@ -80,7 +82,7 @@ public class QSTileHost implements QSHost, Tunable, PluginListener<QSFactory> {
     //@ }
 
     public QSTileHost(Context context, StatusBar statusBar,
-            StatusBarIconController iconController) {
+                      StatusBarIconController iconController) {
         mIconController = iconController;
         mContext = context;
         mStatusBar = statusBar;
@@ -330,7 +332,7 @@ public class QSTileHost implements QSHost, Tunable, PluginListener<QSFactory> {
 //        if (mQuickSettingsExt != null) {
 //            defaultTileList = mQuickSettingsExt.addOpTileSpecs(defaultTileList);
 //        // @}
-//            defaultTileList = mQuickSettingsExt.customizeQuickSettingsTileOrder(defaultTileList);
+        defaultTileList = mQuickSettingsExt.customizeQuickSettingsTileOrder(defaultTileList);
 //        }
         /// M: Customize the quick settings tile order for operator. @}
         Log.d(TAG, "loadTileSpecs() default tile list: " + defaultTileList);
