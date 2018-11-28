@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.ContextThemeWrapper;
 
 import com.android.systemui.R;
+import com.android.systemui.jancar.FlyLog;
 import com.android.systemui.plugins.qs.*;
 import com.android.systemui.plugins.qs.QSTileView;
 import com.android.systemui.qs.external.CustomTile;
@@ -65,6 +66,7 @@ public class QSFactoryImpl implements QSFactory {
     }
 
     public QSTile createTile(String tileSpec) {
+        FlyLog.d("createTile %s");
         /// M: Add extra tiles in quicksetting @{
         Context context = mHost.getContext();
         IQuickSettingsPlugin quickSettingsPlugin = OpSystemUICustomizationFactoryBase
@@ -109,6 +111,7 @@ public class QSFactoryImpl implements QSFactory {
         else if (tileSpec.startsWith(CustomTile.PREFIX)) return CustomTile.create(mHost, tileSpec);
         else {
             Log.w(TAG, "Bad tile spec: " + tileSpec);
+            FlyLog.e("createTile %s failed!");
             return null;
         }
     }
