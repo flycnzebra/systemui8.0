@@ -324,11 +324,14 @@ public class QSTileHost implements QSHost, Tunable, PluginListener<QSFactory> {
         final Resources res = context.getResources();
         String defaultTileList = res.getString(R.string.quick_settings_tiles_default);
         /// M: Customize the quick settings tile order for operator. @{
-        if (mQuickSettingsExt != null) {
-            defaultTileList = mQuickSettingsExt.addOpTileSpecs(defaultTileList);
-        // @}
-            defaultTileList = mQuickSettingsExt.customizeQuickSettingsTileOrder(defaultTileList);
-        }
+        /**
+         * 取消加载自定义
+         */
+//        if (mQuickSettingsExt != null) {
+//            defaultTileList = mQuickSettingsExt.addOpTileSpecs(defaultTileList);
+//        // @}
+//            defaultTileList = mQuickSettingsExt.customizeQuickSettingsTileOrder(defaultTileList);
+//        }
         /// M: Customize the quick settings tile order for operator. @}
         Log.d(TAG, "loadTileSpecs() default tile list: " + defaultTileList);
         if (tileList == null) {
