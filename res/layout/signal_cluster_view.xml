@@ -45,14 +45,14 @@
             android:id="@+id/ethernet"
             android:layout_height="40px"
             android:layout_width="40px"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
             />
         <com.android.systemui.statusbar.AlphaOptimizedImageView
             android:theme="?attr/darkIconTheme"
             android:id="@+id/ethernet_dark"
             android:layout_height="40px"
             android:layout_width="40px"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
             android:alpha="0.0"
             />
     </FrameLayout>
@@ -63,7 +63,7 @@
             android:id="@+id/wifi_in"
             android:layout_height="40px"
             android:layout_width="40px"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
             android:src="@drawable/ic_activity_down"
             android:visibility="gone"
             android:paddingEnd="2dp"
@@ -72,7 +72,7 @@
             android:id="@+id/wifi_out"
             android:layout_height="40px"
             android:layout_width="40px"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
             android:src="@drawable/ic_activity_up"
             android:paddingEnd="2dp"
             android:visibility="gone"
@@ -88,14 +88,14 @@
             android:id="@+id/wifi_signal"
             android:layout_height="40px"
             android:layout_width="40px"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
             />
         <com.android.systemui.statusbar.AlphaOptimizedImageView
             android:theme="?attr/darkIconTheme"
             android:id="@+id/wifi_signal_dark"
             android:layout_height="40px"
             android:layout_width="40px"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
             android:alpha="0.0"
             />
         <ImageView
@@ -133,7 +133,7 @@
             android:id="@+id/no_sims"
             android:layout_height="40px"
             android:layout_width="40px"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
             android:src="@drawable/stat_sys_no_sims"
             android:visibility="gone"
             />
@@ -142,7 +142,7 @@
             android:id="@+id/no_sims_dark"
             android:layout_height="40px"
             android:layout_width="40px"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
             android:src="@drawable/stat_sys_no_sims"
             android:alpha="0.0"
             android:visibility="gone"
@@ -158,6 +158,6 @@
         android:id="@+id/airplane"
         android:layout_height="40px"
         android:layout_width="40px"
-        android:scaleType="centerCrop"
+        android:scaleType="fitXY"
         />
 </com.android.systemui.statusbar.SignalClusterView>

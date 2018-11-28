@@ -162,6 +162,7 @@ public interface StatusBarIconController {
         protected StatusBarIconView addIcon(int index, String slot, boolean blocked,
                 StatusBarIcon icon) {
             StatusBarIconView view = onCreateStatusBarIconView(slot, blocked);
+            view.setScaleType(ImageView.ScaleType.FIT_XY);
             view.set(icon);
             LinearLayout.LayoutParams lp = onCreateLayoutParams();
             lp.width = mIconSize;
