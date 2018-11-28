@@ -34,6 +34,7 @@ import com.android.systemui.qs.tiles.FlashlightTile;
 import com.android.systemui.qs.tiles.HotspotTile;
 import com.android.systemui.qs.tiles.IntentTile;
 import com.android.systemui.qs.tiles.JacAudioTile;
+import com.android.systemui.qs.tiles.JacBluetoothTile;
 import com.android.systemui.qs.tiles.JacBrightnessTile;
 import com.android.systemui.qs.tiles.JacCarSettingTile;
 import com.android.systemui.qs.tiles.JacSoundTile;
@@ -74,7 +75,7 @@ public class QSFactoryImpl implements QSFactory {
                 .getOpFactory(context).makeQuickSettings(context);
         /// @}
         if (tileSpec.equals("wifi")) return new WifiTile(mHost);
-        else if (tileSpec.equals("bt")) return new BluetoothTile(mHost);
+        else if (tileSpec.equals("bt")) return new JacBluetoothTile(mHost);
         else if (tileSpec.equals("cell")) return new CellularTile(mHost);
         else if (tileSpec.equals("dnd")) return new DndTile(mHost);
         else if (tileSpec.equals("inversion")) return new ColorInversionTile(mHost);
