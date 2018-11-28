@@ -799,7 +799,7 @@ public class NotificationContentView extends FrameLayout {
     public void updateBackgroundColor(boolean animate) {
         int customBackgroundColor = getBackgroundColor(mVisibleType);
         mContainingNotification.resetBackgroundAlpha();
-        mContainingNotification.setContentBackground(customBackgroundColor, animate, this);
+        mContainingNotification.setContentBackground(0x00000000, animate, this);
     }
 
     public int getVisibleType() {
