@@ -107,7 +107,7 @@
 
     <!-- The default tiles to display in QuickSettings -->
     <string name="quick_settings_tiles_default" translatable="false">
-        wifi,location,bt,night,airplane,nfc
+        wifi,location,bt,night,airplane,nfc,jac_car
     </string>
 
     <!-- Tiles native to System UI. Order should match "quick_settings_tiles_default" -->

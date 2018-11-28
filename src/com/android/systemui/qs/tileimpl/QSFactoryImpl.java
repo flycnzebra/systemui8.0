@@ -66,7 +66,7 @@ public class QSFactoryImpl implements QSFactory {
     }
 
     public QSTile createTile(String tileSpec) {
-        FlyLog.d("createTile %s");
+        FlyLog.d("createTile %s",tileSpec);
         /// M: Add extra tiles in quicksetting @{
         Context context = mHost.getContext();
         IQuickSettingsPlugin quickSettingsPlugin = OpSystemUICustomizationFactoryBase
