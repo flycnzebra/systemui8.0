@@ -19,7 +19,6 @@ import android.util.Log;
 import android.view.ContextThemeWrapper;
 
 import com.android.systemui.R;
-import com.android.systemui.jancar.FlyLog;
 import com.android.systemui.plugins.qs.*;
 import com.android.systemui.plugins.qs.QSTileView;
 import com.android.systemui.qs.external.CustomTile;
@@ -66,14 +65,13 @@ public class QSFactoryImpl implements QSFactory {
     }
 
     public QSTile createTile(String tileSpec) {
-        FlyLog.d("createTile %s",tileSpec);
         /// M: Add extra tiles in quicksetting @{
         Context context = mHost.getContext();
         IQuickSettingsPlugin quickSettingsPlugin = OpSystemUICustomizationFactoryBase
                 .getOpFactory(context).makeQuickSettings(context);
         /// @}
         if (tileSpec.equals("wifi")) return new WifiTile(mHost);
-        else if (tileSpec.equals("bt")) return new WifiTile(mHost);
+        else if (tileSpec.equals("bt")) return new BluetoothTile(mHost);
         else if (tileSpec.equals("cell")) return new CellularTile(mHost);
         else if (tileSpec.equals("dnd")) return new DndTile(mHost);
         else if (tileSpec.equals("inversion")) return new ColorInversionTile(mHost);
@@ -87,11 +85,14 @@ public class QSFactoryImpl implements QSFactory {
         else if (tileSpec.equals("user")) return new UserTile(mHost);
         else if (tileSpec.equals("battery")) return new BatterySaverTile(mHost);
         else if (tileSpec.equals("saver")) return new DataSaverTile(mHost);
-        else if (tileSpec.equals("night")) return new WifiTile(mHost);
-        else if (tileSpec.equals("nfc")) return new WifiTile(mHost);
+        else if (tileSpec.equals("night")) return new NightDisplayTile(mHost);
+        else if (tileSpec.equals("nfc")) return new NfcTile(mHost);
         /// M: Customize the quick settings tiles for operator. @{
-        else if (tileSpec.equals("dataconnection") && !SIMHelper.isWifiOnlyDevice())
-            return new MobileDataTile(mHost);
+        /**
+         * 不显示数据连接
+         */
+//        else if (tileSpec.equals("dataconnection") && !SIMHelper.isWifiOnlyDevice())
+//            return new MobileDataTile(mHost);
         else if (tileSpec.equals("simdataconnection") && !SIMHelper.isWifiOnlyDevice() &&
                 quickSettingsPlugin.customizeAddQSTile(new SimDataConnectionTile(mHost)) != null) {
             return (SimDataConnectionTile) quickSettingsPlugin.customizeAddQSTile(
@@ -111,7 +112,6 @@ public class QSFactoryImpl implements QSFactory {
         else if (tileSpec.startsWith(CustomTile.PREFIX)) return CustomTile.create(mHost, tileSpec);
         else {
             Log.w(TAG, "Bad tile spec: " + tileSpec);
-            FlyLog.e("createTile %s failed!",tileSpec);
             return null;
         }
     }
