@@ -28,6 +28,7 @@ import android.content.Context;
 import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -45,6 +46,7 @@ import android.view.ViewTreeObserver;
 import android.view.WindowInsets;
 import android.view.accessibility.AccessibilityEvent;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
@@ -55,6 +57,10 @@ import com.android.systemui.R;
 import com.android.systemui.classifier.FalsingManager;
 import com.android.systemui.fragments.FragmentHostManager;
 import com.android.systemui.fragments.FragmentHostManager.FragmentListener;
+import com.android.systemui.jancar.BitmapUtils;
+import com.android.systemui.jancar.BlurUtil;
+import com.android.systemui.jancar.FlyLog;
+import com.android.systemui.jancar.ScreenShotUtil;
 import com.android.systemui.plugins.qs.QS;
 import com.android.systemui.statusbar.ExpandableNotificationRow;
 import com.android.systemui.statusbar.ExpandableView;
@@ -239,6 +245,62 @@ public class NotificationPanelView extends PanelView implements
     private ValueAnimator mDarkAnimator;
     private StatusBarKeyguardViewManager mStatusBarKeyguardViewManager;
     private boolean mUserSetupComplete;
+
+    /**
+     * 添加高斯模糊Start
+     */
+    private static final int BLUR_START = 200;
+    private static final int BLUR_END = 700;
+    private View mAlphaView;
+    private ImageView mBlurView;
+    private boolean mIsFullClose;
+    private void startAlphaAnimation(float start, float end) {
+        ValueAnimator va = ValueAnimator.ofFloat(start, end);
+        va.setDuration((long) (Math.abs(end - start) * 500));
+        va.start();
+        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                float alpha = (float) animation.getAnimatedValue();
+                mAlphaView.setAlpha(alpha/2);
+                mBlurView.setAlpha(alpha);
+            }
+        });
+    }
+
+    private void setBlurBackground() {
+        Bitmap bitmap = ScreenShotUtil.takeScreenShot(getContext());
+        if (bitmap == null) {
+            FlyLog.d("setBlurBackground bitmap == null");
+            return;
+        }
+        Bitmap blurBitmap = BlurUtil.blur(getContext(), BlurUtil.blur(getContext(), bitmap, BlurUtil.BLUR_RADIUS_MAX), BlurUtil.BLUR_RADIUS_MAX);
+        BitmapUtils.recycleImageView(mBlurView);
+        mBlurView.setImageBitmap(blurBitmap);
+    }
+
+    private void updateBlurVisibility(boolean keyguardShowing){
+        if (keyguardShowing) {
+            mBlurView.setVisibility(View.GONE);
+            mAlphaView.setVisibility(View.GONE);
+            BitmapUtils.recycleImageView(mBlurView);
+        }else {
+            mBlurView.setVisibility(View.VISIBLE);
+            mAlphaView.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void updateIsFullClose(float height){
+        boolean close = height == 0;
+        if (mIsFullClose != close) {
+            mIsFullClose = close;
+            updateBlurVisibility(mIsFullClose || mKeyguardShowing);
+        }
+    }
+
+    /**
+     * 添加高斯模糊END
+     */
 
     public NotificationPanelView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -857,6 +919,32 @@ public class NotificationPanelView extends PanelView implements
             updateVerticalPanelPosition(event.getX());
             handled = true;
         }
+
+        //添加高斯模糊 begin
+        float y = event.getY();
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                if (!mPanelExpanded) {
+                    setBlurBackground();
+                }
+                break;
+            case MotionEvent.ACTION_MOVE:
+                if (y <= BLUR_END) {
+                    float alpha = (y - BLUR_START) / (BLUR_END - BLUR_START);
+                    if (alpha < 0) {
+                        alpha = 0;
+                    }
+                    mAlphaView.setAlpha(alpha/2);
+                    mBlurView.setAlpha(alpha);
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+                float a = mBlurView.getAlpha();
+                startAlphaAnimation(a, 1.0f);
+                break;
+        }
+        //添加高斯模糊 end
+
         handled |= super.onTouchEvent(event);
         return mDozing ? handled : true;
     }
@@ -1132,6 +1220,9 @@ public class NotificationPanelView extends PanelView implements
         }
         resetVerticalPanelPosition();
         updateQsState();
+        /* 添加高斯模糊 begin */
+        updateBlurVisibility(keyguardShowing);
+        /* 添加高斯模糊 end */
     }
 
     private final Runnable mAnimateKeyguardStatusViewInvisibleEndRunnable = new Runnable() {
@@ -1547,6 +1638,9 @@ public class NotificationPanelView extends PanelView implements
                     + t * (getTempQsMaxExpansion() - mQsMinExpansionHeight));
         }
         updateExpandedHeight(expandedHeight);
+        /* 修改 begin */
+        updateIsFullClose(expandedHeight);
+        /* 修改 end */
         updateHeader();
         updateUnlockIcon();
         updateNotificationTranslucency();
