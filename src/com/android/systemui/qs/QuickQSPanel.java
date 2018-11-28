@@ -48,6 +48,7 @@ public class QuickQSPanel extends QSPanel {
 
     public QuickQSPanel(Context context, AttributeSet attrs) {
         super(context, attrs);
+        setWeightSum(6);
         if (mFooter != null) {
             removeView((View) mFooter.getView());
         }
@@ -186,8 +187,8 @@ public class QuickQSPanel extends QSPanel {
 
         private LayoutParams generateSpaceParams() {
             int size = mContext.getResources().getDimensionPixelSize(R.dimen.qs_quick_tile_size);
-            LayoutParams lp = new LayoutParams(size, size);
-//            lp.weight = 1;
+            LayoutParams lp = new LayoutParams(0, size);
+            lp.weight = 1;
             lp.gravity = Gravity.CENTER;
             return lp;
         }
