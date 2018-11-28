@@ -62,7 +62,7 @@ public class QSTileBaseView extends com.android.systemui.plugins.qs.QSTileView {
         addView(mIconFrame, new LayoutParams(size, size));
         mIcon = icon;
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                80, 80);
         params.setMargins(0, padding, 0, padding);
         mIconFrame.addView(mIcon, params);
 
