@@ -307,6 +307,8 @@ public class NotificationPanelView extends PanelView implements
         setWillNotDraw(!DEBUG);
         mFalsingManager = FalsingManager.getInstance(context);
         mPowerManager = context.getSystemService(PowerManager.class);
+        mBlurView = findViewById(R.id.blur_view);
+        mAlphaView = findViewById(R.id.alpha_view);
     }
 
     public void setStatusBar(StatusBar bar) {
