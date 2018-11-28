@@ -30,6 +30,7 @@ import android.util.Log;
 
 import com.android.systemui.Dependency;
 import com.android.systemui.R;
+import com.android.systemui.jancar.FlyLog;
 import com.android.systemui.plugins.PluginListener;
 import com.android.systemui.plugins.PluginManager;
 import com.android.systemui.plugins.qs.QSFactory;
@@ -325,6 +326,7 @@ public class QSTileHost implements QSHost, Tunable, PluginListener<QSFactory> {
     protected List<String> loadTileSpecs(Context context, String tileList) {
         final Resources res = context.getResources();
         String defaultTileList = res.getString(R.string.quick_settings_tiles_default);
+        FlyLog.d("loadTileSpecs string = %s",defaultTileList);
         /// M: Customize the quick settings tile order for operator. @{
         /**
          * 取消加载自定义
@@ -335,7 +337,8 @@ public class QSTileHost implements QSHost, Tunable, PluginListener<QSFactory> {
         defaultTileList = mQuickSettingsExt.customizeQuickSettingsTileOrder(defaultTileList);
 //        }
         /// M: Customize the quick settings tile order for operator. @}
-        Log.d(TAG, "loadTileSpecs() default tile list: " + defaultTileList);
+
+        FlyLog.d( "loadTileSpecs() default tile list: " + defaultTileList);
         if (tileList == null) {
             tileList = res.getString(R.string.quick_settings_tiles);
             if (DEBUG) Log.d(TAG, "Loaded tile specs from config: " + tileList);
