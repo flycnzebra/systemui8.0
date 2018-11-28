@@ -48,7 +48,6 @@ public class QuickQSPanel extends QSPanel {
 
     public QuickQSPanel(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setWeightSum(6);
         if (mFooter != null) {
             removeView((View) mFooter.getView());
         }
