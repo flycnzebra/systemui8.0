@@ -15,7 +15,7 @@ public class JanCarSettingTile extends QSTileImpl<QSTile.BooleanState> {
 
     @Override
     public BooleanState newTileState() {
-        return null;
+        return new BooleanState();
     }
 
     @Override
@@ -30,8 +30,8 @@ public class JanCarSettingTile extends QSTileImpl<QSTile.BooleanState> {
     @Override
     protected void handleUpdateState(BooleanState state, Object arg) {
         state.icon = ResourceIcon.get(R.drawable.ic_volume_music);
-        state.label = "jancar";
-        state.contentDescription = "jancar";
+        state.label = "jancar1";
+        state.contentDescription = "jancar2";
     }
 
     @Override
@@ -51,6 +51,6 @@ public class JanCarSettingTile extends QSTileImpl<QSTile.BooleanState> {
 
     @Override
     public CharSequence getTileLabel() {
-        return null;
+        return "jancar3";
     }
 }
