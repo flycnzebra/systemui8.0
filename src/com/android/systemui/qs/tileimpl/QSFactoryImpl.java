@@ -33,7 +33,10 @@ import com.android.systemui.qs.tiles.DndTile;
 import com.android.systemui.qs.tiles.FlashlightTile;
 import com.android.systemui.qs.tiles.HotspotTile;
 import com.android.systemui.qs.tiles.IntentTile;
-import com.android.systemui.qs.tiles.JanCarSettingTile;
+import com.android.systemui.qs.tiles.JacAudioTile;
+import com.android.systemui.qs.tiles.JacBrightnessTile;
+import com.android.systemui.qs.tiles.JacCarSettingTile;
+import com.android.systemui.qs.tiles.JacSoundTile;
 import com.android.systemui.qs.tiles.LocationTile;
 import com.android.systemui.qs.tiles.NfcTile;
 import com.android.systemui.qs.tiles.NightDisplayTile;
@@ -51,7 +54,6 @@ import com.mediatek.systemui.ext.IQuickSettingsPlugin;
 import com.mediatek.systemui.ext.OpSystemUICustomizationFactoryBase;
 import com.mediatek.systemui.qs.tiles.ext.ApnSettingsTile;
 import com.mediatek.systemui.qs.tiles.ext.DualSimSettingsTile;
-import com.mediatek.systemui.qs.tiles.ext.MobileDataTile;
 import com.mediatek.systemui.qs.tiles.ext.SimDataConnectionTile;
 import com.mediatek.systemui.statusbar.util.SIMHelper;
 ///@}
@@ -111,7 +113,10 @@ public class QSFactoryImpl implements QSFactory {
         // Intent tiles.
         else if (tileSpec.startsWith(IntentTile.PREFIX)) return IntentTile.create(mHost, tileSpec);
         else if (tileSpec.startsWith(CustomTile.PREFIX)) return CustomTile.create(mHost, tileSpec);
-        else if(tileSpec.startsWith("jac_car")) return new JanCarSettingTile(mHost);
+        else if(tileSpec.startsWith("jac_car")) return new JacCarSettingTile(mHost);
+        else if(tileSpec.startsWith("jac_audio")) return new JacAudioTile(mHost);
+        else if(tileSpec.startsWith("jac_sound")) return new JacSoundTile(mHost);
+        else if(tileSpec.startsWith("jac_brightness")) return new JacBrightnessTile(mHost);
         else {
             Log.w(TAG, "Bad tile spec: " + tileSpec);
             return null;

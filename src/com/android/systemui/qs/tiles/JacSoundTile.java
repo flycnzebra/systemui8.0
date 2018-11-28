@@ -3,13 +3,13 @@ package com.android.systemui.qs.tiles;
 import android.content.ComponentName;
 import android.content.Intent;
 
+import com.android.systemui.R;
 import com.android.systemui.plugins.qs.QSTile;
 import com.android.systemui.qs.QSHost;
 import com.android.systemui.qs.tileimpl.QSTileImpl;
-import com.android.systemui.R;
 
-public class JanCarSettingTile extends QSTileImpl<QSTile.BooleanState> {
-    public JanCarSettingTile(QSHost host) {
+public class JacSoundTile extends QSTileImpl<QSTile.BooleanState> {
+    public JacSoundTile(QSHost host) {
         super(host);
     }
 
