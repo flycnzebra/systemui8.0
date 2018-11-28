@@ -326,7 +326,8 @@ public class QSTileHost implements QSHost, Tunable, PluginListener<QSFactory> {
     protected List<String> loadTileSpecs(Context context, String tileList) {
         final Resources res = context.getResources();
         String defaultTileList = res.getString(R.string.quick_settings_tiles_default);
-        FlyLog.d("loadTileSpecs string = %s",defaultTileList);
+        FlyLog.d("loadTileSpecs tileList = %s",tileList);
+        FlyLog.d("loadTileSpecs defaultTileList = %s",defaultTileList);
         /// M: Customize the quick settings tile order for operator. @{
         /**
          * 取消加载自定义
@@ -334,11 +335,10 @@ public class QSTileHost implements QSHost, Tunable, PluginListener<QSFactory> {
 //        if (mQuickSettingsExt != null) {
 //            defaultTileList = mQuickSettingsExt.addOpTileSpecs(defaultTileList);
 //        // @}
-        defaultTileList = mQuickSettingsExt.customizeQuickSettingsTileOrder(defaultTileList);
+//        defaultTileList = mQuickSettingsExt.customizeQuickSettingsTileOrder(defaultTileList);
 //        }
         /// M: Customize the quick settings tile order for operator. @}
 
-        FlyLog.d( "loadTileSpecs() default tile list: " + defaultTileList);
         if (tileList == null) {
             tileList = res.getString(R.string.quick_settings_tiles);
             if (DEBUG) Log.d(TAG, "Loaded tile specs from config: " + tileList);
@@ -359,6 +359,7 @@ public class QSTileHost implements QSHost, Tunable, PluginListener<QSFactory> {
                 tiles.add(tile);
             }
         }
+        FlyLog.d("tiles lenght=%d, s=%s",tiles.size(),tiles.toString());
         return tiles;
     }
 }
