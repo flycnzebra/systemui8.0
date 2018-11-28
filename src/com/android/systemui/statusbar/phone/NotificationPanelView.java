@@ -314,13 +314,6 @@ public class NotificationPanelView extends PanelView implements
         setWillNotDraw(!DEBUG);
         mFalsingManager = FalsingManager.getInstance(context);
         mPowerManager = context.getSystemService(PowerManager.class);
-        if (mBlurView == null) {
-            mBlurView = findViewById(R.id.blrur_view);
-        }
-
-        if (mAlphaView == null) {
-            mAlphaView = findViewById(R.id.alpha_view);
-        }
     }
 
     public void setStatusBar(StatusBar bar) {
@@ -348,7 +341,7 @@ public class NotificationPanelView extends PanelView implements
         initBottomArea();
 
         mQsFrame = findViewById(R.id.qs_frame);
-        mBlurView = findViewById(R.id.blrur_view);
+        mBlurView = findViewById(R.id.blur_view);
         mAlphaView = findViewById(R.id.alpha_view);
     }
 
