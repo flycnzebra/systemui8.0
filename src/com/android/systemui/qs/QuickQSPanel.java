@@ -160,7 +160,7 @@ public class QuickQSPanel extends QSPanel {
             super(context);
             setClipChildren(false);
             setClipToPadding(false);
-            setGravity(Gravity.CENTER_VERTICAL);
+            setGravity(Gravity.CENTER);
             setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
         }
 
