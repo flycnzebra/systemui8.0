@@ -107,7 +107,7 @@
 
     <!-- The default tiles to display in QuickSettings -->
     <string name="quick_settings_tiles_default" translatable="false">
-        wifi,wifi,wifi,wifi,wifi,wifi
+        wifi,location,bluetooth,volume,airplane,mute
     </string>
 
     <!-- Tiles native to System UI. Order should match "quick_settings_tiles_default" -->
