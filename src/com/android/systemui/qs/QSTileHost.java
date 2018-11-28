@@ -251,9 +251,9 @@ public class QSTileHost implements QSHost, Tunable, PluginListener<QSFactory> {
     }
 
     public void addTile(String spec) {
-        final String setting = Settings.Secure.getStringForUser(mContext.getContentResolver(),
-                TILES_SETTING, ActivityManager.getCurrentUser());
-        final List<String> tileSpecs = loadTileSpecs(mContext, setting);
+//        final String setting = Settings.Secure.getStringForUser(mContext.getContentResolver(),
+//                TILES_SETTING, ActivityManager.getCurrentUser());
+        final List<String> tileSpecs = loadTileSpecs(mContext, null);
         if (tileSpecs.contains(spec)) {
             return;
         }
