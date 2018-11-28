@@ -34,6 +34,7 @@ import android.widget.ImageView;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.internal.util.NotificationColorUtil;
 import com.android.systemui.R;
+import com.android.systemui.jancar.FlyLog;
 import com.android.systemui.statusbar.notification.HybridNotificationView;
 import com.android.systemui.statusbar.notification.HybridGroupManager;
 import com.android.systemui.statusbar.notification.NotificationCustomViewWrapper;
@@ -143,6 +144,7 @@ public class NotificationContentView extends FrameLayout {
                 R.dimen.min_notification_layout_height);
         mNotificationContentMarginEnd = getResources().getDimensionPixelSize(
                 com.android.internal.R.dimen.notification_content_margin_end);
+        FlyLog.d("NotificationContentView");
     }
 
     public void setHeights(int smallHeight, int headsUpMaxHeight, int maxHeight,
