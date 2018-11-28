@@ -280,6 +280,13 @@ public class NotificationPanelView extends PanelView implements
     }
 
     private void updateBlurVisibility(boolean keyguardShowing){
+        if(mBlurView==null){
+            mBlurView = findViewById(R.id.blrur_view);
+        }
+
+        if(mAlphaView==null){
+            mAlphaView = findViewById(R.id.alpha_view);
+        }
         if (keyguardShowing) {
             mBlurView.setVisibility(View.GONE);
             mAlphaView.setVisibility(View.GONE);
@@ -307,8 +314,13 @@ public class NotificationPanelView extends PanelView implements
         setWillNotDraw(!DEBUG);
         mFalsingManager = FalsingManager.getInstance(context);
         mPowerManager = context.getSystemService(PowerManager.class);
-        mBlurView = findViewById(R.id.blur_view);
-        mAlphaView = findViewById(R.id.alpha_view);
+        if(mBlurView==null){
+            mBlurView = findViewById(R.id.blrur_view);
+        }
+
+        if(mAlphaView==null){
+            mAlphaView = findViewById(R.id.alpha_view);
+        }
     }
 
     public void setStatusBar(StatusBar bar) {
@@ -319,6 +331,13 @@ public class NotificationPanelView extends PanelView implements
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
+        if(mBlurView==null){
+            mBlurView = findViewById(R.id.blrur_view);
+        }
+
+        if(mAlphaView==null){
+            mAlphaView = findViewById(R.id.alpha_view);
+        }
         mKeyguardStatusBar = findViewById(R.id.keyguard_header);
         mKeyguardStatusView = findViewById(R.id.keyguard_status_view);
 
