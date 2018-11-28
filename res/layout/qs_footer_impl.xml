@@ -71,7 +71,8 @@
             android:focusable="true"
             android:padding="16dp"
             android:src="@drawable/ic_mode_edit"
-            android:tint="?android:attr/colorForeground"/>
+            android:tint="?android:attr/colorForeground"
+            android:visibility="gone"/>
 
         <com.android.systemui.statusbar.AlphaOptimizedFrameLayout
             android:id="@+id/settings_button_container"
@@ -88,7 +89,8 @@
                 android:background="@drawable/ripple_drawable"
                 android:contentDescription="@string/accessibility_quick_settings_settings"
                 android:src="@drawable/ic_settings_16dp"
-                android:tint="?android:attr/colorForeground"/>
+                android:tint="?android:attr/colorForeground"
+                android:visibility="gone"/>
 
             <com.android.systemui.statusbar.AlphaOptimizedImageView
                 android:id="@+id/tuner_icon"
