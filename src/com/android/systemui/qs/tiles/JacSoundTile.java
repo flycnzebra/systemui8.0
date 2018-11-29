@@ -10,6 +10,7 @@ import com.android.systemui.plugins.VolumeDialogController;
 import com.android.systemui.plugins.qs.QSTile;
 import com.android.systemui.qs.QSHost;
 import com.android.systemui.qs.tileimpl.QSTileImpl;
+import com.android.systemui.statusbar.phone.StatusBar;
 
 public class JacSoundTile extends QSTileImpl<QSTile.BooleanState> {
     public JacSoundTile(QSHost host) {
@@ -23,15 +24,10 @@ public class JacSoundTile extends QSTileImpl<QSTile.BooleanState> {
 
     @Override
     protected void handleClick() {
-        final Intent intent = new Intent();
+        Intent intent = new Intent();
         intent.setAction(VolumeDialogController.BROADCAST_SHOW_VOLUME_BAR);
-        Dependency.get(ActivityStarter.class).postQSRunnableDismissingKeyguard(new Runnable() {
-            @Override
-            public void run() {
-                mContext.sendBroadcast(intent);
-            }
-        });
-//        makeExpandedInvisible();
+        mContext.sendBroadcast(intent);
+        Dependency.get(StatusBar.class).makeExpandedInvisible();
     }
 
     @Override

@@ -3368,7 +3368,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         }
     }
 
-    void makeExpandedInvisible() {
+    public void makeExpandedInvisible() {
         if (SPEW) Log.d(TAG, "makeExpandedInvisible: mExpandedVisible=" + mExpandedVisible
                 + " mExpandedVisible=" + mExpandedVisible);
 
