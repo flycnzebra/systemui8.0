@@ -3,7 +3,9 @@ package com.android.systemui.qs.tiles;
 import android.content.ComponentName;
 import android.content.Intent;
 
+import com.android.systemui.Dependency;
 import com.android.systemui.R;
+import com.android.systemui.plugins.ActivityStarter;
 import com.android.systemui.plugins.VolumeDialogController;
 import com.android.systemui.plugins.qs.QSTile;
 import com.android.systemui.qs.QSHost;
@@ -21,9 +23,14 @@ public class JacSoundTile extends QSTileImpl<QSTile.BooleanState> {
 
     @Override
     protected void handleClick() {
-        Intent intent = new Intent();
+        final Intent intent = new Intent();
         intent.setAction(VolumeDialogController.BROADCAST_SHOW_VOLUME_BAR);
-        mContext.sendBroadcast(intent);
+        Dependency.get(ActivityStarter.class).postQSRunnableDismissingKeyguard(new Runnable() {
+            @Override
+            public void run() {
+                mContext.sendBroadcast(intent);
+            }
+        });
 //        makeExpandedInvisible();
     }
 
