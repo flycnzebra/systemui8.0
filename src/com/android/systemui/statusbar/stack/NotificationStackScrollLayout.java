@@ -465,20 +465,20 @@ public class NotificationStackScrollLayout extends ViewGroup
     }
 
     protected void onDraw(Canvas canvas) {
-//        if (mShouldDrawNotificationBackground && !mAmbientState.isDark()
-//                && mCurrentBounds.top < mCurrentBounds.bottom) {
-//            canvas.drawRect(0, mCurrentBounds.top, getWidth(), mCurrentBounds.bottom,
-//                    mBackgroundPaint);
-//        }
-//
-//        if (DEBUG) {
-//            int y = mTopPadding;
-//            canvas.drawLine(0, y, getWidth(), y, mDebugPaint);
-//            y = getLayoutHeight();
-//            canvas.drawLine(0, y, getWidth(), y, mDebugPaint);
-//            y = getHeight() - getEmptyBottomMargin();
-//            canvas.drawLine(0, y, getWidth(), y, mDebugPaint);
-//        }
+        if (mShouldDrawNotificationBackground && !mAmbientState.isDark()
+                && mCurrentBounds.top < mCurrentBounds.bottom) {
+            canvas.drawRect(0, mCurrentBounds.top, getWidth(), mCurrentBounds.bottom,
+                    mBackgroundPaint);
+        }
+
+        if (DEBUG) {
+            int y = mTopPadding;
+            canvas.drawLine(0, y, getWidth(), y, mDebugPaint);
+            y = getLayoutHeight();
+            canvas.drawLine(0, y, getWidth(), y, mDebugPaint);
+            y = getHeight() - getEmptyBottomMargin();
+            canvas.drawLine(0, y, getWidth(), y, mDebugPaint);
+        }
     }
 
     private void updateBackgroundDimming() {
@@ -494,7 +494,7 @@ public class NotificationStackScrollLayout extends ViewGroup
         int color = ColorUtils.blendARGB(scrimColor, mBgColor, alpha);
         if (mCachedBackgroundColor != color) {
             mCachedBackgroundColor = color;
-            mBackgroundPaint.setColor(color);
+            mBackgroundPaint.setColor(0x00000000);
             invalidate();
         }
     }
