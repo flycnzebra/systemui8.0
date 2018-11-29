@@ -935,13 +935,13 @@ public class NotificationPanelView extends PanelView implements
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
-                if (y <= BLUR_END) {
-                    float alpha = (y - BLUR_START) / (BLUR_END - BLUR_START);
-                    if (alpha < 0) {
-                        alpha = 0;
-                    }
-                    mBlurView.setAlpha(alpha);
-                }
+//                if (y <= BLUR_END) {
+//                    float alpha = (y - BLUR_START) / (BLUR_END - BLUR_START);
+//                    if (alpha < 0) {
+//                        alpha = 0;
+//                    }
+//                    mBlurView.setAlpha(alpha);
+//                }
                 break;
             case MotionEvent.ACTION_UP:
 //                float a = mBlurView.getAlpha();

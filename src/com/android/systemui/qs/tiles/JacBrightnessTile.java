@@ -29,7 +29,7 @@ public class JacBrightnessTile extends QSTileImpl<QSTile.BooleanState> {
 
     @Override
     protected void handleUpdateState(BooleanState state, Object arg) {
-        state.icon = ResourceIcon.get(R.drawable.jac_qs_brightness_02);
+        state.icon = ResourceIcon.get(R.drawable.jac_qs_brightness_01);
         state.label = mContext.getResources().getString(R.string.qs_brightness);
         state.contentDescription = state.label;
     }
