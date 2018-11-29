@@ -128,11 +128,11 @@ public class QSIconViewImpl extends QSIconView {
 
     protected void setIcon(ImageView iv, QSTile.State state) {
         updateIcon(iv, state);
-//        if (state.disabledByPolicy) {
-//            iv.setColorFilter(getContext().getColor(R.color.qs_tile_disabled_color));
-//        } else {
-//            iv.clearColorFilter();
-//        }
+        if (state.disabledByPolicy) {
+            iv.setColorFilter(getContext().getColor(R.color.qs_tile_disabled_color));
+        } else {
+            iv.clearColorFilter();
+        }
         if (state.state != mState) {
             int color = getColor(state.state);
             mState = state.state;

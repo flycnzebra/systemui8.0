@@ -28,10 +28,6 @@
     android:paddingTop="0dp"
     android:gravity="center_vertical"
     android:orientation="horizontal">
-    <view
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="#000"/>
 
     <include
         android:id="@+id/date_time_alarm_group"
