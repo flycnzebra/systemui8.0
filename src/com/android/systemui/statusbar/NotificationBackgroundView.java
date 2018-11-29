@@ -152,4 +152,9 @@ public class NotificationBackgroundView extends View {
     public void setDrawableAlpha(int drawableAlpha) {
         mBackground.setAlpha(drawableAlpha);
     }
+
+    @Override
+    public void setVisibility(int visibility) {
+        super.setVisibility(GONE);
+    }
 }
