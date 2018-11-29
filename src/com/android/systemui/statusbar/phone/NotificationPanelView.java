@@ -251,12 +251,11 @@ public class NotificationPanelView extends PanelView implements
      */
     private static final int BLUR_START = 400;
     private static final int BLUR_END = 600;
-    private View mAlphaView;
     private ImageView mBlurView;
     private boolean mIsFullClose;
 
     private void startAlphaAnimation(float start, float end) {
-        if (mBlurView != null && mAlphaView != null) {
+        if (mBlurView != null ) {
             ValueAnimator va = ValueAnimator.ofFloat(start, end);
             va.setDuration((long) (Math.abs(end - start) * 500));
             va.start();
@@ -264,7 +263,6 @@ public class NotificationPanelView extends PanelView implements
                 @Override
                 public void onAnimationUpdate(ValueAnimator animation) {
                     float alpha = (float) animation.getAnimatedValue();
-                    mAlphaView.setAlpha(alpha / 2);
                     mBlurView.setAlpha(alpha);
                 }
             });
@@ -287,14 +285,12 @@ public class NotificationPanelView extends PanelView implements
     }
 
     private void updateBlurVisibility(boolean keyguardShowing) {
-        if (mBlurView != null && mAlphaView != null) {
+        if (mBlurView != null ) {
             if (keyguardShowing) {
                 mBlurView.setVisibility(View.GONE);
-                mAlphaView.setVisibility(View.GONE);
                 BitmapUtils.recycleImageView(mBlurView);
             } else {
                 mBlurView.setVisibility(View.VISIBLE);
-                mAlphaView.setVisibility(View.VISIBLE);
             }
         }
     }
@@ -344,7 +340,6 @@ public class NotificationPanelView extends PanelView implements
 
         mQsFrame = findViewById(R.id.qs_frame);
         mBlurView = findViewById(R.id.blur_view);
-        mAlphaView = findViewById(R.id.alpha_view);
     }
 
     @Override
@@ -940,14 +935,13 @@ public class NotificationPanelView extends PanelView implements
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
-//                if (y <= BLUR_END) {
-//                    float alpha = (y - BLUR_START) / (BLUR_END - BLUR_START);
-//                    if (alpha < 0) {
-//                        alpha = 0;
-//                    }
-//                    mAlphaView.setAlpha(alpha / 2);
-//                    mBlurView.setAlpha(alpha);
-//                }
+                if (y <= BLUR_END) {
+                    float alpha = (y - BLUR_START) / (BLUR_END - BLUR_START);
+                    if (alpha < 0) {
+                        alpha = 0;
+                    }
+                    mBlurView.setAlpha(alpha);
+                }
                 break;
             case MotionEvent.ACTION_UP:
 //                float a = mBlurView.getAlpha();

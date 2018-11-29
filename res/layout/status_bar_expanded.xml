@@ -24,6 +24,11 @@
     android:background="@android:color/transparent">
 
     <!-- 添加高斯模糊begin -->
+    <View
+        android:id="@+id/alpha_view"
+        android:background="#666666"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
     <ImageView
         android:id="@+id/blur_view"
         android:alpha="0"
@@ -31,12 +36,6 @@
         android:scaleType="fitXY"
         android:layout_height="match_parent"/>
 
-    <View
-        android:id="@+id/alpha_view"
-        android:alpha="0"
-        android:background="#666666"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
     <!-- 添加高斯模糊end -->
 
     <include
