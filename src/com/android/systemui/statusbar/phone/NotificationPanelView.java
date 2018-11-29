@@ -282,7 +282,7 @@ public class NotificationPanelView extends PanelView implements
                     bitmap, BlurUtil.BLUR_RADIUS_MAX), BlurUtil.BLUR_RADIUS_MAX);
             BitmapUtils.recycleImageView(mBlurView);
             mBlurView.setImageBitmap(blurBitmap);
-            mBlurView.setAlpha(0.8f);
+            mBlurView.setAlpha(1f);
         }
     }
 
