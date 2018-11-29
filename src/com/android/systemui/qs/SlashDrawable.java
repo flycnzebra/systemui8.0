@@ -88,8 +88,8 @@ public class SlashDrawable extends Drawable {
         mDrawable = d;
         mDrawable.setCallback(getCallback());
         mDrawable.setBounds(getBounds());
-        if (mTintMode != null) mDrawable.setTintMode(mTintMode);
-        if (mTintList != null) mDrawable.setTintList(mTintList);
+//        if (mTintMode != null) mDrawable.setTintMode(mTintMode);
+//        if (mTintList != null) mDrawable.setTintList(mTintList);
         invalidateSelf();
     }
 
@@ -188,29 +188,29 @@ public class SlashDrawable extends Drawable {
 
     @Override
     public void setTint(@ColorInt int tintColor) {
-        super.setTint(tintColor);
-        mDrawable.setTint(tintColor);
-        mPaint.setColor(tintColor);
+//        super.setTint(tintColor);
+//        mDrawable.setTint(tintColor);
+//        mPaint.setColor(tintColor);
     }
 
     @Override
     public void setTintList(@Nullable ColorStateList tint) {
-        mTintList = tint;
-        super.setTintList(tint);
-        setDrawableTintList(tint);
-        mPaint.setColor(tint.getDefaultColor());
-        invalidateSelf();
+//        mTintList = tint;
+//        super.setTintList(tint);
+//        setDrawableTintList(tint);
+//        mPaint.setColor(tint.getDefaultColor());
+//        invalidateSelf();
     }
 
     protected void setDrawableTintList(@Nullable ColorStateList tint) {
-        mDrawable.setTintList(tint);
+//        mDrawable.setTintList(tint);
     }
 
     @Override
     public void setTintMode(@NonNull Mode tintMode) {
-        mTintMode = tintMode;
-        super.setTintMode(tintMode);
-        mDrawable.setTintMode(tintMode);
+//        mTintMode = tintMode;
+//        super.setTintMode(tintMode);
+//        mDrawable.setTintMode(tintMode);
     }
 
     @Override
@@ -221,8 +221,8 @@ public class SlashDrawable extends Drawable {
 
     @Override
     public void setColorFilter(@Nullable ColorFilter colorFilter) {
-        mDrawable.setColorFilter(colorFilter);
-        mPaint.setColorFilter(colorFilter);
+//        mDrawable.setColorFilter(colorFilter);
+//        mPaint.setColorFilter(colorFilter);
     }
 
     @Override
