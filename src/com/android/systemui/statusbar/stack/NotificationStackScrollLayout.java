@@ -473,7 +473,7 @@ public class NotificationStackScrollLayout extends ViewGroup
 //            canvas.drawRect(0, mCurrentBounds.top, getWidth(), mCurrentBounds.bottom,
 //                    mBackgroundPaint);
             canvas.drawLine(0, mCurrentBounds.top, getWidth(), mCurrentBounds.top, mBackgroundPaint);
-            canvas.drawLine(0, mCurrentBounds.bottom, getWidth(), mCurrentBounds.bottom, mBackgroundPaint);
+//            canvas.drawLine(0, mCurrentBounds.bottom, getWidth(), mCurrentBounds.bottom, mBackgroundPaint);
         }
 
         if (DEBUG) {
