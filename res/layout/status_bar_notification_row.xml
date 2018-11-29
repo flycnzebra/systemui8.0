@@ -28,12 +28,14 @@
     <com.android.systemui.statusbar.NotificationBackgroundView
         android:id="@+id/backgroundNormal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:visibility="invisible"/>
 
     <com.android.systemui.statusbar.NotificationBackgroundView
         android:id="@+id/backgroundDimmed"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:visibility="invisible"/>
 
     <com.android.systemui.statusbar.NotificationContentView android:id="@+id/expanded"
        android:layout_width="match_parent"

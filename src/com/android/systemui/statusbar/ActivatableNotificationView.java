@@ -345,7 +345,7 @@ public abstract class ActivatableNotificationView extends ExpandableOutlineView 
             animator = ViewAnimationUtils.createCircularReveal(mBackgroundNormal,
                     widthHalf, heightHalf, 0, radius);
         }
-        mBackgroundNormal.setVisibility(View.VISIBLE);
+        mBackgroundNormal.setVisibility(View.INVISIBLE);
         Interpolator interpolator;
         Interpolator alphaInterpolator;
         if (!reverse) {
@@ -614,9 +614,9 @@ public abstract class ActivatableNotificationView extends ExpandableOutlineView 
         }
         if (!shouldHideBackground()) {
             if (mDimmed) {
-                mBackgroundDimmed.setVisibility(View.VISIBLE);
+                mBackgroundDimmed.setVisibility(View.INVISIBLE);
             } else {
-                mBackgroundNormal.setVisibility(View.VISIBLE);
+                mBackgroundNormal.setVisibility(View.INVISIBLE);
             }
         }
         float startAlpha = mDimmed ? 1f : 0;
@@ -665,28 +665,28 @@ public abstract class ActivatableNotificationView extends ExpandableOutlineView 
     }
 
     protected void updateBackground() {
-//        cancelFadeAnimations();
-//        if (shouldHideBackground()) {
-//            mBackgroundDimmed.setVisibility(INVISIBLE);
-//            mBackgroundNormal.setVisibility(mActivated ? VISIBLE : INVISIBLE);
-//        } else if (mDimmed) {
-//            // When groups are animating to the expanded state from the lockscreen, show the
-//            // normal background instead of the dimmed background
-//            final boolean dontShowDimmed = isGroupExpansionChanging() && isChildInGroup();
-//            mBackgroundDimmed.setVisibility(dontShowDimmed ? View.INVISIBLE : View.VISIBLE);
-//            mBackgroundNormal.setVisibility((mActivated || dontShowDimmed)
-//                    ? View.VISIBLE
-//                    : View.INVISIBLE);
-//        } else {
-//            mBackgroundDimmed.setVisibility(View.INVISIBLE);
-//            mBackgroundNormal.setVisibility(View.VISIBLE);
-//            mBackgroundNormal.setAlpha(1f);
-//            removeCallbacks(mTapTimeoutRunnable);
-//            // make in inactive to avoid it sticking around active
-//            makeInactive(false /* animate */);
-//        }
-//        setNormalBackgroundVisibilityAmount(
-//                mBackgroundNormal.getVisibility() == View.VISIBLE ? 1.0f : 0.0f);
+        cancelFadeAnimations();
+        if (shouldHideBackground()) {
+            mBackgroundDimmed.setVisibility(INVISIBLE);
+            mBackgroundNormal.setVisibility(mActivated ? VISIBLE : INVISIBLE);
+        } else if (mDimmed) {
+            // When groups are animating to the expanded state from the lockscreen, show the
+            // normal background instead of the dimmed background
+            final boolean dontShowDimmed = isGroupExpansionChanging() && isChildInGroup();
+            mBackgroundDimmed.setVisibility(dontShowDimmed ? View.INVISIBLE : View.INVISIBLE);
+            mBackgroundNormal.setVisibility((mActivated || dontShowDimmed)
+                    ? View.INVISIBLE
+                    : View.INVISIBLE);
+        } else {
+            mBackgroundDimmed.setVisibility(View.INVISIBLE);
+            mBackgroundNormal.setVisibility(View.INVISIBLE);
+            mBackgroundNormal.setAlpha(1f);
+            removeCallbacks(mTapTimeoutRunnable);
+            // make in inactive to avoid it sticking around active
+            makeInactive(false /* animate */);
+        }
+        setNormalBackgroundVisibilityAmount(
+                mBackgroundNormal.getVisibility() == View.INVISIBLE ? 1.0f : 0.0f);
     }
 
     protected boolean shouldHideBackground() {
