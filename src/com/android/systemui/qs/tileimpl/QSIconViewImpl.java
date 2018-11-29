@@ -128,27 +128,27 @@ public class QSIconViewImpl extends QSIconView {
 
     protected void setIcon(ImageView iv, QSTile.State state) {
         updateIcon(iv, state);
-        if (state.disabledByPolicy) {
-            iv.setColorFilter(getContext().getColor(R.color.qs_tile_disabled_color));
-        } else {
-            iv.clearColorFilter();
-        }
-        if (state.state != mState) {
-            int color = getColor(state.state);
-            mState = state.state;
-            if (iv.isShown() && mTint != 0) {
-                animateGrayScale(mTint, color, iv);
-                mTint = color;
-            } else {
-                if (iv instanceof AlphaControlledSlashImageView) {
-                    ((AlphaControlledSlashImageView)iv)
-                            .setFinalImageTintList(ColorStateList.valueOf(color));
-                } else {
-                    setTint(iv, color);
-                }
-                mTint = color;
-            }
-        }
+//        if (state.disabledByPolicy) {
+//            iv.setColorFilter(getContext().getColor(R.color.qs_tile_disabled_color));
+//        } else {
+//            iv.clearColorFilter();
+//        }
+//        if (state.state != mState) {
+//            int color = getColor(state.state);
+//            mState = state.state;
+//            if (iv.isShown() && mTint != 0) {
+//                animateGrayScale(mTint, color, iv);
+//                mTint = color;
+//            } else {
+//                if (iv instanceof AlphaControlledSlashImageView) {
+//                    ((AlphaControlledSlashImageView)iv)
+//                            .setFinalImageTintList(ColorStateList.valueOf(color));
+//                } else {
+//                    setTint(iv, color);
+//                }
+//                mTint = color;
+//            }
+//        }
     }
 
     protected int getColor(int state) {
