@@ -3,7 +3,9 @@ package com.android.systemui.qs.tiles;
 import android.content.ComponentName;
 import android.content.Intent;
 
+import com.android.systemui.Dependency;
 import com.android.systemui.R;
+import com.android.systemui.plugins.ActivityStarter;
 import com.android.systemui.plugins.qs.QSTile;
 import com.android.systemui.qs.QSHost;
 import com.android.systemui.qs.tileimpl.QSTileImpl;
@@ -26,7 +28,9 @@ public class JacBluetoothTile extends QSTileImpl<QSTile.BooleanState> {
         intentBt.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intentBt.setComponent(toActivityBt);
         intentBt.putExtra("position", 1);
-        mContext.startActivity(intentBt);
+//        mContext.startActivity(intentBt);
+        Dependency.get(ActivityStarter.class)
+                .postStartActivityDismissingKeyguard(intentBt, 0);
 //        jancarManager.requestPage("btset", intentBt);
 //        makeExpandedInvisible();
     }

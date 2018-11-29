@@ -3,6 +3,8 @@ package com.android.systemui.qs.tiles;
 import android.content.ComponentName;
 import android.content.Intent;
 
+import com.android.systemui.Dependency;
+import com.android.systemui.plugins.ActivityStarter;
 import com.android.systemui.plugins.qs.QSTile;
 import com.android.systemui.qs.QSHost;
 import com.android.systemui.qs.tileimpl.QSTileImpl;
@@ -26,7 +28,9 @@ public class JacCarSettingTile extends QSTileImpl<QSTile.BooleanState> {
         intentCarsetting.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intentCarsetting.putExtra("position", 6);
         intentCarsetting.setComponent(toActivityCarsetting);
-        mContext.startActivity(intentCarsetting);
+//        mContext.startActivity(intentCarsetting);
+        Dependency.get(ActivityStarter.class)
+                .postStartActivityDismissingKeyguard(intentCarsetting, 0);
 //        JancarManager jancarManager = (JancarManager) mContext.getSystemService("jancar_manager");
 //        jancarManager.requestPage("carsetting", intentCarsetting);
 //        makeExpandedInvisible();
