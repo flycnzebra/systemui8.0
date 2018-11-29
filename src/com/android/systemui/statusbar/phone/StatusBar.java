@@ -2142,6 +2142,7 @@ public class StatusBar extends SystemUI implements DemoMode,
                 v.setBackgroundColor(0x00000000);
                 v.setBackgroundDrawable(null);
                 v.setBackground(null);
+                FlyLog.d("background=%s",((ExpandableNotificationRow) v).getBackgroundColorWithoutTint());
                 mStackScroller.addView(v);
             }
         }
