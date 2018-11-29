@@ -38,6 +38,7 @@ import com.android.systemui.plugins.annotations.ProvidesInterface;
 @DependsOn(target = Callbacks.class)
 public interface VolumeDialogController {
     int VERSION = 1;
+    String BROADCAST_SHOW_VOLUME_BAR = "com.android.systemui.volume.show_volumebar";
 
     void setActiveStream(int stream);
     void setStreamVolume(int stream, int userLevel);

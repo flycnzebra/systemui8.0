@@ -7,6 +7,7 @@ import com.android.systemui.plugins.qs.QSTile;
 import com.android.systemui.qs.QSHost;
 import com.android.systemui.qs.tileimpl.QSTileImpl;
 import com.android.systemui.R;
+import com.jancar.JancarManager;
 
 public class JacCarSettingTile extends QSTileImpl<QSTile.BooleanState> {
     public JacCarSettingTile(QSHost host) {
@@ -20,11 +21,15 @@ public class JacCarSettingTile extends QSTileImpl<QSTile.BooleanState> {
 
     @Override
     protected void handleClick() {
-        ComponentName toActivityCarsetting = new ComponentName("com.jancar.player.music", "com.jancar.player.music.MusicActivity");
+        ComponentName toActivityCarsetting = new ComponentName("com.jancar.settingss", "com.jancar.settings.view.activity.MainActivity");
         Intent intentCarsetting = new Intent();
         intentCarsetting.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intentCarsetting.putExtra("position", 6);
         intentCarsetting.setComponent(toActivityCarsetting);
         mContext.startActivity(intentCarsetting);
+//        JancarManager jancarManager = (JancarManager) mContext.getSystemService("jancar_manager");
+//        jancarManager.requestPage("carsetting", intentCarsetting);
+//        makeExpandedInvisible();
     }
 
     @Override

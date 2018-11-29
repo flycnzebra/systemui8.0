@@ -20,11 +20,15 @@ public class JacBluetoothTile extends QSTileImpl<QSTile.BooleanState> {
 
     @Override
     protected void handleClick() {
-        ComponentName toActivityCarsetting = new ComponentName("com.jancar.player.music", "com.jancar.player.music.MusicActivity");
-        Intent intentCarsetting = new Intent();
-        intentCarsetting.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intentCarsetting.setComponent(toActivityCarsetting);
-        mContext.startActivity(intentCarsetting);
+        ComponentName toActivityBt = new ComponentName("com.jancar.settingss",
+                "com.jancar.settings.view.activity.MainActivity");
+        Intent intentBt = new Intent();
+        intentBt.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intentBt.setComponent(toActivityBt);
+        intentBt.putExtra("position", 1);
+        mContext.startActivity(intentBt);
+//        jancarManager.requestPage("btset", intentBt);
+//        makeExpandedInvisible();
     }
 
     @Override

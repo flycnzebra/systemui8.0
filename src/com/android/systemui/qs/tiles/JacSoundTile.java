@@ -4,6 +4,7 @@ import android.content.ComponentName;
 import android.content.Intent;
 
 import com.android.systemui.R;
+import com.android.systemui.plugins.VolumeDialogController;
 import com.android.systemui.plugins.qs.QSTile;
 import com.android.systemui.qs.QSHost;
 import com.android.systemui.qs.tileimpl.QSTileImpl;
@@ -20,11 +21,10 @@ public class JacSoundTile extends QSTileImpl<QSTile.BooleanState> {
 
     @Override
     protected void handleClick() {
-        ComponentName toActivityCarsetting = new ComponentName("com.jancar.player.music", "com.jancar.player.music.MusicActivity");
-        Intent intentCarsetting = new Intent();
-        intentCarsetting.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intentCarsetting.setComponent(toActivityCarsetting);
-        mContext.startActivity(intentCarsetting);
+        Intent intent = new Intent();
+        intent.setAction(VolumeDialogController.BROADCAST_SHOW_VOLUME_BAR);
+        mContext.sendBroadcast(intent);
+//        makeExpandedInvisible();
     }
 
     @Override

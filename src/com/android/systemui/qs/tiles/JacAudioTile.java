@@ -20,11 +20,14 @@ public class JacAudioTile extends QSTileImpl<QSTile.BooleanState> {
 
     @Override
     protected void handleClick() {
-        ComponentName toActivityCarsetting = new ComponentName("com.jancar.player.music", "com.jancar.player.music.MusicActivity");
-        Intent intentCarsetting = new Intent();
-        intentCarsetting.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intentCarsetting.setComponent(toActivityCarsetting);
-        mContext.startActivity(intentCarsetting);
+        ComponentName toActivityAudio = new ComponentName("com.jancar.settingss", "com.jancar.settings.view.activity.MainActivity");
+        Intent intentAduio = new Intent();
+        intentAduio.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intentAduio.setComponent(toActivityAudio);
+        intentAduio.putExtra("position", 3);
+                mContext.startActivity(intentAduio);
+//        jancarManager.requestPage("eq", intentAduio);
+//        makeExpandedInvisible();
     }
 
     @Override
