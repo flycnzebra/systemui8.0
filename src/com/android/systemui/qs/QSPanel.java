@@ -37,6 +37,7 @@ import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 import com.android.settingslib.Utils;
 import com.android.systemui.Dependency;
 import com.android.systemui.R;
+import com.android.systemui.jancar.FlyLog;
 import com.android.systemui.plugins.qs.DetailAdapter;
 import com.android.systemui.plugins.qs.QSTile;
 import com.android.systemui.plugins.qs.QSTileView;
@@ -510,6 +511,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     }
 
     private void handleShowDetailImpl(Record r, boolean show, int x, int y) {
+        FlyLog.d("handleShowDetailImpl x=%d, y=%d",x,y);
         setDetailRecord(show ? r : null);
         fireShowingDetail(show ? r.detailAdapter : null, x, y);
     }
