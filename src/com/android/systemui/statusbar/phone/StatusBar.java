@@ -2135,6 +2135,9 @@ public class StatusBar extends SystemUI implements DemoMode,
 
         removeNotificationChildren();
 
+        ExpandableNotificationRow textView = new ExpandableNotificationRow(mContext,null);
+        mStackScroller.addView(textView);
+
         for (int i=0; i<toShow.size(); i++) {
             View v = toShow.get(i);
             if (v.getParent() == null) {
