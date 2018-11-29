@@ -2139,7 +2139,7 @@ public class StatusBar extends SystemUI implements DemoMode,
             View v = toShow.get(i);
             if (v.getParent() == null) {
                 mVisualStabilityManager.notifyViewAddition(v);
-                v.setBackgroundColor(0xFF00FF00);
+                v.setBackgroundColor(0x00000000);
                 mStackScroller.addView(v);
             }
         }
