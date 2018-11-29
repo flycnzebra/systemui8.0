@@ -27,6 +27,7 @@
     android:clipToPadding="false"
     android:paddingTop="0dp"
     android:gravity="center_vertical"
+    android:background="@drawable/top_bottom_line_white"
     android:orientation="horizontal">
 
     <include
@@ -50,14 +51,16 @@
             android:layout_height="48dp"
             android:layout_alignParentEnd="true"
             android:background="@drawable/ripple_drawable"
-            android:focusable="true">
+            android:focusable="true"
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/multi_user_avatar"
                 android:layout_width="@dimen/multi_user_avatar_expanded_size"
                 android:layout_height="@dimen/multi_user_avatar_expanded_size"
                 android:layout_gravity="center"
-                android:scaleType="centerInside"/>
+                android:scaleType="centerInside"
+                android:visibility="gone"/>
         </com.android.systemui.statusbar.phone.MultiUserSwitch>
 
         <com.android.systemui.statusbar.AlphaOptimizedImageView
