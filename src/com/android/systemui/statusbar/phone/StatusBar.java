@@ -2061,6 +2061,10 @@ public class StatusBar extends SystemUI implements DemoMode,
     private void updateNotificationShade() {
         if (mStackScroller == null) return;
 
+        /**
+         * @FlyZebra 过滤通知消息
+         */
+
         // Do not modify the notifications during collapse.
         if (isCollapsing()) {
             addPostCollapseAction(new Runnable() {
