@@ -3,7 +3,9 @@ package com.android.systemui.qs.tiles;
 import android.content.ComponentName;
 import android.content.Intent;
 
+import com.android.systemui.Dependency;
 import com.android.systemui.R;
+import com.android.systemui.plugins.ActivityStarter;
 import com.android.systemui.plugins.qs.QSTile;
 import com.android.systemui.qs.QSHost;
 import com.android.systemui.qs.tileimpl.QSTileImpl;
@@ -20,11 +22,13 @@ public class JacBrightnessTile extends QSTileImpl<QSTile.BooleanState> {
 
     @Override
     protected void handleClick() {
-        ComponentName toActivityCarsetting = new ComponentName("com.jancar.player.music", "com.jancar.player.music.MusicActivity");
-        Intent intentCarsetting = new Intent();
-        intentCarsetting.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intentCarsetting.setComponent(toActivityCarsetting);
-        mContext.startActivity(intentCarsetting);
+        ComponentName toActivityCarsetting = new ComponentName("com.android.systemui", "com.android.systemui.settings.BrightnessDialog");
+        Intent intentBrightness = new Intent();
+        intentBrightness.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intentBrightness.setComponent(toActivityCarsetting);
+//        mContext.startActivity(intentCarsetting);
+        Dependency.get(ActivityStarter.class)
+                .postStartActivityDismissingKeyguard(intentBrightness, 0);
     }
 
     @Override
