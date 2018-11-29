@@ -67,6 +67,7 @@ public class HybridGroupManager {
                 .getSystemService(LayoutInflater.class);
         HybridNotificationView hybrid = (HybridNotificationView) inflater.inflate(
                 R.layout.hybrid_notification, mParent, false);
+        hybrid.setBackground(null);
         mParent.addView(hybrid);
         return hybrid;
     }
