@@ -37,12 +37,14 @@
         android:id="@+id/clock"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:background="#F00"
         android:gravity="center_vertical|start"
         android:paddingStart="@dimen/status_bar_clock_starting_padding"
         android:paddingEnd="@dimen/status_bar_clock_end_padding"
         android:singleLine="true"
-        android:textAppearance="@style/TextAppearance.StatusBar.Clock"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="20px"
+        android:textColor="#FFFFFF"
+        android:layout_marginStart="10px"
         systemui:showDark="false" />
 
     <com.android.systemui.statusbar.AlphaOptimizedImageView
