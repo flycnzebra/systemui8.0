@@ -51,6 +51,6 @@ public class JacAudioTile extends QSTileImpl<QSTile.BooleanState> {
 
     @Override
     public CharSequence getTileLabel() {
-        return "jancar3";
+        return "";
     }
 }

@@ -46,7 +46,7 @@
             android:gravity="center"
             android:ellipsize="end"
             android:textAppearance="@style/TextAppearance.QS.TileLabel"
-            android:textColor="?android:attr/textColorPrimary"/>
+            android:textColor="#FFFFFF"/>
 
         <ImageView android:id="@+id/restricted_padlock"
             android:layout_width="@dimen/qs_tile_text_size"
