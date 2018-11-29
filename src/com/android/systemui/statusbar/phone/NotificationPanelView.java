@@ -282,6 +282,7 @@ public class NotificationPanelView extends PanelView implements
                     bitmap, BlurUtil.BLUR_RADIUS_MAX), BlurUtil.BLUR_RADIUS_MAX);
             BitmapUtils.recycleImageView(mBlurView);
             mBlurView.setImageBitmap(blurBitmap);
+            mBlurView.setAlpha(0.8f);
         }
     }
 
@@ -939,18 +940,18 @@ public class NotificationPanelView extends PanelView implements
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
-                if (y <= BLUR_END) {
-                    float alpha = (y - BLUR_START) / (BLUR_END - BLUR_START);
-                    if (alpha < 0) {
-                        alpha = 0;
-                    }
-                    mAlphaView.setAlpha(alpha / 2);
-                    mBlurView.setAlpha(alpha);
-                }
+//                if (y <= BLUR_END) {
+//                    float alpha = (y - BLUR_START) / (BLUR_END - BLUR_START);
+//                    if (alpha < 0) {
+//                        alpha = 0;
+//                    }
+//                    mAlphaView.setAlpha(alpha / 2);
+//                    mBlurView.setAlpha(alpha);
+//                }
                 break;
             case MotionEvent.ACTION_UP:
-                float a = mBlurView.getAlpha();
-                startAlphaAnimation(a, 1.0f);
+//                float a = mBlurView.getAlpha();
+//                startAlphaAnimation(a, 1.0f);
                 break;
         }
         //添加高斯模糊 end
