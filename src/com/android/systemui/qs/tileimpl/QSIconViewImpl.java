@@ -55,7 +55,8 @@ public class QSIconViewImpl extends QSIconView {
         mTilePaddingBelowIconPx =  res.getDimensionPixelSize(R.dimen.qs_tile_padding_below_icon);
 
         mIcon = createIcon();
-        addView(mIcon);
+        LayoutParams lp = new LayoutParams(60,60);
+        addView(mIcon,lp);
     }
 
     public void disableAnimation() {
@@ -194,7 +195,7 @@ public class QSIconViewImpl extends QSIconView {
     protected View createIcon() {
         final ImageView icon = new SlashImageView(mContext);
         icon.setId(android.R.id.icon);
-        icon.setScaleType(ScaleType.FIT_CENTER);
+        icon.setScaleType(ScaleType.FIT_XY);
         return icon;
     }
 
