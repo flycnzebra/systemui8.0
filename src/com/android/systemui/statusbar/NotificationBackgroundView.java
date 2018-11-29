@@ -39,83 +39,82 @@ public class NotificationBackgroundView extends View {
 
     public NotificationBackgroundView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setVisibility(GONE);
     }
 
-//    @Override
-//    protected void onDraw(Canvas canvas) {
-//        draw(canvas, mBackground);
-//    }
-//
-//    private void draw(Canvas canvas, Drawable drawable) {
-//        int bottom = mActualHeight - mClipBottomAmount;
-//        if (drawable != null && bottom > mClipTopAmount) {
-//            drawable.setBounds(0, mClipTopAmount, getWidth(), bottom);
-//            drawable.draw(canvas);
-//        }
-//    }
+    @Override
+    protected void onDraw(Canvas canvas) {
+        draw(canvas, mBackground);
+    }
 
-//    @Override
-//    protected boolean verifyDrawable(Drawable who) {
-//        return super.verifyDrawable(who) || who == mBackground;
-//    }
-//
-//    @Override
-//    protected void drawableStateChanged() {
-//        drawableStateChanged(mBackground);
-//    }
-//
-//    private void drawableStateChanged(Drawable d) {
-//        if (d != null && d.isStateful()) {
-//            d.setState(getDrawableState());
-//        }
-//    }
+    private void draw(Canvas canvas, Drawable drawable) {
+        int bottom = mActualHeight - mClipBottomAmount;
+        if (drawable != null && bottom > mClipTopAmount) {
+            drawable.setBounds(0, mClipTopAmount, getWidth(), bottom);
+            drawable.draw(canvas);
+        }
+    }
 
-//    @Override
-//    public void drawableHotspotChanged(float x, float y) {
-//        if (mBackground != null) {
-//            mBackground.setHotspot(x, y);
-//        }
-//    }
+    @Override
+    protected boolean verifyDrawable(Drawable who) {
+        return super.verifyDrawable(who) || who == mBackground;
+    }
+
+    @Override
+    protected void drawableStateChanged() {
+        drawableStateChanged(mBackground);
+    }
+
+    private void drawableStateChanged(Drawable d) {
+        if (d != null && d.isStateful()) {
+            d.setState(getDrawableState());
+        }
+    }
+
+    @Override
+    public void drawableHotspotChanged(float x, float y) {
+        if (mBackground != null) {
+            mBackground.setHotspot(x, y);
+        }
+    }
 
     /**
      * Sets a background drawable. As we need to change our bounds independently of layout, we need
      * the notion of a background independently of the regular View background..
      */
     public void setCustomBackground(Drawable background) {
-//        if (mBackground != null) {
-//            mBackground.setCallback(null);
-//            unscheduleDrawable(mBackground);
-//        }
-//        mBackground = background;
-//        if (mBackground != null) {
-//            mBackground.setCallback(this);
-//            setTint(mTintColor);
-//        }
-//        if (mBackground instanceof RippleDrawable) {
-//            ((RippleDrawable) mBackground).setForceSoftware(true);
-//        }
-//        invalidate();
+        if (mBackground != null) {
+            mBackground.setCallback(null);
+            unscheduleDrawable(mBackground);
+        }
+        mBackground = background;
+        if (mBackground != null) {
+            mBackground.setCallback(this);
+            setTint(mTintColor);
+        }
+        if (mBackground instanceof RippleDrawable) {
+            ((RippleDrawable) mBackground).setForceSoftware(true);
+        }
+        invalidate();
     }
 
     public void setCustomBackground(int drawableResId) {
-//        final Drawable d = mContext.getDrawable(drawableResId);
-//        setCustomBackground(d);
+        final Drawable d = mContext.getDrawable(drawableResId);
+        setCustomBackground(d);
     }
 
     public void setTint(int tintColor) {
-//        if (tintColor != 0) {
-//            mBackground.setColorFilter(tintColor, PorterDuff.Mode.SRC_ATOP);
-//        } else {
-//            mBackground.clearColorFilter();
-//        }
-//        mTintColor = tintColor;
-//        invalidate();
+        if (tintColor != 0) {
+            mBackground.setColorFilter(tintColor, PorterDuff.Mode.SRC_ATOP);
+        } else {
+            mBackground.clearColorFilter();
+        }
+        mTintColor = tintColor;
+        invalidate();
     }
 
     public void setActualHeight(int actualHeight) {
-//        mActualHeight = actualHeight;
-//        invalidate();
+        mActualHeight = actualHeight;
+        invalidate();
     }
 
     public int getActualHeight() {
@@ -123,13 +122,13 @@ public class NotificationBackgroundView extends View {
     }
 
     public void setClipTopAmount(int clipTopAmount) {
-//        mClipTopAmount = clipTopAmount;
-//        invalidate();
+        mClipTopAmount = clipTopAmount;
+        invalidate();
     }
 
     public void setClipBottomAmount(int clipBottomAmount) {
-//        mClipBottomAmount = clipBottomAmount;
-//        invalidate();
+        mClipBottomAmount = clipBottomAmount;
+        invalidate();
     }
 
     @Override
@@ -140,22 +139,17 @@ public class NotificationBackgroundView extends View {
     }
 
     public void setState(int[] drawableState) {
-//        mBackground.setState(drawableState);
+        mBackground.setState(drawableState);
     }
 
     public void setRippleColor(int color) {
-//        if (mBackground instanceof RippleDrawable) {
-//            RippleDrawable ripple = (RippleDrawable) mBackground;
-//            ripple.setColor(ColorStateList.valueOf(color));
-//        }
+        if (mBackground instanceof RippleDrawable) {
+            RippleDrawable ripple = (RippleDrawable) mBackground;
+            ripple.setColor(ColorStateList.valueOf(color));
+        }
     }
 
     public void setDrawableAlpha(int drawableAlpha) {
-//        mBackground.setAlpha(drawableAlpha);
-    }
-
-    @Override
-    public void setVisibility(int visibility) {
-        super.setVisibility(GONE);
+        mBackground.setAlpha(drawableAlpha);
     }
 }
