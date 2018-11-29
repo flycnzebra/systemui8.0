@@ -67,7 +67,6 @@ public class HybridGroupManager {
                 .getSystemService(LayoutInflater.class);
         HybridNotificationView hybrid = (HybridNotificationView) inflater.inflate(
                 R.layout.hybrid_notification, mParent, false);
-        hybrid.setBackgroundColor(0xFFFF0000);
         mParent.addView(hybrid);
         return hybrid;
     }
@@ -78,7 +77,6 @@ public class HybridGroupManager {
                 R.layout.hybrid_overflow_number, mParent, false);
         mParent.addView(numberView);
         updateOverFlowNumberColor(numberView);
-        numberView.setBackgroundColor(0xFF00FF00);
         return numberView;
     }
 
