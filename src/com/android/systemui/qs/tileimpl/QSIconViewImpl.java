@@ -34,6 +34,7 @@ import com.android.systemui.plugins.qs.QSTile;
 import com.android.systemui.plugins.qs.QSTile.State;
 
 import com.android.systemui.qs.AlphaControlledSignalTileView.AlphaControlledSlashImageView;
+
 import java.util.Objects;
 
 public class QSIconViewImpl extends QSIconView {
@@ -52,11 +53,11 @@ public class QSIconViewImpl extends QSIconView {
 
         final Resources res = context.getResources();
         mIconSizePx = res.getDimensionPixelSize(R.dimen.qs_tile_icon_size);
-        mTilePaddingBelowIconPx =  res.getDimensionPixelSize(R.dimen.qs_tile_padding_below_icon);
+        mTilePaddingBelowIconPx = res.getDimensionPixelSize(R.dimen.qs_tile_padding_below_icon);
 
         mIcon = createIcon();
-        LayoutParams lp = new LayoutParams(60,60);
-        addView(mIcon,lp);
+        LayoutParams lp = new LayoutParams(60, 60);
+        addView(mIcon, lp);
     }
 
     public void disableAnimation() {
@@ -80,7 +81,8 @@ public class QSIconViewImpl extends QSIconView {
         final int w = getMeasuredWidth();
         int top = 0;
         final int iconLeft = (w - mIcon.getMeasuredWidth()) / 2;
-        layout(mIcon, iconLeft, top);
+        mIcon.layout(iconLeft, top, iconLeft + 60, top + 60);
+//        layout(mIcon, iconLeft, top);
     }
 
     public void setIcon(QSTile.State state) {
@@ -158,7 +160,7 @@ public class QSIconViewImpl extends QSIconView {
 
     public static void animateGrayScale(int fromColor, int toColor, ImageView iv) {
         if (iv instanceof AlphaControlledSlashImageView) {
-            ((AlphaControlledSlashImageView)iv)
+            ((AlphaControlledSlashImageView) iv)
                     .setFinalImageTintList(ColorStateList.valueOf(toColor));
         }
         if (ValueAnimator.areAnimatorsEnabled()) {
