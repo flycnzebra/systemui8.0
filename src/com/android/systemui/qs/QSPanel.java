@@ -191,11 +191,13 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
 
     @Override
     public void onTilesChanged() {
+        FlyLog.d();
         setTiles(mHost.getTiles());
     }
 
     @Override
     public void onTuningChanged(String key, String newValue) {
+        FlyLog.d();
         if (QS_SHOW_BRIGHTNESS.equals(key)) {
 //            mBrightnessView.setVisibility(newValue == null || Integer.parseInt(newValue) != 0
 //                    ? VISIBLE : GONE);
@@ -203,11 +205,13 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     }
 
     public void openDetails(String subPanel) {
+        FlyLog.d();
         QSTile tile = getTile(subPanel);
         showDetailAdapter(true, tile.getDetailAdapter(), new int[]{getWidth() / 2, 0});
     }
 
     private QSTile getTile(String subPanel) {
+        FlyLog.d();
         for (int i = 0; i < mRecords.size(); i++) {
             if (subPanel.equals(mRecords.get(i).tile.getTileSpec())) {
                 return mRecords.get(i).tile;
@@ -217,6 +221,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     }
 
     public void setBrightnessMirror(BrightnessMirrorController c) {
+        FlyLog.d();
         if (mBrightnessMirrorController != null) {
             mBrightnessMirrorController.removeCallback(this);
         }
@@ -229,10 +234,12 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
 
     @Override
     public void onBrightnessMirrorReinflated(View brightnessMirror) {
+        FlyLog.d();
         updateBrightnessMirror();
     }
 
     View getBrightnessView() {
+        FlyLog.d();
         return mBrightnessView;
     }
 
@@ -241,6 +248,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     }
 
     public void setHost(QSTileHost host, QSCustomizer customizer) {
+        FlyLog.d();
         mHost = host;
         mHost.addCallback(this);
         setTiles(mHost.getTiles());
@@ -253,10 +261,12 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     }
 
     public QSTileHost getHost() {
+        FlyLog.d();
         return mHost;
     }
 
     public void updateResources() {
+        FlyLog.d();
         final Resources res = mContext.getResources();
         mPanelPaddingBottom = res.getDimensionPixelSize(R.dimen.qs_panel_padding_bottom);
         mBrightnessPaddingTop = res.getDimensionPixelSize(R.dimen.qs_brightness_padding_top);
@@ -274,6 +284,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
 
     @Override
     protected void onConfigurationChanged(Configuration newConfig) {
+        FlyLog.d();
         super.onConfigurationChanged(newConfig);
         mFooter.onConfigurationChanged();
 
@@ -281,6 +292,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     }
 
     public void updateBrightnessMirror() {
+        FlyLog.d();
         if (mBrightnessMirrorController != null) {
             ToggleSliderView brightnessSlider = findViewById(R.id.brightness_slider);
             ToggleSliderView mirrorSlider = mBrightnessMirrorController.getMirror()
@@ -297,6 +309,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     }
 
     public void setExpanded(boolean expanded) {
+        FlyLog.d();
         if (mExpanded == expanded) return;
         mExpanded = expanded;
         if (!mExpanded && mTileLayout instanceof PagedTileLayout) {
@@ -315,6 +328,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     }
 
     public void setListening(boolean listening) {
+        FlyLog.d();
         if (mListening == listening) return;
         mListening = listening;
         if (mTileLayout != null) {
@@ -343,6 +357,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     }
 
     public void refreshAllTiles() {
+        FlyLog.d();
         for (TileRecord r : mRecords) {
             r.tile.refreshState();
         }
@@ -350,6 +365,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     }
 
     public void showDetailAdapter(boolean show, DetailAdapter adapter, int[] locationInWindow) {
+        FlyLog.d();
         int xInWindow = locationInWindow[0];
         int yInWindow = locationInWindow[1];
         ((View) getParent()).getLocationInWindow(locationInWindow);
@@ -366,14 +382,17 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     }
 
     protected void showDetail(boolean show, Record r) {
+        FlyLog.d();
         mHandler.obtainMessage(H.SHOW_DETAIL, show ? 1 : 0, 0, r).sendToTarget();
     }
 
     public void setTiles(Collection<QSTile> tiles) {
+        FlyLog.d();
         setTiles(tiles, false);
     }
 
     public void setTiles(Collection<QSTile> tiles, boolean collapsedView) {
+        FlyLog.d();
         for (TileRecord record : mRecords) {
             mTileLayout.removeTile(record);
             record.tile.removeCallback(record.callback);
@@ -385,10 +404,12 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     }
 
     protected void drawTile(TileRecord r, QSTile.State state) {
+        FlyLog.d();
         r.tileView.onStateChanged(state);
     }
 
     protected QSTileView createTileView(QSTile tile, boolean collapsedView) {
+        FlyLog.d();
         return mHost.createTileView(tile, collapsedView);
     }
 
@@ -397,6 +418,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     }
 
     protected TileRecord addTile(final QSTile tile, boolean collapsedView) {
+        FlyLog.d();
         final TileRecord r = new TileRecord();
         r.tile = tile;
         r.tileView = createTileView(tile, collapsedView);
@@ -453,6 +475,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
 
 
     public void showEdit(final View v) {
+        FlyLog.d();
         v.post(new Runnable() {
             @Override
             public void run() {
@@ -471,6 +494,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     }
 
     public void closeDetail() {
+        FlyLog.d();
         if (mCustomizePanel != null && mCustomizePanel.isShown()) {
             // Treat this as a detail panel for now, to make things easy.
             mCustomizePanel.hide(mCustomizePanel.getWidth() / 2, mCustomizePanel.getHeight() / 2);
@@ -498,6 +522,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     }
 
     private void handleShowDetailTile(TileRecord r, boolean show) {
+        FlyLog.d();
         if ((mDetailRecord != null) == show && mDetailRecord == r) return;
 
         if (show) {
@@ -511,12 +536,13 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     }
 
     private void handleShowDetailImpl(Record r, boolean show, int x, int y) {
-        FlyLog.d("handleShowDetailImpl x=%d, y=%d",x,y);
+        FlyLog.d();
         setDetailRecord(show ? r : null);
         fireShowingDetail(show ? r.detailAdapter : null, x, y);
     }
 
     protected void setDetailRecord(Record r) {
+        FlyLog.d();
         if (r == mDetailRecord) return;
         mDetailRecord = r;
         final boolean scanState = mDetailRecord instanceof TileRecord
@@ -525,6 +551,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     }
 
     void setGridContentVisibility(boolean visible) {
+        FlyLog.d();
         int newVis = visible ? VISIBLE : INVISIBLE;
         setVisibility(newVis);
         if (mQuickSettingsExt != null) {
@@ -537,6 +564,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     }
 
     private void logTiles() {
+        FlyLog.d();
         for (int i = 0; i < mRecords.size(); i++) {
             QSTile tile = mRecords.get(i).tile;
             mMetricsLogger.write(tile.populate(new LogMaker(tile.getMetricsCategory())
@@ -545,12 +573,14 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     }
 
     private void fireShowingDetail(DetailAdapter detail, int x, int y) {
+        FlyLog.d();
         if (mCallback != null) {
             mCallback.onShowingDetail(detail, x, y);
         }
     }
 
     private void fireToggleStateChanged(boolean state) {
+        FlyLog.d();
         if (mCallback != null) {
             mCallback.onToggleStateChanged(state);
         }
@@ -563,6 +593,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     }
 
     public void clickTile(ComponentName tile) {
+        FlyLog.d();
         final String spec = CustomTile.toSpec(tile);
         final int N = mRecords.size();
         for (int i = 0; i < N; i++) {
@@ -574,10 +605,12 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     }
 
     QSTileLayout getTileLayout() {
+        FlyLog.d();
         return mTileLayout;
     }
 
     QSTileView getTileView(QSTile tile) {
+        FlyLog.d();
         for (TileRecord r : mRecords) {
             if (r.tile == tile) {
                 return r.tileView;
@@ -587,10 +620,12 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     }
 
     public QSSecurityFooter getFooter() {
+        FlyLog.d();
         return mFooter;
     }
 
     public void showDeviceMonitoringDialog() {
+        FlyLog.d();
         mFooter.showDeviceMonitoringDialog();
     }
 

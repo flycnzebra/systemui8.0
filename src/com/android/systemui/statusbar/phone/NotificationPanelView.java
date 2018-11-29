@@ -896,7 +896,6 @@ public class NotificationPanelView extends PanelView implements
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        FlyLog.d("event=%s",event);
         if (mBlockTouches || (mQs != null && mQs.isCustomizing())) {
             return false;
         }
