@@ -426,8 +426,6 @@ public class NotificationStackScrollLayout extends ViewGroup
             mDebugPaint.setStrokeWidth(2);
             mDebugPaint.setStyle(Paint.Style.STROKE);
         }
-
-        setBackgroundColor(0xFF0000FF);
     }
 
     public NotificationSwipeActionHelper getSwipeActionHelper() {
