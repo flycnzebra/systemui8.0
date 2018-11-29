@@ -2135,17 +2135,10 @@ public class StatusBar extends SystemUI implements DemoMode,
 
         removeNotificationChildren();
 
-        ExpandableNotificationRow textView = new ExpandableNotificationRow(mContext,null);
-        mStackScroller.addView(textView);
-
         for (int i=0; i<toShow.size(); i++) {
             View v = toShow.get(i);
             if (v.getParent() == null) {
                 mVisualStabilityManager.notifyViewAddition(v);
-                v.setBackgroundColor(0x00000000);
-                v.setBackgroundDrawable(null);
-                v.setBackground(null);
-                FlyLog.d("background=%s",((ExpandableNotificationRow) v).getBackgroundColorWithoutTint());
                 mStackScroller.addView(v);
             }
         }
