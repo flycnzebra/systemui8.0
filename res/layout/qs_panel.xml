@@ -18,6 +18,7 @@
     android:id="@+id/quick_settings_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#3F00FFFF"
     android:clipToPadding="false"
     android:clipChildren="false">
 
@@ -26,7 +27,7 @@
         android:layout_marginTop="28dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#3F0000FF"
+        android:background="#1F0000FF"
         android:layout_marginBottom="48dp" />
 
     <include layout="@layout/quick_status_bar_expanded_header" />
