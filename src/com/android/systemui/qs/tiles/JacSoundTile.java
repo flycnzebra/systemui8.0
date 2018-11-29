@@ -24,10 +24,15 @@ public class JacSoundTile extends QSTileImpl<QSTile.BooleanState> {
 
     @Override
     protected void handleClick() {
-        Intent intent = new Intent();
+        final Intent intent = new Intent();
         intent.setAction(VolumeDialogController.BROADCAST_SHOW_VOLUME_BAR);
-        mContext.sendBroadcast(intent);
-        Dependency.get(StatusBar.class).makeExpandedInvisible();
+        Dependency.get(ActivityStarter.class).postQSRunnableDismissingKeyguard(new Runnable() {
+            @Override
+            public void run() {
+                mContext.sendBroadcast(intent);
+            }
+        });
+//        makeExpandedInvisible();
     }
 
     @Override
