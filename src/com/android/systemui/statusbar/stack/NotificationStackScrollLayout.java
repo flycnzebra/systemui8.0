@@ -34,6 +34,7 @@ import android.graphics.PointF;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.service.notification.StatusBarNotification;
@@ -68,6 +69,7 @@ import com.android.systemui.Interpolators;
 import com.android.systemui.R;
 import com.android.systemui.SwipeHelper;
 import com.android.systemui.classifier.FalsingManager;
+import com.android.systemui.jancar.FlyLog;
 import com.android.systemui.plugins.statusbar.NotificationMenuRowPlugin;
 import com.android.systemui.plugins.statusbar.NotificationMenuRowPlugin.MenuItem;
 import com.android.systemui.plugins.statusbar.NotificationSwipeActionHelper;
@@ -4882,5 +4884,18 @@ public class NotificationStackScrollLayout extends ViewGroup
             }
             return length;
         }
+    }
+
+    @Override
+    public void setBackground(Drawable background) {
+        FlyLog.d("setBackground");
+//        super.setBackground(background);
+    }
+
+
+    @Override
+    public void setBackgroundColor(int color) {
+        FlyLog.d("setBackground");
+//        super.setBackgroundColor(color);
     }
 }
