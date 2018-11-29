@@ -259,7 +259,7 @@
     <dimen name="qs_tile_height">120px</dimen>
     <dimen name="qs_tile_margin">19dp</dimen>
     <dimen name="qs_tile_margin_top">16dp</dimen>
-    <dimen name="qs_quick_tile_size">60px</dimen>
+    <dimen name="qs_quick_tile_size">40px</dimen>
     <dimen name="qs_quick_tile_padding">0px</dimen>
     <dimen name="qs_header_gear_translation">16dp</dimen>
     <dimen name="qs_page_indicator_width">16dp</dimen>
