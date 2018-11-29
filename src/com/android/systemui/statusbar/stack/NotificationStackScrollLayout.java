@@ -528,8 +528,8 @@ public class NotificationStackScrollLayout extends ViewGroup
     }
 
     public void setDrawBackgroundAsSrc(boolean asSrc) {
-        mDrawBackgroundAsSrc = asSrc;
-        updateSrcDrawing();
+//        mDrawBackgroundAsSrc = asSrc;
+//        updateSrcDrawing();
     }
 
     private void updateSrcDrawing() {
