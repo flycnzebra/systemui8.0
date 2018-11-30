@@ -236,7 +236,7 @@
     <!-- The width of the panel that holds the quick settings. -->
     <dimen name="qs_panel_width">@dimen/match_parent</dimen>
 
-    <dimen name="volume_dialog_panel_width">@dimen/standard_notification_panel_width</dimen>
+    <dimen name="volume_dialog_panel_width">510px</dimen>
 
     <!-- Gravity for the notification panel -->
     <integer name="notification_panel_layout_gravity">0x31</integer><!-- center_horizontal|top -->
