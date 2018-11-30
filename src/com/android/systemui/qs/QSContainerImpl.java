@@ -107,13 +107,13 @@ public class QSContainerImpl extends FrameLayout {
 
     public void updateExpansion() {
         int height = calculateContainerHeight();
-        int bottom = 223;
+        int bottom = getTop() + height;
         setBottom(bottom);
         mQSDetail.setBottom(getTop() + height);
         FlyLog.d("setBottom2 num=%d",bottom);
         // Pin QS Footer to the bottom of the panel.
         int Y = height - mQSFooter.getHeight();
-        mQSFooter.setTranslationY(175);
+        mQSFooter.setTranslationY(Y);
         FlyLog.d("mQSFooter setTranslationY=%d",Y);
     }
 
@@ -125,7 +125,7 @@ public class QSContainerImpl extends FrameLayout {
     }
 
     public void setExpansion(float expansion) {
-        FlyLog.d("setBottom2 expansion=%b",expansion);
+        FlyLog.d("setExpansion expansion=%b",expansion);
         mQsExpansion = expansion;
         updateExpansion();
     }

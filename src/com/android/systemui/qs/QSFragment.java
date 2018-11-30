@@ -261,7 +261,7 @@ public class QSFragment extends Fragment implements QS {
 
     @Override
     public void setQsExpansion(float expansion, float headerTranslation) {
-        FlyLog.d(TAG, "setQSExpansion " + expansion + " " + headerTranslation);
+        FlyLog.d("setQSExpansion " + expansion + " " + headerTranslation);
         mContainer.setExpansion(expansion);
         final float translationScaleY = expansion - 1;
         if (!mHeaderAnimating) {
