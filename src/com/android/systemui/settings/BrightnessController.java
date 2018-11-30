@@ -447,11 +447,11 @@ public class BrightnessController implements ToggleSlider.Listener {
     }
 
     private void updateIcon(boolean automatic) {
-        if (mIcon != null) {
-            mIcon.setImageResource(automatic && SHOW_AUTOMATIC_ICON ?
-                    com.android.systemui.R.drawable.ic_qs_brightness_auto_on :
-                    com.android.systemui.R.drawable.ic_qs_brightness_auto_off);
-        }
+//        if (mIcon != null) {
+//            mIcon.setImageResource(automatic && SHOW_AUTOMATIC_ICON ?
+//                    com.android.systemui.R.drawable.jac_brightness_icon :
+//                    com.android.systemui.R.drawable.jac_brightness_icon);
+//        }
     }
 
     private void updateVrMode(boolean isEnabled) {
