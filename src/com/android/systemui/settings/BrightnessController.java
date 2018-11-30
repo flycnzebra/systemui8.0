@@ -434,7 +434,7 @@ public class BrightnessController implements ToggleSlider.Listener {
 
     private void setBrightness(int brightness) {
         try {
-            mPower.setTemporaryScreenBrightnessSettingOverride(Math.max(10,brightness));
+            mPower.setTemporaryScreenBrightnessSettingOverride(brightness);
         } catch (RemoteException ex) {
         }
     }
