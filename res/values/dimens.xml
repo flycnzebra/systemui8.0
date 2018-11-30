@@ -656,7 +656,7 @@
     <dimen name="volume_offset_top">0dp</dimen>
 
     <!-- Standard image button size for volume dialog buttons -->
-    <dimen name="volume_button_size">48px</dimen>
+    <dimen name="volume_button_size">50px</dimen>
 
     <!-- Volume dialog root view bottom margin, at rest -->
     <dimen name="volume_dialog_margin_bottom">4dp</dimen>
@@ -861,7 +861,7 @@
     <dimen name="volume_progress_min_h">16px</dimen>
     <dimen name="volume_progress_max_h">16px</dimen>
 
-    <dimen name="volume_seekbar_width">380px</dimen>
+    <dimen name="volume_seekbar_width">400px</dimen>
     <dimen name="volume_seekbar_height">16px</dimen>
 
     <dimen name="volume_dialog_width">510px</dimen>
