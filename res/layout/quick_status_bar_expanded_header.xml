@@ -28,7 +28,7 @@
     android:clipToPadding="false"
     android:paddingTop="0dp"
     android:paddingEnd="0dp"
-    android:background="#1FFF0000"
+    android:background="#7FFF0000"
     android:paddingStart="0dp">
 
     <include layout="@layout/quick_status_bar_header_system_icons" />
