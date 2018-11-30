@@ -17,6 +17,8 @@
 package com.android.systemui.settings;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -71,6 +73,7 @@ public class BrightnessDialog extends Activity {
 //        window.setGravity(Gravity.CENTER);
         window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         window.requestFeature(Window.FEATURE_NO_TITLE);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         // Use a dialog theme as the activity theme, but inflate the content as
         // the QS content.
@@ -122,7 +125,7 @@ public class BrightnessDialog extends Activity {
         super.onAttachedToWindow();
         View view = getWindow().getDecorView();
         WindowManager.LayoutParams lp = (WindowManager.LayoutParams) view.getLayoutParams();
-        lp.y = lp.y - 40;
+        lp.y = lp.y - 30;
         getWindowManager().updateViewLayout(view, lp);
     }
 }
