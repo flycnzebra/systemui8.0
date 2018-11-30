@@ -858,4 +858,16 @@
     <!-- Home button padding for sizing -->
     <dimen name="home_padding">4px</dimen>
 
+    <dimen name="volume_progress_min_h">16px</dimen>
+    <dimen name="volume_progress_max_h">16px</dimen>
+
+    <dimen name="volume_seekbar_width">400px</dimen>
+    <dimen name="volume_seekbar_height">16px</dimen>
+
+    <dimen name="volume_dialog_width">500px</dimen>
+    <dimen name="volume_dialog_height">50px</dimen>
+
+    <dimen name="volume_seekbar_background_height">6px</dimen>
+    <dimen name="volume_seekbar_progress_height">2px</dimen>
+
 </resources>
