@@ -126,8 +126,8 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
     private ZenFooter mZenFooter;
     private final Object mSafetyWarningLock = new Object();
     private final Accessibility mAccessibility = new Accessibility();
-    private final ColorStateList mActiveSliderTint;
-    private final ColorStateList mInactiveSliderTint;
+//    private final ColorStateList mActiveSliderTint;
+//    private final ColorStateList mInactiveSliderTint;
     private VolumeDialogMotion mMotion;
     private int mWindowType;
     private final ZenModeController mZenModeController;
@@ -161,8 +161,8 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
         mAudioManager = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
         mAccessibilityMgr =
                 (AccessibilityManager) mContext.getSystemService(Context.ACCESSIBILITY_SERVICE);
-        mActiveSliderTint = ColorStateList.valueOf(Utils.getColorAccent(mContext));
-        mInactiveSliderTint = loadColorStateList(R.color.volume_slider_inactive);
+//        mActiveSliderTint = ColorStateList.valueOf(Utils.getColorAccent(mContext));
+//        mInactiveSliderTint = loadColorStateList(R.color.volume_slider_inactive);
     }
 
     public void init(int windowType, Callback callback) {
@@ -878,15 +878,15 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
     }
 
     private void updateVolumeRowSliderTintH(VolumeRow row, boolean isActive) {
-        if (isActive && mExpanded) {
-            row.slider.requestFocus();
-        }
-        final ColorStateList tint = isActive && row.slider.isEnabled() ? mActiveSliderTint
-                : mInactiveSliderTint;
-        if (tint == row.cachedSliderTint) return;
-        row.cachedSliderTint = tint;
-        row.slider.setProgressTintList(tint);
-        row.slider.setThumbTintList(tint);
+//        if (isActive && mExpanded) {
+//            row.slider.requestFocus();
+//        }
+//        final ColorStateList tint = isActive && row.slider.isEnabled() ? mActiveSliderTint
+//                : mInactiveSliderTint;
+//        if (tint == row.cachedSliderTint) return;
+//        row.cachedSliderTint = tint;
+//        row.slider.setProgressTintList(tint);
+//        row.slider.setThumbTintList(tint);
     }
 
     private void updateVolumeRowSliderH(VolumeRow row, boolean enable, int vlevel) {
