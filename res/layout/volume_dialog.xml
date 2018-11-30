@@ -50,6 +50,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="@dimen/volume_expander_margin_end"
+        android:visibility="gone"
         android:orientation="vertical">
 
         <TextView
