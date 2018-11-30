@@ -16,19 +16,12 @@
     xmlns:systemui="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="-25px"
-    android:background="#00000000"
     android:gravity="center">
-
-    <ImageView
-        android:layout_width="@dimen/volume_dialog_width"
-        android:layout_height="@dimen/volume_dialog_height"
-        android:src="@drawable/volume_background" />
 
     <LinearLayout
         android:layout_width="@dimen/volume_dialog_width"
         android:layout_height="@dimen/volume_dialog_height"
-        android:background="#00000000"
+        android:background="@drawable/volume_background"
         android:gravity="center">
 
         <ImageView
@@ -43,7 +36,7 @@
 
         <com.android.systemui.settings.ToggleSliderView
             android:id="@+id/brightness_slider"
-            android:layout_width="440px"
+            android:layout_width="450px"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:contentDescription="@string/accessibility_brightness"
