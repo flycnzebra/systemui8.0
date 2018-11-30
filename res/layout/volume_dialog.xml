@@ -31,7 +31,7 @@
 
         <LinearLayout
             android:id="@+id/volume_dialog_rows"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/volume_dialog_width"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingEnd="@dimen/volume_button_size">
