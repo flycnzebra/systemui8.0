@@ -23,6 +23,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import com.android.systemui.R;
+import com.android.systemui.jancar.FlyLog;
 import com.android.systemui.qs.customize.QSCustomizer;
 
 /**
@@ -106,10 +107,16 @@ public class QSContainerImpl extends FrameLayout {
 
     public void updateExpansion() {
         int height = calculateContainerHeight();
-        setBottom(getTop() + height);
+        int bottom = getTop() + height;
+        setBottom(bottom);
+        FlyLog.d("setBottom1 num=%d",bottom);
+        bottom = getTop()+height;
         mQSDetail.setBottom(getTop() + height);
+        FlyLog.d("setBottom2 num=%d",bottom);
         // Pin QS Footer to the bottom of the panel.
-        mQSFooter.setTranslationY(height - mQSFooter.getHeight());
+        int Y = height - mQSFooter.getHeight();
+        mQSFooter.setTranslationY(Y);
+        FlyLog.d("mQSFooter setTranslationY=%d",Y);
     }
 
     protected int calculateContainerHeight() {
