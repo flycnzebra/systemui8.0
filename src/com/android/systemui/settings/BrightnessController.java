@@ -73,6 +73,7 @@ public class BrightnessController implements ToggleSlider.Listener {
 
     private final Handler mBackgroundHandler;
     private final BrightnessObserver mBrightnessObserver;
+    private final Handler mDismissHandler;
 
     private ArrayList<BrightnessStateChangeCallback> mChangeCallbacks =
             new ArrayList<BrightnessStateChangeCallback>();
@@ -273,7 +274,8 @@ public class BrightnessController implements ToggleSlider.Listener {
         }
     };
 
-    public BrightnessController(Context context, ImageView icon, ToggleSlider control) {
+    public BrightnessController(Context context, ImageView icon, ToggleSlider control,Handler handler) {
+        mDismissHandler = handler;
         mContext = context;
         mIcon = icon;
         mControl = control;
@@ -355,6 +357,12 @@ public class BrightnessController implements ToggleSlider.Listener {
             int value, boolean stopTracking) {
         updateIcon(mAutomatic);
         if (mExternalChange) return;
+
+        if(mDismissHandler != null){
+            Message msg1 = mDismissHandler.obtainMessage();
+            msg1.what = 1;
+            mDismissHandler.sendMessage(msg1);
+        }
 
         if (mIsVrModeEnabled) {
             final int val = value + mMinimumBacklightForVr;
