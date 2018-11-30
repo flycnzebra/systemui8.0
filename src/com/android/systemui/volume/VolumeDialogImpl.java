@@ -78,6 +78,7 @@ import com.android.systemui.Dependency;
 import com.android.systemui.Interpolators;
 import com.android.systemui.Prefs;
 import com.android.systemui.R;
+import com.android.systemui.jancar.FlyLog;
 import com.android.systemui.plugins.VolumeDialog;
 import com.android.systemui.plugins.VolumeDialogController;
 import com.android.systemui.plugins.VolumeDialogController.State;
@@ -425,6 +426,7 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
         row.slider = (SeekBar) row.view.findViewById(R.id.volume_row_slider);
         row.slider.setOnSeekBarChangeListener(new VolumeSeekBarChangeListener(row));
         row.anim = null;
+        row.vulumeText = (TextView) row.view.findViewById(R.id.volume_text);
 
         // forward events above the slider into the slider
         row.view.setOnTouchListener(new OnTouchListener() {
@@ -910,6 +912,17 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
                 return;  // don't clamp if visible
             }
         }
+
+        //            //设置音量数字
+        final int value = row.ss.level;
+        final int progress1 = row.slider.getProgress();
+        if (progress1 != value * 100) {
+            String str = "" + value;
+            row.vulumeText.setText(str);
+            row.slider.setProgress(value * 100);
+            FlyLog.d("states setText1 volume %d,stream=%d", value, row.stream);
+        }
+
         final int newProgress = vlevel * 100;
         if (progress != newProgress) {
             if (mShowing && rowVisible) {
@@ -1235,6 +1248,13 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
             if (D.BUG) Log.d(TAG, AudioSystem.streamToString(mRow.stream)
                     + " onProgressChanged " + progress + " fromUser=" + fromUser);
             if (!fromUser) return;
+            final int userLevel1 = getImpliedLevel(seekBar, progress);
+            if (mRow.vulumeText != null) {
+                String level = "" + userLevel1;
+                mRow.vulumeText.setText(level);
+                FlyLog.d("states setText2 volume %d,stream=%d", userLevel1, mRow.stream);
+            }
+
             if (mRow.ss.levelMin > 0) {
                 final int minProgress = mRow.ss.levelMin * 100;
                 if (progress < minProgress) {
@@ -1242,14 +1262,14 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
                     progress = minProgress;
                 }
             }
-            final int userLevel = getImpliedLevel(seekBar, progress);
-            if (mRow.ss.level != userLevel || mRow.ss.muted && userLevel > 0) {
+            final int userLevel2 = getImpliedLevel(seekBar, progress);
+            if (mRow.ss.level != userLevel2 || mRow.ss.muted && userLevel2 > 0) {
                 mRow.userAttempt = SystemClock.uptimeMillis();
-                if (mRow.requestedLevel != userLevel) {
-                    mController.setStreamVolume(mRow.stream, userLevel);
-                    mRow.requestedLevel = userLevel;
+                if (mRow.requestedLevel != userLevel2) {
+                    mController.setStreamVolume(mRow.stream, userLevel2);
+                    mRow.requestedLevel = userLevel2;
                     Events.writeEvent(mContext, Events.EVENT_TOUCH_LEVEL_CHANGED, mRow.stream,
-                            userLevel);
+                            userLevel2);
                 }
             }
         }
@@ -1337,6 +1357,7 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
         private TextView header;
         private ImageButton icon;
         private SeekBar slider;
+        private TextView vulumeText;
         private int stream;
         private StreamState ss;
         private long userAttempt;  // last user-driven slider change
