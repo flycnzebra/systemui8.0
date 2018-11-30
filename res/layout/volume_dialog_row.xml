@@ -37,8 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/volume_row_slider_height"
         android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingStart="@dimen/volume_row_padding_start">
+        android:orientation="horizontal">
 
         <com.android.keyguard.AlphaOptimizedImageButton
             android:id="@+id/volume_row_icon"
@@ -52,10 +51,11 @@
             android:layout_width="@dimen/volume_seekbar_width"
             android:layout_height="16px"
             android:layout_centerVertical="true"
+            android:maxHeight="@dimen/volume_progress_max_h"
+            android:minHeight="@dimen/volume_progress_min_h"
             android:progressDrawable="@drawable/seekbar_style"
             android:splitTrack="false"
-            android:thumb="@drawable/seekbar_thumb"
-            android:thumbOffset="5px" />
+            android:thumb="@drawable/seekbar_thumb" />
 
         <TextView
             android:id="@+id/volume_text"
