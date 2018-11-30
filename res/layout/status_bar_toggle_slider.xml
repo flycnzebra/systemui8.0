@@ -55,8 +55,8 @@
         android:layout_centerVertical="true"
         android:gravity="center"
         android:paddingTop="26dp"
-        android:textColor="#666666"
-        android:textSize="12sp"
-        android:visibility="gone"
+        android:textColor="#FFF"
+        android:textSize="22px"
+        android:visibility="visible"
         />
 </merge>
