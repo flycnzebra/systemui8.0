@@ -66,8 +66,8 @@ public class BrightnessDialog extends Activity {
 
         final Window window = getWindow();
 
-        window.setGravity(Gravity.CENTER);
-        window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+//        window.setGravity(Gravity.CENTER);
+//        window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         window.requestFeature(Window.FEATURE_NO_TITLE);
 
         // Use a dialog theme as the activity theme, but inflate the content as
