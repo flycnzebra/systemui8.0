@@ -70,7 +70,7 @@ public class BrightnessDialog extends Activity {
 
 //        window.setGravity(Gravity.CENTER);
         window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-        window.requestFeature(Window.FEATURE_NO_TITLE | Window.FEATURE_CONTENT_TRANSITIONS | Window.FEATURE_ACTIVITY_TRANSITIONS);
+        window.requestFeature(Window.FEATURE_NO_TITLE);
 
         // Use a dialog theme as the activity theme, but inflate the content as
         // the QS content.
