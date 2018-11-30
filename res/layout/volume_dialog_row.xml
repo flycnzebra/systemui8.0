@@ -15,21 +15,25 @@
 -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/volume_row_height"
     android:clipChildren="false"
     android:clipToPadding="false"
     android:orientation="vertical"
+    android:background="@drawable/volume_background"
     android:paddingBottom="@dimen/volume_row_padding_bottom" >
 
     <TextView
         android:id="@+id/volume_row_header"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0px"
         android:ellipsize="end"
         android:maxLines="1"
+        android:visibility="gone"
         android:textAppearance="@style/TextAppearance.Volume.Header"
-        android:paddingStart="@dimen/volume_row_header_padding_start" />
+        android:paddingStart="@dimen/volume_row_header_padding_start"
+        tools:ignore="Suspicious0dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
