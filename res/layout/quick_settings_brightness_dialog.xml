@@ -19,6 +19,7 @@
     android:gravity="center">
 
     <LinearLayout
+        android:layout_marginTop="-30px"
         android:layout_width="@dimen/volume_dialog_width"
         android:layout_height="@dimen/volume_dialog_height"
         android:background="@drawable/volume_background"
