@@ -87,7 +87,9 @@ public class BrightnessController implements ToggleSlider.Listener {
         public void onBrightnessLevelChanged();
     }
 
-    /** ContentObserver to watch brightness **/
+    /**
+     * ContentObserver to watch brightness
+     **/
     private class BrightnessObserver extends ContentObserver {
 
         private final Uri BRIGHTNESS_MODE_URI =
@@ -274,8 +276,12 @@ public class BrightnessController implements ToggleSlider.Listener {
         }
     };
 
-    public BrightnessController(Context context, ImageView icon, ToggleSlider control,Handler handler) {
+    public BrightnessController(Context context, ImageView icon, ToggleSlider control, Handler handler) {
+        this(context, icon, control);
         mDismissHandler = handler;
+    }
+
+    public BrightnessController(Context context, ImageView icon, ToggleSlider control) {
         mContext = context;
         mIcon = icon;
         mControl = control;
@@ -289,7 +295,7 @@ public class BrightnessController implements ToggleSlider.Listener {
         };
         mBrightnessObserver = new BrightnessObserver(mHandler);
 
-        PowerManager pm = (PowerManager)context.getSystemService(Context.POWER_SERVICE);
+        PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         mMinimumBacklight = pm.getMinimumScreenBrightnessSetting();
         mMaximumBacklight = pm.getMaximumScreenBrightnessSetting();
         mMinimumBacklightForVr = pm.getMinimumScreenBrightnessForVrSetting();
@@ -334,7 +340,9 @@ public class BrightnessController implements ToggleSlider.Listener {
         mListening = true;
     }
 
-    /** Unregister all call backs, both to and from the controller */
+    /**
+     * Unregister all call backs, both to and from the controller
+     */
     public void unregisterCallbacks() {
         if (!mListening) {
             return;
@@ -354,11 +362,11 @@ public class BrightnessController implements ToggleSlider.Listener {
 
     @Override
     public void onChanged(ToggleSlider toggleSlider, boolean tracking, boolean automatic,
-            int value, boolean stopTracking) {
+                          int value, boolean stopTracking) {
         updateIcon(mAutomatic);
         if (mExternalChange) return;
 
-        if(mDismissHandler != null){
+        if (mDismissHandler != null) {
             Message msg1 = mDismissHandler.obtainMessage();
             msg1.what = 1;
             mDismissHandler.sendMessage(msg1);
@@ -372,12 +380,12 @@ public class BrightnessController implements ToggleSlider.Listener {
             setBrightness(val);
             if (!tracking) {
                 AsyncTask.execute(new Runnable() {
-                        public void run() {
-                            Settings.System.putIntForUser(mContext.getContentResolver(),
-                                    Settings.System.SCREEN_BRIGHTNESS_FOR_VR, val,
-                                    UserHandle.USER_CURRENT);
-                        }
-                    });
+                    public void run() {
+                        Settings.System.putIntForUser(mContext.getContentResolver(),
+                                Settings.System.SCREEN_BRIGHTNESS_FOR_VR, val,
+                                UserHandle.USER_CURRENT);
+                    }
+                });
             }
         } else if (!mAutomatic) {
             final int val = value + mMinimumBacklight;
@@ -387,12 +395,12 @@ public class BrightnessController implements ToggleSlider.Listener {
             setBrightness(val);
             if (!tracking) {
                 AsyncTask.execute(new Runnable() {
-                        public void run() {
-                            Settings.System.putIntForUser(mContext.getContentResolver(),
-                                    Settings.System.SCREEN_BRIGHTNESS, val,
-                                    UserHandle.USER_CURRENT);
-                        }
-                    });
+                    public void run() {
+                        Settings.System.putIntForUser(mContext.getContentResolver(),
+                                Settings.System.SCREEN_BRIGHTNESS, val,
+                                UserHandle.USER_CURRENT);
+                    }
+                });
             }
         } else {
             final float adj = value / (BRIGHTNESS_ADJ_RESOLUTION / 2f) - 1;
