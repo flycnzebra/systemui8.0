@@ -35,6 +35,8 @@
         android:layout_height="16px"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
+        android:layout_marginStart="-10px"
+        android:layout_marginTop="17px"
         android:layout_toStartOf="@+id/label"
         android:maxHeight="@dimen/volume_progress_max_h"
         android:minHeight="@dimen/volume_progress_min_h"
@@ -44,13 +46,13 @@
 
     <TextView
         android:id="@+id/label"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="@dimen/volume_button_size"
+        android:layout_height="@dimen/volume_button_size"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:gravity="start|center"
+        android:text="100"
         android:textColor="#FFF"
         android:textSize="22px"
-        android:text="100"
         android:visibility="visible" />
 </merge>
