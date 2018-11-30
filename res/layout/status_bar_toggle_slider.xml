@@ -43,7 +43,7 @@
         android:paddingEnd="20dp"
         android:paddingTop="16dp"
         android:paddingBottom="16dp"
-        android:thumb="@drawable/ic_brightness_thumb"
+        android:thumb="@drawable/seekbar_thumb"
         android:splitTrack="false"
         />
     <TextView
