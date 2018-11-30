@@ -34,6 +34,7 @@ import android.widget.FrameLayout.LayoutParams;
 import com.android.systemui.Interpolators;
 import com.android.systemui.R;
 import com.android.systemui.R.id;
+import com.android.systemui.jancar.FlyLog;
 import com.android.systemui.plugins.qs.QS;
 import com.android.systemui.qs.customize.QSCustomizer;
 import com.android.systemui.statusbar.phone.NotificationsQuickSettingsContainer;
@@ -260,7 +261,7 @@ public class QSFragment extends Fragment implements QS {
 
     @Override
     public void setQsExpansion(float expansion, float headerTranslation) {
-        if (DEBUG) Log.d(TAG, "setQSExpansion " + expansion + " " + headerTranslation);
+        FlyLog.d(TAG, "setQSExpansion " + expansion + " " + headerTranslation);
         mContainer.setExpansion(expansion);
         final float translationScaleY = expansion - 1;
         if (!mHeaderAnimating) {
