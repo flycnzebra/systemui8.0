@@ -30,7 +30,7 @@
             android:layout_width="@dimen/volume_dialog_width"
             android:layout_height="@dimen/volume_dialog_height"
             android:orientation="vertical"
-            android:background="@drawable/volume_background">
+            android:background="#1FFF0000">
             <!-- volume rows added and removed here! :-) -->
         </LinearLayout>
 
