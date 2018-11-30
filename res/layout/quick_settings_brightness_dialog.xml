@@ -21,18 +21,22 @@
     android:background="#00000000"
     android:gravity="center">
 
-    <LinearLayout
+    <ImageView
         android:layout_width="@dimen/volume_dialog_width"
         android:layout_height="@dimen/volume_dialog_height"
-        android:background="@drawable/volume_background">
+        android:src="@drawable/volume_background" />
+
+    <LinearLayout
+        android:layout_width="@dimen/volume_dialog_width"
+        android:layout_height="@dimen/volume_dialog_height">
 
         <ImageView
             android:id="@+id/brightness_icon"
             android:layout_width="60px"
-            android:layout_height="40px"
+            android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:contentDescription="@null"
-            android:scaleType="fitCenter"
+            android:scaleType="centerCrop"
             android:src="@drawable/brightness_icon"
             android:visibility="visible" />
 
