@@ -17,14 +17,13 @@
     style="@style/BrightnessDialogContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="@dimen/volume_dialog_margin_bottom"
+    android:layout_marginTop="-25px"
     android:background="#00000000"
     android:gravity="center">
 
     <LinearLayout
         android:layout_width="@dimen/volume_dialog_width"
         android:layout_height="@dimen/volume_dialog_height"
-        android:layout_marginTop="-25px"
         android:background="@drawable/volume_background">
 
         <ImageView
