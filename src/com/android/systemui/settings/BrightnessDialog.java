@@ -34,13 +34,15 @@ import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 import com.android.systemui.R;
 
-/** A dialog that provides controls for adjusting the screen brightness. */
+/**
+ * A dialog that provides controls for adjusting the screen brightness.
+ */
 public class BrightnessDialog extends Activity {
 
     private BrightnessController mBrightnessController;
 
     private boolean dismiss = true;
-    private Handler mHander = new Handler(){
+    private Handler mHander = new Handler() {
         public void handleMessage(Message m) {
             super.handleMessage(m);
             switch (m.what) {
@@ -50,13 +52,13 @@ public class BrightnessDialog extends Activity {
             }
         }
     };
-    private Runnable r = new Runnable(){
-        public void run(){
-            if(dismiss){
+    private Runnable r = new Runnable() {
+        public void run() {
+            if (dismiss) {
                 finish();
             }
             dismiss = true;
-            mHander.postDelayed(r,3000);
+            mHander.postDelayed(r, 3000);
         }
     };
 
@@ -67,21 +69,21 @@ public class BrightnessDialog extends Activity {
         final Window window = getWindow();
 
 //        window.setGravity(Gravity.CENTER);
-//        window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-        window.requestFeature(Window.FEATURE_NO_TITLE);
+        window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        window.requestFeature(Window.FEATURE_NO_TITLE | Window.FEATURE_CONTENT_TRANSITIONS | Window.FEATURE_ACTIVITY_TRANSITIONS);
 
         // Use a dialog theme as the activity theme, but inflate the content as
         // the QS content.
-//        ContextThemeWrapper themedContext = new ContextThemeWrapper(this,
-//                com.android.internal.R.style.Theme_DeviceDefault_QuickSettings);
-//        View v = LayoutInflater.from(themedContext).inflate(
-//                R.layout.quick_settings_brightness_dialog, null);
+        ContextThemeWrapper themedContext = new ContextThemeWrapper(this,
+                com.android.internal.R.style.Theme_DeviceDefault_QuickSettings);
+        View v = LayoutInflater.from(themedContext).inflate(
+                R.layout.quick_settings_brightness_dialog, null);
         setContentView(R.layout.quick_settings_brightness_dialog);
 
         final ImageView icon = findViewById(R.id.brightness_icon);
         final ToggleSliderView slider = findViewById(R.id.brightness_slider);
-        mBrightnessController = new BrightnessController(this, icon, slider,mHander);
-        mHander.postDelayed(r,3000);
+        mBrightnessController = new BrightnessController(this, icon, slider, mHander);
+        mHander.postDelayed(r, 3000);
     }
 
     @Override
