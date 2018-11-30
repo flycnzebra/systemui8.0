@@ -264,10 +264,10 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
 
         if (mRows.isEmpty()) {
             addRow(AudioManager.STREAM_MUSIC,
-                    R.drawable.ic_volume_media, R.drawable.ic_volume_media_mute, true);
+                    R.drawable.ic_volume_music, R.drawable.ic_volume_music_n, true);
             if (!AudioSystem.isSingleVolume(mContext)) {
                 addRow(AudioManager.STREAM_RING,
-                        R.drawable.ic_volume_ringer, R.drawable.ic_volume_ringer_mute, true);
+                        R.drawable.ic_volume_ring, R.drawable.ic_volume_ring_n, true);
                 addRow(AudioManager.STREAM_ALARM,
                         R.drawable.ic_volume_alarm, R.drawable.ic_volume_alarm_mute, false);
                 if (atcEnhancementSupport()) {
@@ -277,7 +277,7 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
                             R.drawable.ic_volume_auxin, R.drawable.ic_volume_auxin_mute, true);
                 }
                 addRow(AudioManager.STREAM_VOICE_CALL,
-                        R.drawable.ic_volume_voice, R.drawable.ic_volume_voice, false);
+                        R.drawable.ic_volume_btphone, R.drawable.ic_volume_btphone_n, false);
                 addRow(AudioManager.STREAM_BLUETOOTH_SCO,
                         R.drawable.ic_volume_bt_sco, R.drawable.ic_volume_bt_sco, false);
                 addRow(AudioManager.STREAM_SYSTEM,
