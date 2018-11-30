@@ -13,35 +13,36 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/volume_dialog"
-    android:layout_width="@dimen/volume_dialog_width"
-    android:layout_height="@dimen/volume_dialog_height"
-    android:background="@drawable/volume_background"
-    android:translationZ="4dp">
-
-    <com.android.keyguard.AlphaOptimizedImageButton
-        android:id="@+id/volume_expand_button"
-        style="@style/VolumeButtons"
-        android:layout_width="@dimen/volume_button_size"
-        android:layout_height="@dimen/volume_button_size"
-        android:layout_alignParentStart="true"
-        android:clickable="true"
-        android:soundEffectsEnabled="false"
-        android:src="@drawable/ic_volume_collapse_animation"
-        android:visibility="gone"
-        tools:ignore="RtlHardcoded" />
-
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/volume_dialog_margin_bottom"
+    android:background="@drawable/volume_dialog_background"
+    android:paddingTop="@dimen/volume_dialog_padding_top"
+    android:theme="@style/qs_theme"
+    android:translationZ="4dp" >
 
     <LinearLayout
         android:id="@+id/volume_dialog_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <!-- volume rows added and removed here! :-) -->
-        <include layout="@layout/volume_zen_footer" />
-    </LinearLayout>
+        android:orientation="vertical" >
 
+        <LinearLayout
+            android:id="@+id/volume_dialog_rows"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingEnd="@dimen/volume_button_size"
+            android:orientation="vertical" >
+            <!-- volume rows added and removed here! :-) -->
+        </LinearLayout>
+
+        <include layout="@layout/volume_zen_footer" />
+
+        <!-- Only shown from Tuner setting -->
+        <include layout="@layout/tuner_zen_mode_panel" />
+    </LinearLayout>
 
 </RelativeLayout>
