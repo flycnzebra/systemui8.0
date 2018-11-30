@@ -36,10 +36,9 @@
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         android:layout_toStartOf="@+id/label"
-        android:paddingStart="20dp"
-        android:paddingTop="16dp"
-        android:paddingEnd="20dp"
-        android:paddingBottom="16dp"
+        android:maxHeight="@dimen/volume_progress_max_h"
+        android:minHeight="@dimen/volume_progress_min_h"
+        android:progressDrawable="@drawable/seekbar_style"
         android:splitTrack="false"
         android:thumb="@drawable/seekbar_thumb" />
 

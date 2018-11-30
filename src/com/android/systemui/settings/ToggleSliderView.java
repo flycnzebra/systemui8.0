@@ -19,7 +19,9 @@ package com.android.systemui.settings;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.os.PowerManager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -30,6 +32,7 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
 import com.android.systemui.R;
+import com.android.systemui.jancar.FlyLog;
 import com.android.systemui.statusbar.policy.BrightnessMirrorController;
 
 public class ToggleSliderView extends RelativeLayout implements ToggleSlider {
@@ -42,6 +45,7 @@ public class ToggleSliderView extends RelativeLayout implements ToggleSlider {
 
     private ToggleSliderView mMirror;
     private BrightnessMirrorController mMirrorController;
+    private int mMinimumBacklight = 1;
 
     public ToggleSliderView(Context context) {
         this(context, null);
@@ -67,14 +71,18 @@ public class ToggleSliderView extends RelativeLayout implements ToggleSlider {
         mSlider.setOnSeekBarChangeListener(mSeekListener);
 
         mLabel = findViewById(R.id.label);
-        mLabel.setText(a.getString(R.styleable.ToggleSliderView_text));
+//        mLabel.setText(a.getString(R.styleable.ToggleSliderView_text));
 
         mSlider.setAccessibilityLabel(getContentDescription().toString());
 
         a.recycle();
+
+        PowerManager pm = (PowerManager)context.getSystemService(Context.POWER_SERVICE);
+        mMinimumBacklight = pm.getMinimumScreenBrightnessSetting();
     }
 
     public void setMirror(ToggleSliderView toggleSlider) {
+
         mMirror = toggleSlider;
         if (mMirror != null) {
             mMirror.setChecked(mToggle.isChecked());
@@ -138,6 +146,7 @@ public class ToggleSliderView extends RelativeLayout implements ToggleSlider {
     private final OnCheckedChangeListener mCheckListener = new OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(CompoundButton toggle, boolean checked) {
+
             mSlider.setEnabled(!checked);
 
             if (mListener != null) {
@@ -154,6 +163,11 @@ public class ToggleSliderView extends RelativeLayout implements ToggleSlider {
     private final OnSeekBarChangeListener mSeekListener = new OnSeekBarChangeListener() {
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+            int value = progress*100/(255-mMinimumBacklight);
+            FlyLog.d("onProgressChanged progress :"+ progress+ " fromUser: " +
+                    fromUser + " value:" + value + " mMinimumBacklight:" + mMinimumBacklight);
+            mLabel.setText("" + value);
             if (mListener != null) {
                 mListener.onChanged(
                         ToggleSliderView.this, mTracking, mToggle.isChecked(), progress, false);
