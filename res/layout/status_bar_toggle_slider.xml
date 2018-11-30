@@ -31,12 +31,11 @@
 
     <com.android.systemui.settings.ToggleSeekBar
         android:id="@+id/slider"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/volume_seekbar_width"
+        android:layout_height="16px"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:layout_toEndOf="@id/toggle"
+        android:layout_toStartOf="@+id/label"
         android:paddingStart="20dp"
         android:paddingTop="16dp"
         android:paddingEnd="20dp"
@@ -46,11 +45,13 @@
 
     <TextView
         android:id="@+id/label"
-        android:layout_width="@dimen/volume_button_size"
-        android:layout_height="@dimen/volume_button_size"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:layout_toEndOf="@id/slider"
         android:gravity="start|center"
         android:textColor="#FFF"
-        android:textSize="22px" />
+        android:textSize="22px"
+        android:text="100"
+        android:visibility="visible" />
 </merge>
