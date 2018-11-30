@@ -73,7 +73,7 @@ public class BrightnessController implements ToggleSlider.Listener {
 
     private final Handler mBackgroundHandler;
     private final BrightnessObserver mBrightnessObserver;
-    private final Handler mDismissHandler;
+    private Handler mDismissHandler;
 
     private ArrayList<BrightnessStateChangeCallback> mChangeCallbacks =
             new ArrayList<BrightnessStateChangeCallback>();
