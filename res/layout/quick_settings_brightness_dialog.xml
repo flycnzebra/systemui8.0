@@ -14,7 +14,6 @@
 -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:systemui="http://schemas.android.com/apk/res-auto"
-    style="@style/BrightnessDialogContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="-25px"
@@ -28,7 +27,8 @@
 
     <LinearLayout
         android:layout_width="@dimen/volume_dialog_width"
-        android:layout_height="@dimen/volume_dialog_height">
+        android:layout_height="@dimen/volume_dialog_height"
+        android:background="#00000000">
 
         <ImageView
             android:id="@+id/brightness_icon"
@@ -37,7 +37,7 @@
             android:layout_gravity="center_vertical"
             android:contentDescription="@null"
             android:scaleType="centerCrop"
-            android:src="@drawable/brightness_icon"
+            android:src="@drawable/jac_brightness_icon"
             android:visibility="visible" />
 
         <com.android.systemui.settings.ToggleSliderView
