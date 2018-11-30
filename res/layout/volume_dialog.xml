@@ -19,6 +19,7 @@
     android:layout_width="@dimen/volume_dialog_width"
     android:layout_height="wrap_content"
     android:background="@drawable/volume_background"
+    android:theme="@style/qs_theme"
     android:translationZ="4dp" >
 
     <LinearLayout
