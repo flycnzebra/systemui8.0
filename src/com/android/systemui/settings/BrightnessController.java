@@ -309,6 +309,7 @@ public class BrightnessController implements ToggleSlider.Listener {
                 Context.POWER_SERVICE));
         mVrManager = IVrManager.Stub.asInterface(ServiceManager.getService(
                 Context.VR_SERVICE));
+        setBrightness(100);
     }
 
     public void addStateChangedCallback(BrightnessStateChangeCallback cb) {
