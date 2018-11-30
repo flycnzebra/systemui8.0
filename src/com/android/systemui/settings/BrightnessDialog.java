@@ -72,11 +72,11 @@ public class BrightnessDialog extends Activity {
 
         // Use a dialog theme as the activity theme, but inflate the content as
         // the QS content.
-        ContextThemeWrapper themedContext = new ContextThemeWrapper(this,
-                com.android.internal.R.style.Theme_DeviceDefault_QuickSettings);
-        View v = LayoutInflater.from(themedContext).inflate(
-                R.layout.quick_settings_brightness_dialog, null);
-        setContentView(v);
+//        ContextThemeWrapper themedContext = new ContextThemeWrapper(this,
+//                com.android.internal.R.style.Theme_DeviceDefault_QuickSettings);
+//        View v = LayoutInflater.from(themedContext).inflate(
+//                R.layout.quick_settings_brightness_dialog, null);
+        setContentView(R.layout.quick_settings_brightness_dialog);
 
         final ImageView icon = findViewById(R.id.brightness_icon);
         final ToggleSliderView slider = findViewById(R.id.brightness_slider);
