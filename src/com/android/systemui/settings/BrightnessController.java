@@ -309,7 +309,6 @@ public class BrightnessController implements ToggleSlider.Listener {
                 Context.POWER_SERVICE));
         mVrManager = IVrManager.Stub.asInterface(ServiceManager.getService(
                 Context.VR_SERVICE));
-        setBrightness(100);
     }
 
     public void addStateChangedCallback(BrightnessStateChangeCallback cb) {
@@ -435,7 +434,7 @@ public class BrightnessController implements ToggleSlider.Listener {
 
     private void setBrightness(int brightness) {
         try {
-            mPower.setTemporaryScreenBrightnessSettingOverride(brightness);
+            mPower.setTemporaryScreenBrightnessSettingOverride(Math.max(10,brightness));
         } catch (RemoteException ex) {
         }
     }
