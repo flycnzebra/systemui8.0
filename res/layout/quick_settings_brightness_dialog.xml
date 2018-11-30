@@ -14,9 +14,9 @@
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:systemui="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
+    android:layout_width="@dimen/volume_dialog_width"
+    android:layout_height="@dimen/volume_dialog_height"
+    android:background="@drawable/volume_background"
     android:orientation="horizontal">
 
     <ImageView

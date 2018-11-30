@@ -116,4 +116,13 @@ public class BrightnessDialog extends Activity {
 
         return super.onKeyDown(keyCode, event);
     }
+
+    @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        View view = getWindow().getDecorView();
+        WindowManager.LayoutParams lp = (WindowManager.LayoutParams) view.getLayoutParams();
+        lp.y = lp.y - 30;
+        getWindowManager().updateViewLayout(view, lp);
+    }
 }
