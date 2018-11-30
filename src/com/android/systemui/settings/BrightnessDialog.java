@@ -122,7 +122,7 @@ public class BrightnessDialog extends Activity {
         super.onAttachedToWindow();
         View view = getWindow().getDecorView();
         WindowManager.LayoutParams lp = (WindowManager.LayoutParams) view.getLayoutParams();
-        lp.y = lp.y - 30;
+        lp.y = lp.y - 40;
         getWindowManager().updateViewLayout(view, lp);
     }
 }

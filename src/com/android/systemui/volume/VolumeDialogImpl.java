@@ -213,9 +213,9 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
         lp.type = mWindowType;
         lp.format = PixelFormat.TRANSLUCENT;
         lp.setTitle(VolumeDialogImpl.class.getSimpleName());
-        lp.gravity = Gravity.TOP | Gravity.CENTER_HORIZONTAL;
+        lp.gravity = Gravity.CENTER | Gravity.CENTER_HORIZONTAL;
         lp.y = res.getDimensionPixelSize(R.dimen.volume_offset_top);
-        lp.gravity = Gravity.TOP;
+        lp.gravity = Gravity.CENTER;
         lp.windowAnimations = -1;
         mWindow.setAttributes(lp);
         mWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
