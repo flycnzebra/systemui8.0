@@ -28,7 +28,6 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxLines="1"
-        android:visibility="gone"
         android:textAppearance="@style/TextAppearance.Volume.Header"
         android:paddingStart="@dimen/volume_row_header_padding_start" />
 
