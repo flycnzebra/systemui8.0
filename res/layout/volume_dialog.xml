@@ -16,12 +16,9 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/volume_dialog"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/volume_dialog_margin_bottom"
-    android:background="@drawable/volume_dialog_background"
-    android:paddingTop="@dimen/volume_dialog_padding_top"
-    android:theme="@style/qs_theme"
+    android:layout_width="@dimen/volume_dialog_width"
+    android:layout_height="@dimen/volume_dialog_height"
+    android:background="@drawable/volume_background"
     android:translationZ="4dp" >
 
     <LinearLayout
