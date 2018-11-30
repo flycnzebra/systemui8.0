@@ -511,7 +511,6 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     }
 
     private void handleShowDetailImpl(Record r, boolean show, int x, int y) {
-        FlyLog.d("handleShowDetailImpl x=%d, y=%d",x,y);
         setDetailRecord(show ? r : null);
         fireShowingDetail(show ? r.detailAdapter : null, x, y);
     }
