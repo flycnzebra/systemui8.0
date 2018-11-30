@@ -224,7 +224,7 @@
         android:icon="@drawable/icon"
         android:process="com.android.systemui"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SystemUI.Light"
+        android:theme="@style/Theme.SystemUI"
         android:defaultToDeviceProtectedStorage="true"
         android:directBootAware="true">
         <!-- Keep theme in sync with SystemUIApplication.onCreate().
