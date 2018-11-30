@@ -54,7 +54,7 @@ public class ToggleSliderView extends RelativeLayout implements ToggleSlider {
     public ToggleSliderView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
-        View.inflate(context, R.layout.status_bar_toggle_slider_bak, this);
+        View.inflate(context, R.layout.status_bar_toggle_slider, this);
 
         final Resources res = context.getResources();
         final TypedArray a = context.obtainStyledAttributes(
