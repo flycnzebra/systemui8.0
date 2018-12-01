@@ -1062,7 +1062,8 @@ public class StatusBar extends SystemUI implements DemoMode,
                             (CollapsedStatusBarFragment) fragment;
                     statusBarFragment.initNotificationIconArea(mNotificationIconAreaController);
                     mStatusBarView = (PhoneStatusBarView) fragment.getView();
-                    mStatusBarView.setBackgroundResource(R.drawable.jac_statusbar_background);
+//                    mStatusBarView.setBackgroundResource(R.drawable.jac_statusbar_background);
+                    mStatusBarView.setBackgroundColor(0xff00ff00);
                     mStatusBarView.setBar(this);
                     mStatusBarView.setPanel(mNotificationPanel);
                     mStatusBarView.setScrimController(mScrimController);
