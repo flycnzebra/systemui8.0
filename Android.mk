@@ -2,27 +2,6 @@ LOCAL_PATH:= $(call my-dir)
 
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := JAC-SystemUI-proto
-
-LOCAL_SRC_FILES := $(call all-proto-files-under,src)
-
-LOCAL_PROTOC_OPTIMIZE_TYPE := nano
-LOCAL_PROTO_JAVA_OUTPUT_PARAMS := optional_field_style=accessors
-
-include $(BUILD_STATIC_JAVA_LIBRARY)
-
-include $(CLEAR_VARS)
-
-LOCAL_MODULE := JAC-SystemUI-tags
-
-LOCAL_SRC_FILES := src/com/android/systemui/EventLogTags.logtags
-
-include $(BUILD_STATIC_JAVA_LIBRARY)
-
-# ------------------
-
-include $(CLEAR_VARS)
-
 LOCAL_USE_AAPT2 := true
 
 LOCAL_MODULE_TAGS := optional
@@ -34,7 +13,7 @@ ifeq ($(strip $(MTK_VOW_SUPPORT)),yes)
 endif
 
 LOCAL_STATIC_ANDROID_LIBRARIES := \
-    JAC-SystemUIPluginLib \
+    Mtk-SystemUIPluginLib \
     android-support-v4 \
     android-support-v7-recyclerview \
     android-support-v7-preference \
@@ -48,8 +27,8 @@ LOCAL_STATIC_JAVA_LIBRARIES := \
     com.mediatek.systemui.ext \
     com.mediatek.keyguard.ext \
     framework-protos \
-    JAC-SystemUI-tags \
-    JAC-SystemUI-proto
+    Mtk-SystemUI-tags \
+    Mtk-SystemUI-proto
 
 LOCAL_JAVA_LIBRARIES := telephony-common
 LOCAL_JAVA_LIBRARIES += mediatek-framework
@@ -60,7 +39,7 @@ LOCAL_JAVA_LIBRARIES += mediatek-telephony-base
 LOCAL_JAVA_LIBRARIES += mediatek-telephony-common
 
 LOCAL_PACKAGE_NAME := JAC-SystemUI
-LOCAL_OVERRIDES_PACKAGES := MtkSystemUI SystemUI
+LOCAL_OVERRIDES_PACKAGES := SystemUI MtkSystemUI
 LOCAL_CERTIFICATE := platform
 LOCAL_PRIVILEGED_MODULE := true
 
@@ -69,7 +48,7 @@ LOCAL_RESOURCE_DIR := $(LOCAL_PATH)/res-keyguard \
                       $(LOCAL_PATH)/res \
                       $(LOCAL_PATH)/res_ext \
                       $(LOCAL_PATH)/res-keyguard_ext \
-                      $(LOCAL_PATH)/res_jancar
+					  $(LOCAL_PATH)/res_jancar
 
 ifneq ($(INCREMENTAL_BUILDS),)
     LOCAL_PROGUARD_ENABLED := disabled
