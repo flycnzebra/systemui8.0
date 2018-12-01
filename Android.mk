@@ -60,7 +60,8 @@ LOCAL_JAVA_LIBRARIES += mediatek-telephony-base
 LOCAL_JAVA_LIBRARIES += mediatek-telephony-common
 
 LOCAL_PACKAGE_NAME := JAC-SystemUI
-LOCAL_OVERRIDES_PACKAGES := SystemUI,MtkSystemUI
+LOCAL_OVERRIDES_PACKAGES := MtkSystemUI \
+                            SystemUI \
 LOCAL_CERTIFICATE := platform
 LOCAL_PRIVILEGED_MODULE := true
 
