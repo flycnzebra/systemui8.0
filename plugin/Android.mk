@@ -19,7 +19,7 @@ LOCAL_USE_AAPT2 := true
 
 LOCAL_MODULE_TAGS := optional
 
-LOCAL_MODULE := Mtk-SystemUIPluginLib
+LOCAL_MODULE := JAC-SystemUIPluginLib
 
 LOCAL_SRC_FILES := $(call all-java-files-under, src)
 
@@ -31,10 +31,10 @@ include $(BUILD_STATIC_JAVA_LIBRARY)
 include $(CLEAR_VARS)
 
 # Dummy to generate .toc files.
-LOCAL_PACKAGE_NAME := Mtk-PluginDummyLib
+LOCAL_PACKAGE_NAME := JAC-PluginDummyLib
 LOCAL_SRC_FILES := $(call all-java-files-under, src)
 
-LOCAL_JAVA_LIBRARIES := Mtk-SystemUIPluginLib
+LOCAL_JAVA_LIBRARIES := JAC-SystemUIPluginLib
 
 LOCAL_PROGUARD_ENABLED := disabled
 
