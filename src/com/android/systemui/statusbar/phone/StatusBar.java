@@ -4364,7 +4364,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         FlyLog.d("postQSRunnableDismissingKeyguard");
         mHandler.post(() -> {
             mLeaveOpenOnKeyguardHide = true;
-            executeRunnableDismissingKeyguard(() -> mHandler.post(runnable), null, false, false,
+            executeRunnableDismissingKeyguard(() -> mHandler.post(runnable), null, true, false,
                     false);
         });
     }
