@@ -37,7 +37,7 @@ public class JacBluetoothTile extends QSTileImpl<QSTile.BooleanState> {
         intentBt.putExtra("position", 1);
         @SuppressLint("WrongConstant")
         JancarManager jancarManager = (JancarManager) mContext.getSystemService("jancar_manager");
-        jancarManager.requestPage("eq", intentBt);
+        jancarManager.requestPage("btset", intentBt);
     }
 
     @Override

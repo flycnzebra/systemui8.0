@@ -35,7 +35,7 @@ public class JacCarSettingTile extends QSTileImpl<QSTile.BooleanState> {
         intentCarsetting.setComponent(toActivityCarsetting);
         @SuppressLint("WrongConstant")
         JancarManager jancarManager = (JancarManager) mContext.getSystemService("jancar_manager");
-        jancarManager.requestPage("eq", intentCarsetting);
+        jancarManager.requestPage("carsetting", intentCarsetting);
     }
 
     @Override
