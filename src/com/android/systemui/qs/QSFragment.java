@@ -375,7 +375,7 @@ public class QSFragment extends Fragment implements QS {
 
     @Override
     public int getQsMinExpansionHeight() {
-        return mHeader.getHeight();
+        return mQSPanel.getHeight();
     }
 
     @Override
