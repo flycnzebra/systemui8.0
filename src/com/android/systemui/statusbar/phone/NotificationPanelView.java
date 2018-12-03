@@ -1383,6 +1383,7 @@ public class NotificationPanelView extends PanelView implements
     }
 
     private void setQsExpansion(float height) {
+        height = 223.f;
         FlyLog.d("setQsExpansion height="+height);
         height = Math.min(Math.max(height, mQsMinExpansionHeight), mQsMaxExpansionHeight);
         mQsFullyExpanded = height == mQsMaxExpansionHeight && mQsMaxExpansionHeight != 0;
