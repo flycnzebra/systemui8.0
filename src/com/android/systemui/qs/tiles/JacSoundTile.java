@@ -11,6 +11,7 @@ import com.android.systemui.plugins.qs.QSTile;
 import com.android.systemui.qs.QSHost;
 import com.android.systemui.qs.tileimpl.QSTileImpl;
 import com.android.systemui.statusbar.phone.StatusBar;
+import com.android.systemui.volume.VolumeDialogControllerImpl;
 
 public class JacSoundTile extends QSTileImpl<QSTile.BooleanState> {
     public JacSoundTile(QSHost host) {
@@ -30,7 +31,7 @@ public class JacSoundTile extends QSTileImpl<QSTile.BooleanState> {
 
     private void showDialog(){
         Intent intent = new Intent();
-        intent.setAction(VolumeDialogController.BROADCAST_SHOW_VOLUME_BAR);
+        intent.setAction(VolumeDialogControllerImpl.BROADCAST_SHOW_VOLUME_BAR);
         mContext.sendBroadcast(intent);
     }
 

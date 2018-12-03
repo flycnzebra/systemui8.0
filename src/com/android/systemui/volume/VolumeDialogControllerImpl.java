@@ -71,6 +71,7 @@ import java.util.Objects;
  *  Methods ending in "W" must be called on the worker thread.
  */
 public class VolumeDialogControllerImpl implements VolumeDialogController, Dumpable {
+    public static String BROADCAST_SHOW_VOLUME_BAR = "com.android.systemui.volume.show_volumebar";
     private static final String TAG = Util.logTag(VolumeDialogControllerImpl.class);
 
     private static final int DYNAMIC_STREAM_START_INDEX = 100;

@@ -128,64 +128,61 @@ public class BluetoothTile extends QSTileImpl<BooleanState> {
 
     @Override
     protected void handleUpdateState(BooleanState state, Object arg) {
-        state.icon = ResourceIcon.get(R.drawable.jac_ic_bluetooth_d);
-        state.label = "jac_ic_bluetooth_d";
-        state.contentDescription = "jac_ic_bluetooth_d";
-//        if (mController == null) {
-//            return;
-//        }
-//        final boolean enabled = mController.isBluetoothEnabled();
-//        final boolean connected = mController.isBluetoothConnected();
-//        state.isTransient = mController.isBluetoothConnecting()
-//                || mController.getBluetoothState() == BluetoothAdapter.STATE_TURNING_ON;
-//        state.dualTarget = true;
-//        state.value = enabled;
-//        if (state.slash == null) {
-//            state.slash = new SlashState();
-//        }
-//        state.slash.isSlashed = !enabled;
-//        if (enabled) {
-//            state.label = null;
-//            if (connected) {
-//                state.icon = ResourceIcon.get(R.drawable.ic_qs_bluetooth_connected);
-//                state.label = mController.getLastDeviceName();
-//                CachedBluetoothDevice lastDevice = mController.getLastDevice();
-//                if (lastDevice != null) {
-//                    int batteryLevel = lastDevice.getBatteryLevel();
-//                    if (batteryLevel != BluetoothDevice.BATTERY_LEVEL_UNKNOWN) {
-//                        state.icon = new BluetoothBatteryDrawable(batteryLevel,
-//                                mContext.getResources().getFraction(
-//                                        R.fraction.bt_battery_scale_fraction, 1, 1));
-//                    }
-//                }
-//                state.contentDescription = mContext.getString(
-//                        R.string.accessibility_bluetooth_name, state.label);
-//            } else if (state.isTransient) {
-//                state.icon = ResourceIcon.get(R.drawable.ic_bluetooth_transient_animation);
-//                state.contentDescription = mContext.getString(
-//                        R.string.accessibility_quick_settings_bluetooth_connecting);
-//                state.label = mContext.getString(R.string.quick_settings_bluetooth_label);
-//            } else {
-//                state.icon = ResourceIcon.get(R.drawable.ic_qs_bluetooth_on);
-//                state.contentDescription = mContext.getString(
-//                        R.string.accessibility_quick_settings_bluetooth_on) + ","
-//                        + mContext.getString(R.string.accessibility_not_connected);
-//            }
-//            if (TextUtils.isEmpty(state.label)) {
-//                state.label = mContext.getString(R.string.quick_settings_bluetooth_label);
-//            }
-//            state.state = Tile.STATE_ACTIVE;
-//        } else {
-//            state.icon = ResourceIcon.get(R.drawable.ic_qs_bluetooth_on);
-//            state.label = mContext.getString(R.string.quick_settings_bluetooth_label);
-//            state.contentDescription = mContext.getString(
-//                    R.string.accessibility_quick_settings_bluetooth_off);
-//            state.state = Tile.STATE_INACTIVE;
-//        }
-//
-//        state.dualLabelContentDescription = mContext.getResources().getString(
-//                R.string.accessibility_quick_settings_open_settings, getTileLabel());
-//        state.expandedAccessibilityClassName = Switch.class.getName();
+        if (mController == null) {
+            return;
+        }
+        final boolean enabled = mController.isBluetoothEnabled();
+        final boolean connected = mController.isBluetoothConnected();
+        state.isTransient = mController.isBluetoothConnecting()
+                || mController.getBluetoothState() == BluetoothAdapter.STATE_TURNING_ON;
+        state.dualTarget = true;
+        state.value = enabled;
+        if (state.slash == null) {
+            state.slash = new SlashState();
+        }
+        state.slash.isSlashed = !enabled;
+        if (enabled) {
+            state.label = null;
+            if (connected) {
+                state.icon = ResourceIcon.get(R.drawable.ic_qs_bluetooth_connected);
+                state.label = mController.getLastDeviceName();
+                CachedBluetoothDevice lastDevice = mController.getLastDevice();
+                if (lastDevice != null) {
+                    int batteryLevel = lastDevice.getBatteryLevel();
+                    if (batteryLevel != BluetoothDevice.BATTERY_LEVEL_UNKNOWN) {
+                        state.icon = new BluetoothBatteryDrawable(batteryLevel,
+                                mContext.getResources().getFraction(
+                                        R.fraction.bt_battery_scale_fraction, 1, 1));
+                    }
+                }
+                state.contentDescription = mContext.getString(
+                        R.string.accessibility_bluetooth_name, state.label);
+            } else if (state.isTransient) {
+                state.icon = ResourceIcon.get(R.drawable.ic_bluetooth_transient_animation);
+                state.contentDescription = mContext.getString(
+                        R.string.accessibility_quick_settings_bluetooth_connecting);
+                state.label = mContext.getString(R.string.quick_settings_bluetooth_label);
+            } else {
+                state.icon = ResourceIcon.get(R.drawable.ic_qs_bluetooth_on);
+                state.contentDescription = mContext.getString(
+                        R.string.accessibility_quick_settings_bluetooth_on) + ","
+                        + mContext.getString(R.string.accessibility_not_connected);
+            }
+            if (TextUtils.isEmpty(state.label)) {
+                state.label = mContext.getString(R.string.quick_settings_bluetooth_label);
+            }
+            state.state = Tile.STATE_ACTIVE;
+        } else {
+            state.icon = ResourceIcon.get(R.drawable.ic_qs_bluetooth_on);
+            state.label = mContext.getString(R.string.quick_settings_bluetooth_label);
+            state.contentDescription = mContext.getString(
+                    R.string.accessibility_quick_settings_bluetooth_off);
+            state.state = Tile.STATE_INACTIVE;
+        }
+
+        state.dualLabelContentDescription = mContext.getResources().getString(
+                R.string.accessibility_quick_settings_open_settings, getTileLabel());
+        state.expandedAccessibilityClassName = Switch.class.getName();
     }
 
     @Override
