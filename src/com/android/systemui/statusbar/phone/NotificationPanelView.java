@@ -1381,6 +1381,7 @@ public class NotificationPanelView extends PanelView implements
     }
 
     private void setQsExpansion(float height) {
+        FlyLog.d("setQsExpansion height="+height);
         height = Math.min(Math.max(height, mQsMinExpansionHeight), mQsMaxExpansionHeight);
         mQsFullyExpanded = height == mQsMaxExpansionHeight && mQsMaxExpansionHeight != 0;
         if (height > mQsMinExpansionHeight && !mQsExpanded && !mStackScrollerOverscrolling) {
@@ -1761,6 +1762,7 @@ public class NotificationPanelView extends PanelView implements
      * Hides the header when notifications are colliding with it.
      */
     private void updateHeader() {
+        FlyLog.d("updateHeader");
         if (mStatusBar.getBarState() == StatusBarState.KEYGUARD) {
             updateHeaderKeyguardAlpha();
         }
@@ -2640,6 +2642,7 @@ public class NotificationPanelView extends PanelView implements
     private final FragmentListener mFragmentListener = new FragmentListener() {
         @Override
         public void onFragmentViewCreated(String tag, Fragment fragment) {
+            FlyLog.d("onFragmentViewCreated tag="+tag+",fragment"+fragment);
             mQs = (QS) fragment;
             mQs.setPanelView(NotificationPanelView.this);
             mQs.setExpandClickListener(NotificationPanelView.this);
