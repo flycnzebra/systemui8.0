@@ -4361,6 +4361,7 @@ public class StatusBar extends SystemUI implements DemoMode,
 
     @Override
     public void postQSRunnableDismissingKeyguard(final Runnable runnable) {
+        FlyLog.d("postQSRunnableDismissingKeyguard");
         mHandler.post(() -> {
             mLeaveOpenOnKeyguardHide = true;
             executeRunnableDismissingKeyguard(() -> mHandler.post(runnable), null, false, false,
