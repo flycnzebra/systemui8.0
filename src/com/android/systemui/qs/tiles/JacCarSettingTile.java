@@ -1,5 +1,6 @@
 package com.android.systemui.qs.tiles;
 
+import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Intent;
 
@@ -23,17 +24,18 @@ public class JacCarSettingTile extends QSTileImpl<QSTile.BooleanState> {
 
     @Override
     protected void handleClick() {
+        Dependency.get(ActivityStarter.class).postQSRunnableDismissingKeyguard(this::showDialog);
+    }
+
+    private void showDialog(){
         ComponentName toActivityCarsetting = new ComponentName("com.jancar.settingss", "com.jancar.settings.view.activity.MainActivity");
         Intent intentCarsetting = new Intent();
         intentCarsetting.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intentCarsetting.putExtra("position", 6);
         intentCarsetting.setComponent(toActivityCarsetting);
-//        mContext.startActivity(intentCarsetting);
-        Dependency.get(ActivityStarter.class)
-                .postStartActivityDismissingKeyguard(intentCarsetting, 0);
-//        JancarManager jancarManager = (JancarManager) mContext.getSystemService("jancar_manager");
-//        jancarManager.requestPage("carsetting", intentCarsetting);
-//        makeExpandedInvisible();
+        @SuppressLint("WrongConstant")
+        JancarManager jancarManager = (JancarManager) mContext.getSystemService("jancar_manager");
+        jancarManager.requestPage("eq", intentCarsetting);
     }
 
     @Override

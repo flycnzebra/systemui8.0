@@ -1,5 +1,6 @@
 package com.android.systemui.qs.tiles;
 
+import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Intent;
 
@@ -9,6 +10,7 @@ import com.android.systemui.plugins.ActivityStarter;
 import com.android.systemui.plugins.qs.QSTile;
 import com.android.systemui.qs.QSHost;
 import com.android.systemui.qs.tileimpl.QSTileImpl;
+import com.jancar.JancarManager;
 
 public class JacBluetoothTile extends QSTileImpl<QSTile.BooleanState> {
     public JacBluetoothTile(QSHost host) {
@@ -20,19 +22,22 @@ public class JacBluetoothTile extends QSTileImpl<QSTile.BooleanState> {
         return new BooleanState();
     }
 
+
     @Override
     protected void handleClick() {
+        Dependency.get(ActivityStarter.class).postQSRunnableDismissingKeyguard(this::showDialog);
+    }
+
+    private void showDialog(){
         ComponentName toActivityBt = new ComponentName("com.jancar.settingss",
                 "com.jancar.settings.view.activity.MainActivity");
         Intent intentBt = new Intent();
         intentBt.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intentBt.setComponent(toActivityBt);
         intentBt.putExtra("position", 1);
-//        mContext.startActivity(intentBt);
-        Dependency.get(ActivityStarter.class)
-                .postStartActivityDismissingKeyguard(intentBt, 0);
-//        jancarManager.requestPage("btset", intentBt);
-//        makeExpandedInvisible();
+        @SuppressLint("WrongConstant")
+        JancarManager jancarManager = (JancarManager) mContext.getSystemService("jancar_manager");
+        jancarManager.requestPage("eq", intentBt);
     }
 
     @Override
