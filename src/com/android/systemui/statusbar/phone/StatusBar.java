@@ -6377,11 +6377,11 @@ public class StatusBar extends SystemUI implements DemoMode,
                                     break;
                                 case "com.jancar.launcher":
                                     apptitle.setText(context.getString(R.string.launcher));
-                                    btn_back.setVisibility(View.GONE);
+//                                    btn_back.setVisibility(View.GONE);
                                     break;
                                 case "com.android.launcher3":
                                     apptitle.setText(context.getString(R.string.launcher));
-                                    btn_back.setVisibility(View.VISIBLE);
+//                                    btn_back.setVisibility(View.VISIBLE);
                                     break;
                                 default:
                                     List<LauncherActivityInfo> list = PkUtils.getLauncgerActivitys(strpackage, context);
@@ -6392,7 +6392,7 @@ public class StatusBar extends SystemUI implements DemoMode,
                                             break;
                                         }
                                     }
-                                    btn_back.setVisibility(View.VISIBLE);
+//                                    btn_back.setVisibility(View.VISIBLE);
                                     break;
                             }
 
