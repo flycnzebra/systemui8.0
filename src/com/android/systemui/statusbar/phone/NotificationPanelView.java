@@ -437,6 +437,7 @@ public class NotificationPanelView extends PanelView implements
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
+        FlyLog.d("onLayout");
         setIsFullWidth(mNotificationStackScroller.getWidth() == getWidth());
 
         // Update Clock Pivot
@@ -885,8 +886,7 @@ public class NotificationPanelView extends PanelView implements
     }
 
     private float getQsExpansionFraction() {
-        return Math.min(1f, (mQsExpansionHeight - mQsMinExpansionHeight)
-                / (getTempQsMaxExpansion() - mQsMinExpansionHeight));
+        return 1.0f;
     }
 
     @Override
@@ -1620,6 +1620,7 @@ public class NotificationPanelView extends PanelView implements
 
     @Override
     protected void onHeightUpdated(float expandedHeight) {
+        FlyLog.d("onHeightUpdated expandedHeight="+expandedHeight);
         if (!mQsExpanded || mQsExpandImmediate || mIsExpanding && mQsExpandedWhenExpandingStarted) {
             positionClockAndNotifications();
         }

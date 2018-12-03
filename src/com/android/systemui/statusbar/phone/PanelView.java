@@ -48,6 +48,7 @@ import com.android.systemui.Interpolators;
 import com.android.systemui.R;
 import com.android.systemui.classifier.FalsingManager;
 import com.android.systemui.doze.DozeLog;
+import com.android.systemui.jancar.FlyLog;
 import com.android.systemui.statusbar.FlingAnimationUtils;
 import com.android.systemui.statusbar.StatusBarState;
 import com.android.systemui.statusbar.notification.NotificationUtils;
@@ -860,6 +861,7 @@ public abstract class PanelView extends FrameLayout {
     }
 
     public void setExpandedHeightInternal(float h) {
+        FlyLog.d("setExpandedHeightInternal h="+h);
         if (mExpandLatencyTracking && h != 0f) {
             DejankUtils.postAfterTraversal(() -> LatencyTracker.getInstance(mContext).onActionEnd(
                     LatencyTracker.ACTION_EXPAND_PANEL));
