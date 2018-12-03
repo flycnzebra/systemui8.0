@@ -448,8 +448,9 @@ public class NotificationPanelView extends PanelView implements
         // Calculate quick setting heights.
         int oldMaxHeight = mQsMaxExpansionHeight;
         if (mQs != null) {
-            mQsMinExpansionHeight = mKeyguardShowing ? 0 : mQs.getQsMinExpansionHeight();
+//            mQsMinExpansionHeight = mKeyguardShowing ? 0 : mQs.getQsMinExpansionHeight();
             mQsMaxExpansionHeight = mQs.getDesiredHeight();
+            mQsMinExpansionHeight = mQsMaxExpansionHeight;
         }
         positionClockAndNotifications();
         if (mQsExpanded && mQsFullyExpanded) {
@@ -1382,7 +1383,6 @@ public class NotificationPanelView extends PanelView implements
     }
 
     private void setQsExpansion(float height) {
-        height = 223.f;
         FlyLog.d("setQsExpansion height="+height);
         height = Math.min(Math.max(height, mQsMinExpansionHeight), mQsMaxExpansionHeight);
         mQsFullyExpanded = height == mQsMaxExpansionHeight && mQsMaxExpansionHeight != 0;
