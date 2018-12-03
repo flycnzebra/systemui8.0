@@ -255,7 +255,7 @@ public class NotificationPanelView extends PanelView implements
     private boolean mIsFullClose;
 
     private void startAlphaAnimation(float start, float end) {
-        if (mBlurView != null ) {
+        if (mBlurView != null) {
             ValueAnimator va = ValueAnimator.ofFloat(start, end);
             va.setDuration((long) (Math.abs(end - start) * 500));
             va.start();
@@ -285,7 +285,7 @@ public class NotificationPanelView extends PanelView implements
     }
 
     private void updateBlurVisibility(boolean keyguardShowing) {
-        if (mBlurView != null ) {
+        if (mBlurView != null) {
             if (keyguardShowing) {
                 mBlurView.setVisibility(View.GONE);
                 BitmapUtils.recycleImageView(mBlurView);
@@ -1382,8 +1382,8 @@ public class NotificationPanelView extends PanelView implements
     }
 
     private void setQsExpansion(float height) {
-        height = 223.f;
-        FlyLog.d("setQsExpansion height="+height);
+        height = Math.max(height, 223.f);
+        FlyLog.d("setQsExpansion height=" + height);
         height = Math.min(Math.max(height, mQsMinExpansionHeight), mQsMaxExpansionHeight);
         mQsFullyExpanded = height == mQsMaxExpansionHeight && mQsMaxExpansionHeight != 0;
         if (height > mQsMinExpansionHeight && !mQsExpanded && !mStackScrollerOverscrolling) {
@@ -1622,7 +1622,7 @@ public class NotificationPanelView extends PanelView implements
 
     @Override
     protected void onHeightUpdated(float expandedHeight) {
-        FlyLog.d("onHeightUpdated expandedHeight="+expandedHeight);
+        FlyLog.d("onHeightUpdated expandedHeight=" + expandedHeight);
         if (!mQsExpanded || mQsExpandImmediate || mIsExpanding && mQsExpandedWhenExpandingStarted) {
             positionClockAndNotifications();
         }
@@ -2645,7 +2645,7 @@ public class NotificationPanelView extends PanelView implements
     private final FragmentListener mFragmentListener = new FragmentListener() {
         @Override
         public void onFragmentViewCreated(String tag, Fragment fragment) {
-            FlyLog.d("onFragmentViewCreated tag="+tag+",fragment"+fragment);
+            FlyLog.d("onFragmentViewCreated tag=" + tag + ",fragment" + fragment);
             mQs = (QS) fragment;
             mQs.setPanelView(NotificationPanelView.this);
             mQs.setExpandClickListener(NotificationPanelView.this);
