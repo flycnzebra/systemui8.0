@@ -489,4 +489,9 @@
         <item name="android:colorBackground">?android:attr/colorSecondary</item>
     </style>
 
+    <style name="BrightnessTheme" parent="@*android:style/Theme.DeviceDefault.QuickSettings.Dialog">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowEnterAnimation">@null</item>
+        <item name="android:windowExitAnimation">@null</item>
+    </style>
 </resources>
