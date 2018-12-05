@@ -491,6 +491,10 @@
 
     <style name="BrightnessTheme" parent="@*android:style/Theme.DeviceDefault.QuickSettings.Dialog">
         <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@style/flyfade</item>
+    </style>
+
+    <style name="flyfade">
         <item name="android:windowEnterAnimation">@null</item>
         <item name="android:windowExitAnimation">@null</item>
         <item name="android:activityOpenEnterAnimation">@null</item>
