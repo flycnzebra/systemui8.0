@@ -16,6 +16,8 @@
 
 package com.android.systemui.qs.tiles;
 
+import android.annotation.SuppressLint;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -45,6 +47,7 @@ import com.android.systemui.statusbar.policy.NetworkController;
 import com.android.systemui.statusbar.policy.NetworkController.AccessPointController;
 import com.android.systemui.statusbar.policy.NetworkController.IconState;
 import com.android.systemui.statusbar.policy.NetworkController.SignalCallback;
+import com.jancar.JancarManager;
 
 import java.util.List;
 
@@ -115,21 +118,19 @@ public class JancarWifiTile extends QSTileImpl<SignalState> {
     @Override
     protected void handleClick() {
         // Secondary clicks are header clicks, just toggle.
-        mState.copyTo(mStateBeforeClick);
-        mController.setWifiEnabled(!mState.value);
+        Dependency.get(ActivityStarter.class).postQSRunnableDismissingKeyguard(this::showDialog);
     }
 
-    @Override
-    protected void handleSecondaryClick() {
-        if (!mWifiController.canConfigWifi()) {
-            mActivityStarter.postStartActivityDismissingKeyguard(
-                    new Intent(Settings.ACTION_WIFI_SETTINGS), 0);
-            return;
-        }
-        showDetail(true);
-        if (!mState.value) {
-            mController.setWifiEnabled(true);
-        }
+    private void showDialog(){
+        ComponentName toActivityBt = new ComponentName("com.jancar.settingss",
+                "com.jancar.settings.view.activity.MainActivity");
+        Intent intentBt = new Intent();
+        intentBt.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intentBt.setComponent(toActivityBt);
+        intentBt.putExtra("position", 0);
+        @SuppressLint("WrongConstant")
+        JancarManager jancarManager = (JancarManager) mContext.getSystemService("jancar_manager");
+        jancarManager.requestPage("wifi", intentBt);
     }
 
     @Override
