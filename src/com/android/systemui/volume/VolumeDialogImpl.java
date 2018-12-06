@@ -1020,8 +1020,7 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
 
             @Override
             public void onTransitionEnd(Transition transition) {
-                mWindow.setLayout(
-                        mWindow.getAttributes().width, ViewGroup.LayoutParams.WRAP_CONTENT);
+                mWindow.setLayout(mWindow.getAttributes().width, ViewGroup.LayoutParams.WRAP_CONTENT);
             }
 
             @Override
@@ -1030,8 +1029,7 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
 
             @Override
             public void onTransitionPause(Transition transition) {
-                mWindow.setLayout(
-                        mWindow.getAttributes().width, ViewGroup.LayoutParams.WRAP_CONTENT);
+                mWindow.setLayout(mWindow.getAttributes().width, ViewGroup.LayoutParams.WRAP_CONTENT);
             }
 
             @Override
