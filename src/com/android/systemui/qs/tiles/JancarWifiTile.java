@@ -16,8 +16,6 @@
 
 package com.android.systemui.qs.tiles;
 
-import android.annotation.SuppressLint;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -47,7 +45,6 @@ import com.android.systemui.statusbar.policy.NetworkController;
 import com.android.systemui.statusbar.policy.NetworkController.AccessPointController;
 import com.android.systemui.statusbar.policy.NetworkController.IconState;
 import com.android.systemui.statusbar.policy.NetworkController.SignalCallback;
-import com.jancar.JancarManager;
 
 import java.util.List;
 
@@ -57,7 +54,7 @@ public class JancarWifiTile extends QSTileImpl<SignalState> {
 
     protected final NetworkController mController;
     private final AccessPointController mWifiController;
-    private final WifiDetailAdapter mDetailAdapter;
+//    private final WifiDetailAdapter mDetailAdapter;
     private final SignalState mStateBeforeClick = newTileState();
 
     protected final WifiSignalCallback mSignalCallback = new WifiSignalCallback();
@@ -67,7 +64,7 @@ public class JancarWifiTile extends QSTileImpl<SignalState> {
         super(host);
         mController = Dependency.get(NetworkController.class);
         mWifiController = mController.getAccessPointController();
-        mDetailAdapter = (WifiDetailAdapter) createDetailAdapter();
+//        mDetailAdapter = (WifiDetailAdapter) createDetailAdapter();
         mActivityStarter = Dependency.get(ActivityStarter.class);
         handleStale();
     }
@@ -86,24 +83,24 @@ public class JancarWifiTile extends QSTileImpl<SignalState> {
         }
     }
 
-    @Override
-    public void setDetailListening(boolean listening) {
-        if (listening) {
-            mWifiController.addAccessPointCallback(mDetailAdapter);
-        } else {
-            mWifiController.removeAccessPointCallback(mDetailAdapter);
-        }
-    }
+//    @Override
+//    public void setDetailListening(boolean listening) {
+//        if (listening) {
+//            mWifiController.addAccessPointCallback(mDetailAdapter);
+//        } else {
+//            mWifiController.removeAccessPointCallback(mDetailAdapter);
+//        }
+//    }
+//
+//    @Override
+//    public DetailAdapter getDetailAdapter() {
+//        return mDetailAdapter;
+//    }
 
-    @Override
-    public DetailAdapter getDetailAdapter() {
-        return mDetailAdapter;
-    }
-
-    @Override
-    protected DetailAdapter createDetailAdapter() {
-        return new WifiDetailAdapter();
-    }
+//    @Override
+//    protected DetailAdapter createDetailAdapter() {
+//        return new WifiDetailAdapter();
+//    }
 
     @Override
     public QSIconView createTileView(Context context) {
@@ -118,32 +115,21 @@ public class JancarWifiTile extends QSTileImpl<SignalState> {
     @Override
     protected void handleClick() {
         // Secondary clicks are header clicks, just toggle.
-        Dependency.get(ActivityStarter.class).postQSRunnableDismissingKeyguard(this::showDialog);
-    }
-
-    private void showDialog(){
-        ComponentName toActivityBt = new ComponentName("com.jancar.settingss",
-                "com.jancar.settings.view.activity.MainActivity");
-        Intent intentBt = new Intent();
-        intentBt.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intentBt.setComponent(toActivityBt);
-        intentBt.putExtra("position", 0);
-        @SuppressLint("WrongConstant")
-        JancarManager jancarManager = (JancarManager) mContext.getSystemService("jancar_manager");
-        jancarManager.requestPage("btset", intentBt);
+        mState.copyTo(mStateBeforeClick);
+        mController.setWifiEnabled(!mState.value);
     }
 
     @Override
     protected void handleSecondaryClick() {
-//        if (!mWifiController.canConfigWifi()) {
-//            mActivityStarter.postStartActivityDismissingKeyguard(
-//                    new Intent(Settings.ACTION_WIFI_SETTINGS), 0);
-//            return;
-//        }
-//        showDetail(true);
-//        if (!mState.value) {
-//            mController.setWifiEnabled(true);
-//        }
+        if (!mWifiController.canConfigWifi()) {
+            mActivityStarter.postStartActivityDismissingKeyguard(
+                    new Intent(Settings.ACTION_WIFI_SETTINGS), 0);
+            return;
+        }
+        showDetail(true);
+        if (!mState.value) {
+            mController.setWifiEnabled(true);
+        }
     }
 
     @Override
@@ -163,7 +149,7 @@ public class JancarWifiTile extends QSTileImpl<SignalState> {
         boolean wifiNotConnected = (cb.wifiSignalIconId > 0) && (cb.enabledDesc == null);
         boolean enabledChanging = state.value != cb.enabled;
         if (enabledChanging) {
-            mDetailAdapter.setItemsVisible(cb.enabled);
+//            mDetailAdapter.setItemsVisible(cb.enabled);
             fireToggleStateChanged(cb.enabled);
         }
         if (state.slash == null) {
@@ -283,9 +269,9 @@ public class JancarWifiTile extends QSTileImpl<SignalState> {
             mInfo.activityOut = activityOut;
             mInfo.wifiSignalContentDescription = qsIcon.contentDescription;
             mInfo.isTransient = isTransient;
-            if (isShowingDetail()) {
-                mDetailAdapter.updateItems();
-            }
+//            if (isShowingDetail()) {
+//                mDetailAdapter.updateItems();
+//            }
             refreshState(mInfo);
         }
     }
