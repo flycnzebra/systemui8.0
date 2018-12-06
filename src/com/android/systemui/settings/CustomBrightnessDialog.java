@@ -49,7 +49,7 @@ public class CustomBrightnessDialog extends Dialog {
             super.handleMessage(m);
             switch (m.what) {
                 case 1:
-                    mHander.removeCallbacks(r);
+                    removeCallbacks(r);
                     if (isRun) {
                         postDelayed(r, 3000);
                     }
@@ -88,7 +88,8 @@ public class CustomBrightnessDialog extends Dialog {
 
         final ImageView icon = findViewById(R.id.brightness_icon);
         final ToggleSliderView slider = findViewById(R.id.brightness_slider);
-        mBrightnessController = new BrightnessController(getContext(), icon, slider, mHander);
+        mBrightnessController = new BrightnessController(getContext(), icon, slider);
+        mBrightnessController.setUIHandler(mHander);
     }
 
     private boolean isRun = true;
@@ -108,6 +109,8 @@ public class CustomBrightnessDialog extends Dialog {
         isRun = false;
         MetricsLogger.hidden(getContext(), MetricsEvent.BRIGHTNESS_DIALOG);
         mBrightnessController.unregisterCallbacks();
+        mBrightnessController.setUIHandler(null);
+        mHander.removeCallbacksAndMessages(null);
     }
 
     @Override
