@@ -861,7 +861,7 @@ public abstract class PanelView extends FrameLayout {
     }
 
     public void setExpandedHeightInternal(float h) {
-        FlyLog.d("setExpandedHeightInternal h="+h);
+//        FlyLog.d("setExpandedHeightInternal h="+h);
         if (mExpandLatencyTracking && h != 0f) {
             DejankUtils.postAfterTraversal(() -> LatencyTracker.getInstance(mContext).onActionEnd(
                     LatencyTracker.ACTION_EXPAND_PANEL));

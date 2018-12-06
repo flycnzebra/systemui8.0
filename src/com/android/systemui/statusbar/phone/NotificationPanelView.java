@@ -1622,7 +1622,7 @@ public class NotificationPanelView extends PanelView implements
 
     @Override
     protected void onHeightUpdated(float expandedHeight) {
-        FlyLog.d("onHeightUpdated expandedHeight=" + expandedHeight);
+//        FlyLog.d("onHeightUpdated expandedHeight=" + expandedHeight);
         if (!mQsExpanded || mQsExpandImmediate || mIsExpanding && mQsExpandedWhenExpandingStarted) {
             positionClockAndNotifications();
         }
@@ -1765,7 +1765,7 @@ public class NotificationPanelView extends PanelView implements
      * Hides the header when notifications are colliding with it.
      */
     private void updateHeader() {
-        FlyLog.d("updateHeader");
+//        FlyLog.d("updateHeader");
         if (mStatusBar.getBarState() == StatusBarState.KEYGUARD) {
             updateHeaderKeyguardAlpha();
         }

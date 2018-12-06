@@ -16,15 +16,18 @@
 
 package com.android.systemui.settings;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -37,30 +40,32 @@ import com.android.systemui.R;
 /**
  * A dialog that provides controls for adjusting the screen brightness.
  */
-public class BrightnessDialog extends Activity {
+public class CustomBrightnessDialog extends Dialog {
 
     private BrightnessController mBrightnessController;
-    private boolean isStop = true;
 
     private Handler mHander = new Handler() {
         public void handleMessage(Message m) {
             super.handleMessage(m);
             switch (m.what) {
                 case 1:
-                    if (!isStop) {
-                        removeCallbacks(hideUI);
-                        postDelayed(hideUI, 3000);
+                    mHander.removeCallbacks(r);
+                    if (isRun) {
+                        postDelayed(r, 3000);
                     }
                     break;
             }
         }
     };
-    private Runnable hideUI = new Runnable() {
+    private Runnable r = new Runnable() {
         public void run() {
-            finish();
-            mHander.postDelayed(hideUI, 3000);
+            dismiss();
         }
     };
+
+    public CustomBrightnessDialog(@NonNull Context context) {
+        super(context);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,32 +88,35 @@ public class BrightnessDialog extends Activity {
 
         final ImageView icon = findViewById(R.id.brightness_icon);
         final ToggleSliderView slider = findViewById(R.id.brightness_slider);
-        mBrightnessController = new BrightnessController(this, icon, slider);
-        mBrightnessController.setUIHandler(mHander);
-        mHander.postDelayed(hideUI, 3000);
+        mBrightnessController = new BrightnessController(getContext(), icon, slider, mHander);
     }
+
+    private boolean isRun = true;
 
     @Override
     protected void onStart() {
         super.onStart();
-        isStop = false;
+        isRun = true;
         mBrightnessController.registerCallbacks();
-        MetricsLogger.visible(this, MetricsEvent.BRIGHTNESS_DIALOG);
+        MetricsLogger.visible(getContext(), MetricsEvent.BRIGHTNESS_DIALOG);
+        mHander.postDelayed(r, 3000);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        isStop = true;
-        MetricsLogger.hidden(this, MetricsEvent.BRIGHTNESS_DIALOG);
+        isRun = false;
+        MetricsLogger.hidden(getContext(), MetricsEvent.BRIGHTNESS_DIALOG);
         mBrightnessController.unregisterCallbacks();
     }
 
     @Override
-    protected void onDestroy() {
-        mBrightnessController.setUIHandler(null);
-        mHander.removeCallbacksAndMessages(null);
-        super.onDestroy();
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
+            mHander.removeCallbacks(r);
+            dismiss();
+        }
+        return super.onTouchEvent(event);
     }
 
     @Override
@@ -116,24 +124,10 @@ public class BrightnessDialog extends Activity {
         if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN
                 || keyCode == KeyEvent.KEYCODE_VOLUME_UP
                 || keyCode == KeyEvent.KEYCODE_VOLUME_MUTE) {
-            finish();
+            dismiss();
         }
 
         return super.onKeyDown(keyCode, event);
     }
 
-    @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        View view = getWindow().getDecorView();
-        WindowManager.LayoutParams lp = (WindowManager.LayoutParams) view.getLayoutParams();
-        lp.y = lp.y - 30;
-        getWindowManager().updateViewLayout(view, lp);
-    }
-
-    @Override
-    public void finish() {
-        super.finish();
-        overridePendingTransition(0,0);
-    }
 }

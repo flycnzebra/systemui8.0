@@ -24,7 +24,7 @@
     <bool name="config_recents_use_hardware_layers">false</bool>
 
     <!-- The number of app thumbnails we keep in memory -->
-    <integer name="config_recents_max_thumbnail_count">10</integer>
+    <integer name="config_recents_max_thumbnail_count">5</integer>
 
     <!-- The number of app icons we keep in memory -->
     <integer name="config_recents_max_icon_count">20</integer>
@@ -55,7 +55,7 @@
 
     <!-- How many icons may be shown at once in the system bar. Includes any
          slots that may be reused for things like IME control. -->
-    <integer name="config_maxNotificationIcons">5</integer>
+    <integer name="config_maxNotificationIcons">2</integer>
 
     <!-- Show phone (voice) signal strength instead of data in mobile RSSI. -->
     <bool name="config_showPhoneRSSIForData">false</bool>

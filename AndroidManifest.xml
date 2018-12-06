@@ -536,7 +536,7 @@
             android:theme="@style/BrightnessTheme"
             android:finishOnCloseSystemDialogs="true"
             android:launchMode="singleInstance"
-            android:excludeFromRecents="true"
+            android:excludeFromRecents="false"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.android.intent.action.SHOW_BRIGHTNESS_DIALOG" />

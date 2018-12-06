@@ -83,6 +83,10 @@ public class BrightnessController implements ToggleSlider.Listener {
     private boolean mListening;
     private boolean mExternalChange;
 
+    public void setUIHandler(Handler mHander) {
+        this.mDismissHandler = mHander;
+    }
+
     public interface BrightnessStateChangeCallback {
         public void onBrightnessLevelChanged();
     }
@@ -277,13 +281,6 @@ public class BrightnessController implements ToggleSlider.Listener {
     };
 
     public BrightnessController(Context context, ImageView icon, ToggleSlider control) {
-        this(context, icon, control, null);
-    }
-
-    public BrightnessController(Context context, ImageView icon, ToggleSlider control, Handler handler) {
-        if (handler != null) {
-            mDismissHandler = handler;
-        }
         mContext = context;
         mIcon = icon;
         mControl = control;
