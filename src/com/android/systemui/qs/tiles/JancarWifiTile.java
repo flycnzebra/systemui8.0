@@ -151,7 +151,7 @@ public class JancarWifiTile extends QSTileImpl<SignalState> {
         boolean enabledChanging = state.value != cb.enabled;
         if (enabledChanging) {
 //            mDetailAdapter.setItemsVisible(cb.enabled);
-            fireToggleStateChanged(cb.enabled);
+//            fireToggleStateChanged(cb.enabled);
         }
         if (state.slash == null) {
             state.slash = new SlashState();
@@ -194,7 +194,7 @@ public class JancarWifiTile extends QSTileImpl<SignalState> {
         state.contentDescription = minimalContentDescription.toString();
         state.dualLabelContentDescription = r.getString(
                 R.string.accessibility_quick_settings_open_settings, getTileLabel());
-        state.expandedAccessibilityClassName = Switch.class.getName();
+//        state.expandedAccessibilityClassName = Switch.class.getName();
     }
 
     @Override
