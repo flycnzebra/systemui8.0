@@ -218,7 +218,7 @@ public class VolumeDialogMotion {
             setShowing(false);
         }
         mDialogView.animate()
-                .translationY(-mDialogView.getHeight()/2)
+                .translationY(-mDialogView.getHeight())
                 .setDuration(scaledDuration(0))
                 .setInterpolator(new LogAccelerateInterpolator())
                 .setUpdateListener(new AnimatorUpdateListener() {
