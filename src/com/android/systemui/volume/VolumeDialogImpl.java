@@ -214,8 +214,8 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
         lp.type = mWindowType;
         lp.format = PixelFormat.TRANSLUCENT;
         lp.setTitle(VolumeDialogImpl.class.getSimpleName());
-//        lp.gravity = Gravity.CENTER | Gravity.CENTER_HORIZONTAL;
-//        lp.y = res.getDimensionPixelSize(R.dimen.volume_offset_top);
+        lp.gravity = Gravity.CENTER | Gravity.CENTER_HORIZONTAL;
+        lp.y = res.getDimensionPixelSize(R.dimen.volume_offset_top);
         lp.gravity = Gravity.CENTER;
         lp.windowAnimations = -1;
         lp.width = 510;
@@ -595,11 +595,11 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
         if (D.BUG) Log.d(TAG, "updateExpandedH " + expanded);
         updateExpandButtonH();
         updateFooterH();
-//        TransitionManager.endTransitions(mDialogView);
+        TransitionManager.endTransitions(mDialogView);
         final VolumeRow activeRow = getActiveRow();
         if (!dismissing) {
             mWindow.setLayout(mWindow.getAttributes().width, ViewGroup.LayoutParams.MATCH_PARENT);
-//            TransitionManager.beginDelayedTransition(mDialogView, getTransition());
+            TransitionManager.beginDelayedTransition(mDialogView, getTransition());
         }
         updateRowsH(activeRow);
         rescheduleTimeoutH();
@@ -728,8 +728,8 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
                 && (mAudioManager.isStreamAffectedByRingerMode(mActiveStream) || mExpanded)
                 && !mZenPanel.isEditing();
 
-//        TransitionManager.endTransitions(mDialogView);
-//        TransitionManager.beginDelayedTransition(mDialogView, getTransition());
+        TransitionManager.endTransitions(mDialogView);
+        TransitionManager.beginDelayedTransition(mDialogView, getTransition());
         if (wasVisible != visible && !visible) {
             prepareForCollapse();
         }
@@ -1011,7 +1011,7 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
 
     private AutoTransition getTransition() {
         AutoTransition transition = new AutoTransition();
-        transition.setDuration(mExpandButtonAnimationDuration);
+        transition.setDuration(1);
         transition.setInterpolator(Interpolators.LINEAR_OUT_SLOW_IN);
         transition.addListener(new Transition.TransitionListener() {
             @Override
