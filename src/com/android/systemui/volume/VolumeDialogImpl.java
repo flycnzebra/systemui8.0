@@ -1011,7 +1011,7 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
 
     private AutoTransition getTransition() {
         AutoTransition transition = new AutoTransition();
-        transition.setDuration(1);
+        transition.setDuration(mExpandButtonAnimationDuration);
         transition.setInterpolator(Interpolators.LINEAR_OUT_SLOW_IN);
         transition.addListener(new Transition.TransitionListener() {
             @Override
@@ -1020,7 +1020,8 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
 
             @Override
             public void onTransitionEnd(Transition transition) {
-                mWindow.setLayout(mWindow.getAttributes().width, ViewGroup.LayoutParams.WRAP_CONTENT);
+                mWindow.setLayout(
+                        mWindow.getAttributes().width, ViewGroup.LayoutParams.WRAP_CONTENT);
             }
 
             @Override
@@ -1029,7 +1030,8 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
 
             @Override
             public void onTransitionPause(Transition transition) {
-                mWindow.setLayout(mWindow.getAttributes().width, ViewGroup.LayoutParams.WRAP_CONTENT);
+                mWindow.setLayout(
+                        mWindow.getAttributes().width, ViewGroup.LayoutParams.WRAP_CONTENT);
             }
 
             @Override

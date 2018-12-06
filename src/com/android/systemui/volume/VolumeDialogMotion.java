@@ -68,9 +68,9 @@ public class VolumeDialogMotion {
             @Override
             public void onShow(DialogInterface dialog) {
                 if (D.BUG) Log.d(TAG, "mDialog.onShow");
-                final int h = mDialogView.getHeight();
-                mDialogView.setTranslationY(-h);
-                startShowAnimation();
+//                final int h = mDialogView.getHeight();
+//                mDialogView.setTranslationY(-h);
+//                startShowAnimation();
             }
         });
     }
