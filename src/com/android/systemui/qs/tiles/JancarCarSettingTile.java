@@ -12,8 +12,8 @@ import com.android.systemui.qs.tileimpl.QSTileImpl;
 import com.android.systemui.R;
 import com.jancar.JancarManager;
 
-public class JacCarSettingTile extends QSTileImpl<QSTile.BooleanState> {
-    public JacCarSettingTile(QSHost host) {
+public class JancarCarSettingTile extends QSTileImpl<QSTile.BooleanState> {
+    public JancarCarSettingTile(QSHost host) {
         super(host);
     }
 

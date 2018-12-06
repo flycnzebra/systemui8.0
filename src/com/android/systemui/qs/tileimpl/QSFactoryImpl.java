@@ -24,7 +24,6 @@ import com.android.systemui.plugins.qs.QSTileView;
 import com.android.systemui.qs.external.CustomTile;
 import com.android.systemui.qs.tiles.AirplaneModeTile;
 import com.android.systemui.qs.tiles.BatterySaverTile;
-import com.android.systemui.qs.tiles.BluetoothTile;
 import com.android.systemui.qs.tiles.CastTile;
 import com.android.systemui.qs.tiles.CellularTile;
 import com.android.systemui.qs.tiles.ColorInversionTile;
@@ -33,17 +32,17 @@ import com.android.systemui.qs.tiles.DndTile;
 import com.android.systemui.qs.tiles.FlashlightTile;
 import com.android.systemui.qs.tiles.HotspotTile;
 import com.android.systemui.qs.tiles.IntentTile;
-import com.android.systemui.qs.tiles.JacAudioTile;
-import com.android.systemui.qs.tiles.JacBluetoothTile;
-import com.android.systemui.qs.tiles.JacBrightnessTile;
-import com.android.systemui.qs.tiles.JacCarSettingTile;
-import com.android.systemui.qs.tiles.JacSoundTile;
+import com.android.systemui.qs.tiles.JancarAudioTile;
+import com.android.systemui.qs.tiles.JancarBluetoothTile;
+import com.android.systemui.qs.tiles.JancarBrightnessTile;
+import com.android.systemui.qs.tiles.JancarCarSettingTile;
+import com.android.systemui.qs.tiles.JancarSoundTile;
+import com.android.systemui.qs.tiles.JancarWifiTile;
 import com.android.systemui.qs.tiles.LocationTile;
 import com.android.systemui.qs.tiles.NfcTile;
 import com.android.systemui.qs.tiles.NightDisplayTile;
 import com.android.systemui.qs.tiles.RotationLockTile;
 import com.android.systemui.qs.tiles.UserTile;
-import com.android.systemui.qs.tiles.WifiTile;
 import com.android.systemui.qs.tiles.WorkModeTile;
 import com.android.systemui.qs.QSTileHost;
 
@@ -74,8 +73,8 @@ public class QSFactoryImpl implements QSFactory {
         IQuickSettingsPlugin quickSettingsPlugin = OpSystemUICustomizationFactoryBase
                 .getOpFactory(context).makeQuickSettings(context);
         /// @}
-        if (tileSpec.equals("wifi")) return new WifiTile(mHost);
-        else if (tileSpec.equals("bt")) return new JacBluetoothTile(mHost);
+        if (tileSpec.equals("wifi")) return new JancarWifiTile(mHost);
+        else if (tileSpec.equals("bt")) return new JancarBluetoothTile(mHost);
         else if (tileSpec.equals("cell")) return new CellularTile(mHost);
         else if (tileSpec.equals("dnd")) return new DndTile(mHost);
         else if (tileSpec.equals("inversion")) return new ColorInversionTile(mHost);
@@ -114,10 +113,10 @@ public class QSFactoryImpl implements QSFactory {
         // Intent tiles.
         else if (tileSpec.startsWith(IntentTile.PREFIX)) return IntentTile.create(mHost, tileSpec);
         else if (tileSpec.startsWith(CustomTile.PREFIX)) return CustomTile.create(mHost, tileSpec);
-        else if(tileSpec.startsWith("jac_car")) return new JacCarSettingTile(mHost);
-        else if(tileSpec.startsWith("jac_audio")) return new JacAudioTile(mHost);
-        else if(tileSpec.startsWith("jac_sound")) return new JacSoundTile(mHost);
-        else if(tileSpec.startsWith("jac_brightness")) return new JacBrightnessTile(mHost);
+        else if(tileSpec.startsWith("jac_car")) return new JancarCarSettingTile(mHost);
+        else if(tileSpec.startsWith("jac_audio")) return new JancarAudioTile(mHost);
+        else if(tileSpec.startsWith("jac_sound")) return new JancarSoundTile(mHost);
+        else if(tileSpec.startsWith("jac_brightness")) return new JancarBrightnessTile(mHost);
         else {
             Log.w(TAG, "Bad tile spec: " + tileSpec);
             return null;

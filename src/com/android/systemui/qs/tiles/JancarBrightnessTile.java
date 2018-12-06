@@ -10,8 +10,8 @@ import com.android.systemui.plugins.qs.QSTile;
 import com.android.systemui.qs.QSHost;
 import com.android.systemui.qs.tileimpl.QSTileImpl;
 
-public class JacBrightnessTile extends QSTileImpl<QSTile.BooleanState> {
-    public JacBrightnessTile(QSHost host) {
+public class JancarBrightnessTile extends QSTileImpl<QSTile.BooleanState> {
+    public JancarBrightnessTile(QSHost host) {
         super(host);
     }
 

@@ -4,16 +4,20 @@ import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Intent;
 
+import com.android.internal.logging.MetricsLogger;
 import com.android.systemui.Dependency;
 import com.android.systemui.R;
 import com.android.systemui.plugins.ActivityStarter;
 import com.android.systemui.plugins.qs.QSTile;
 import com.android.systemui.qs.QSHost;
 import com.android.systemui.qs.tileimpl.QSTileImpl;
+import com.android.systemui.volume.VolumeDialogControllerImpl;
 import com.jancar.JancarManager;
 
-public class JacBluetoothTile extends QSTileImpl<QSTile.BooleanState> {
-    public JacBluetoothTile(QSHost host) {
+import static com.android.internal.logging.nano.MetricsProto.MetricsEvent.ACTION_QS_MORE_SETTINGS;
+
+public class JancarAudioTile extends QSTileImpl<QSTile.BooleanState> {
+    public JancarAudioTile(QSHost host) {
         super(host);
     }
 
@@ -22,28 +26,26 @@ public class JacBluetoothTile extends QSTileImpl<QSTile.BooleanState> {
         return new BooleanState();
     }
 
-
     @Override
     protected void handleClick() {
         Dependency.get(ActivityStarter.class).postQSRunnableDismissingKeyguard(this::showDialog);
     }
 
     private void showDialog(){
-        ComponentName toActivityBt = new ComponentName("com.jancar.settingss",
-                "com.jancar.settings.view.activity.MainActivity");
-        Intent intentBt = new Intent();
-        intentBt.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intentBt.setComponent(toActivityBt);
-        intentBt.putExtra("position", 1);
+        ComponentName toActivityAudio = new ComponentName("com.jancar.settingss", "com.jancar.settings.view.activity.MainActivity");
+        Intent intentAduio = new Intent();
+        intentAduio.setComponent(toActivityAudio);
+        intentAduio.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intentAduio.putExtra("position", 3);
         @SuppressLint("WrongConstant")
         JancarManager jancarManager = (JancarManager) mContext.getSystemService("jancar_manager");
-        jancarManager.requestPage("btset", intentBt);
+        jancarManager.requestPage("eq", intentAduio);
     }
 
     @Override
     protected void handleUpdateState(BooleanState state, Object arg) {
-        state.icon = ResourceIcon.get(R.drawable.jac_qs_bt_01);
-        state.label = mContext.getResources().getString(R.string.qs_bt);
+        state.icon = ResourceIcon.get(R.drawable.jac_qs_audio_01);
+        state.label = mContext.getResources().getString(R.string.qs_volume_mode);
         state.contentDescription = state.label;
     }
 
