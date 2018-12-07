@@ -472,10 +472,9 @@ public class NotificationStackScrollLayout extends ViewGroup
             /**
              * @FlyZebra 取消显示主题背景
              */
-//            canvas.drawRect(0, mCurrentBounds.top, getWidth(), mCurrentBounds.bottom,
-//                    mBackgroundPaint);
-//            canvas.drawLine(0, mCurrentBounds.top, getWidth(), mCurrentBounds.top, mBackgroundPaint);
-//            canvas.drawLine(0, mCurrentBounds.bottom, getWidth(), mCurrentBounds.bottom, mBackgroundPaint);
+            canvas.drawRect(0, mCurrentBounds.top, getWidth(), mCurrentBounds.bottom, mBackgroundPaint);
+            canvas.drawLine(0, mCurrentBounds.top, getWidth(), mCurrentBounds.top, mBackgroundPaint);
+            canvas.drawLine(0, mCurrentBounds.bottom, getWidth(), mCurrentBounds.bottom, mBackgroundPaint);
         }
 
         if (DEBUG) {
@@ -4895,17 +4894,5 @@ public class NotificationStackScrollLayout extends ViewGroup
             }
             return length;
         }
-    }
-
-    @Override
-    public void addView(View child) {
-        try {
-            throw new Exception("addView");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        FlyLog.d("addview child="+child);
-        child.setBackgroundColor(0xff00ffff);
-        super.addView(child);
     }
 }
