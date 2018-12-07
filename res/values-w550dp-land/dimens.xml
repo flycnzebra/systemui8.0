@@ -17,5 +17,5 @@
 -->
 <resources>
     <!-- Standard notification width + gravity -->
-    <dimen name="notification_panel_width">544dp</dimen>
+    <dimen name="notification_panel_width">-1px</dimen>
 </resources>
