@@ -4898,9 +4898,7 @@ public class NotificationStackScrollLayout extends ViewGroup
 
     @Override
     public void addView(View child) {
-//        if(child instanceof ExpandableNotificationRow){
-//            child.setVisibility(INVISIBLE);
-//        }
-//        super.addView(child);
+        FlyLog.d("ADD VIEW child="+child);
+        super.addView(child);
     }
 }
