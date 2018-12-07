@@ -68,6 +68,7 @@ import com.android.systemui.Interpolators;
 import com.android.systemui.R;
 import com.android.systemui.SwipeHelper;
 import com.android.systemui.classifier.FalsingManager;
+import com.android.systemui.jancar.FlyLog;
 import com.android.systemui.plugins.statusbar.NotificationMenuRowPlugin;
 import com.android.systemui.plugins.statusbar.NotificationMenuRowPlugin.MenuItem;
 import com.android.systemui.plugins.statusbar.NotificationSwipeActionHelper;
@@ -4893,5 +4894,12 @@ public class NotificationStackScrollLayout extends ViewGroup
             }
             return length;
         }
+    }
+
+    @Override
+    public void addView(View child) {
+        FlyLog.d("addview child="+child);
+        child.setBackground(null);
+        super.addView(child);
     }
 }
