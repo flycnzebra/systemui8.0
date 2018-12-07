@@ -67,7 +67,6 @@
             android:layout_height="match_parent"
             android:layout_gravity="@integer/notification_panel_layout_gravity"
             android:layout_marginTop="@dimen/notification_panel_margin_top"
-            android:background="@drawable/top_bottom_line_white"
             android:layout_marginBottom="@dimen/close_handle_underlap" />
 
         <include
