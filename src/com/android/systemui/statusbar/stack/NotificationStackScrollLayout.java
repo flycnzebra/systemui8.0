@@ -4905,7 +4905,7 @@ public class NotificationStackScrollLayout extends ViewGroup
             e.printStackTrace();
         }
         FlyLog.d("addview child="+child);
-        child.setBackground(null);
+        child.setBackgroundColor(0xff00ffff);
         super.addView(child);
     }
 }
