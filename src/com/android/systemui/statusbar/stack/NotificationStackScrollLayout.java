@@ -4900,7 +4900,7 @@ public class NotificationStackScrollLayout extends ViewGroup
     @Override
     public void addView(View child) {
         FlyLog.d("ADD VIEW child="+child);
-        child.setBackground(R.drawable.top_bottom_line_white);
+        child.setBackgroundResource(R.drawable.top_bottom_line_white);
         super.addView(child);
     }
 }
