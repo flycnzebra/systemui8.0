@@ -50,11 +50,11 @@ import com.android.systemui.statusbar.stack.ViewState;
 public class NotificationShelf extends ActivatableNotificationView implements
         View.OnLayoutChangeListener {
 
-    public static final boolean SHOW_AMBIENT_ICONS = false;
+    public static final boolean SHOW_AMBIENT_ICONS = true;
     private static final boolean USE_ANIMATIONS_WHEN_OPENING =
-            SystemProperties.getBoolean("debug.icon_opening_animations", false);
+            SystemProperties.getBoolean("debug.icon_opening_animations", true);
     private static final boolean ICON_ANMATIONS_WHILE_SCROLLING
-            = SystemProperties.getBoolean("debug.icon_scroll_animations", false);
+            = SystemProperties.getBoolean("debug.icon_scroll_animations", true);
     private static final int TAG_CONTINUOUS_CLIPPING = R.id.continuous_clipping_tag;
     private ViewInvertHelper mViewInvertHelper;
     private boolean mDark;
