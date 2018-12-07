@@ -4895,4 +4895,12 @@ public class NotificationStackScrollLayout extends ViewGroup
             return length;
         }
     }
+
+    @Override
+    public void addView(View child) {
+        if(child instanceof ExpandableNotificationRow){
+            child.setAlpha(0.0f);
+        }
+        super.addView(child);
+    }
 }
