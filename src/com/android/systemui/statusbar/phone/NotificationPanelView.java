@@ -86,7 +86,7 @@ public class NotificationPanelView extends PanelView implements
         KeyguardAffordanceHelper.Callback, NotificationStackScrollLayout.OnEmptySpaceClickListener,
         OnHeadsUpChangedListener, QS.HeightListener {
 
-    private static final boolean DEBUG = false;
+    private static final boolean DEBUG = true;
 
     // Cap and total height of Roboto font. Needs to be adjusted when font for the big clock is
     // changed.
