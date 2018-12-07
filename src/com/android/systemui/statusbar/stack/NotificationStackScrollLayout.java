@@ -113,7 +113,7 @@ public class NotificationStackScrollLayout extends ViewGroup
 
     public static final float BACKGROUND_ALPHA_DIMMED = 0.7f;
     private static final String TAG = "StackScroller";
-    private static final boolean DEBUG = false;
+    private static final boolean DEBUG = true;
     private static final float RUBBER_BAND_FACTOR_NORMAL = 0.35f;
     private static final float RUBBER_BAND_FACTOR_AFTER_EXPAND = 0.15f;
     private static final float RUBBER_BAND_FACTOR_ON_PANEL_EXPAND = 0.21f;
