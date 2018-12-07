@@ -24,17 +24,17 @@
     android:background="@android:color/transparent">
 
     <!-- 添加高斯模糊begin -->
-    <View
-        android:id="@+id/alpha_view"
-        android:background="#666666"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
     <ImageView
         android:id="@+id/blur_view"
-        android:alpha="0"
         android:layout_width="match_parent"
-        android:scaleType="fitXY"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:scaleType="fitXY" />
+
+    <View
+        android:id="@+id/alpha_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#00000000" />
 
     <!-- 添加高斯模糊end -->
 
@@ -59,8 +59,7 @@
             android:clipToPadding="false"
             android:layout="@layout/qs_panel"
             android:visibility="visible"
-            systemui:viewType="com.android.systemui.plugins.qs.QS"
-            />
+            systemui:viewType="com.android.systemui.plugins.qs.QS" />
 
         <com.android.systemui.statusbar.stack.NotificationStackScrollLayout
             android:id="@+id/notification_stack_scroller"

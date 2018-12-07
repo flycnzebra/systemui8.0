@@ -86,7 +86,7 @@ public class NotificationPanelView extends PanelView implements
         KeyguardAffordanceHelper.Callback, NotificationStackScrollLayout.OnEmptySpaceClickListener,
         OnHeadsUpChangedListener, QS.HeightListener {
 
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
 
     // Cap and total height of Roboto font. Needs to be adjusted when font for the big clock is
     // changed.
@@ -249,25 +249,8 @@ public class NotificationPanelView extends PanelView implements
     /**
      * 添加高斯模糊Start
      */
-    private static final int BLUR_START = 400;
-    private static final int BLUR_END = 600;
     private ImageView mBlurView;
     private boolean mIsFullClose;
-
-    private void startAlphaAnimation(float start, float end) {
-        if (mBlurView != null) {
-            ValueAnimator va = ValueAnimator.ofFloat(start, end);
-            va.setDuration((long) (Math.abs(end - start) * 500));
-            va.start();
-            va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(ValueAnimator animation) {
-                    float alpha = (float) animation.getAnimatedValue();
-                    mBlurView.setAlpha(alpha);
-                }
-            });
-        }
-    }
 
     private void setBlurBackground() {
         if (mBlurView != null) {
@@ -280,7 +263,6 @@ public class NotificationPanelView extends PanelView implements
                     bitmap, BlurUtil.BLUR_RADIUS_MAX), BlurUtil.BLUR_RADIUS_MAX);
             BitmapUtils.recycleImageView(mBlurView);
             mBlurView.setImageBitmap(blurBitmap);
-            mBlurView.setAlpha(1f);
         }
     }
 
@@ -1226,7 +1208,7 @@ public class NotificationPanelView extends PanelView implements
         resetVerticalPanelPosition();
         updateQsState();
         /* 添加高斯模糊 begin */
-        updateBlurVisibility(keyguardShowing);
+//        updateBlurVisibility(keyguardShowing);
         /* 添加高斯模糊 end */
     }
 
@@ -1647,7 +1629,7 @@ public class NotificationPanelView extends PanelView implements
         }
         updateExpandedHeight(expandedHeight);
         /* 修改 begin */
-        updateIsFullClose(expandedHeight);
+//        updateIsFullClose(expandedHeight);
         /* 修改 end */
         updateHeader();
         updateUnlockIcon();
