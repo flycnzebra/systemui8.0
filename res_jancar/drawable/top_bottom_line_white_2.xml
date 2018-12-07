@@ -4,7 +4,7 @@
     <item
         android:left="-4px"
         android:right="-4px"
-        android:bottom="2px">
+        android:bottom="10px">
         <shape>
             <solid android:color="#00FFFFFF" />
 
