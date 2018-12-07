@@ -2465,20 +2465,20 @@ public class NotificationPanelView extends PanelView implements
      * @param x the x-coordinate the touch event
      */
     protected void updateVerticalPanelPosition(float x) {
-        x = 0;
-        if (mNotificationStackScroller.getWidth() * 1.75f > getWidth()) {
+//        x = 0;
+//        if (mNotificationStackScroller.getWidth() * 1.75f > getWidth()) {
 //            resetVerticalPanelPosition();
-            return;
-        }
-        float leftMost = mPositionMinSideMargin + mNotificationStackScroller.getWidth() / 2;
-        float rightMost = getWidth() - mPositionMinSideMargin
-                - mNotificationStackScroller.getWidth() / 2;
-        if (Math.abs(x - getWidth() / 2) < mNotificationStackScroller.getWidth() / 4) {
-            x = getWidth() / 2;
-        }
-        x = Math.min(rightMost, Math.max(leftMost, x));
-        setVerticalPanelTranslation(x -
-                (mNotificationStackScroller.getLeft() + mNotificationStackScroller.getWidth() / 2));
+//            return;
+//        }
+//        float leftMost = mPositionMinSideMargin + mNotificationStackScroller.getWidth() / 2;
+//        float rightMost = getWidth() - mPositionMinSideMargin
+//                - mNotificationStackScroller.getWidth() / 2;
+//        if (Math.abs(x - getWidth() / 2) < mNotificationStackScroller.getWidth() / 4) {
+//            x = getWidth() / 2;
+//        }
+//        x = Math.min(rightMost, Math.max(leftMost, x));
+//        setVerticalPanelTranslation(x -
+//                (mNotificationStackScroller.getLeft() + mNotificationStackScroller.getWidth() / 2));
     }
 
     private void resetVerticalPanelPosition() {
@@ -2486,8 +2486,8 @@ public class NotificationPanelView extends PanelView implements
     }
 
     protected void setVerticalPanelTranslation(float translation) {
-        mNotificationStackScroller.setTranslationX(translation);
-        mQsFrame.setTranslationX(translation);
+//        mNotificationStackScroller.setTranslationX(translation);
+//        mQsFrame.setTranslationX(translation);
     }
 
     protected void updateExpandedHeight(float expandedHeight) {
