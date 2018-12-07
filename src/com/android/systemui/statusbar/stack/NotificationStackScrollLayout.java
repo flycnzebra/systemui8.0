@@ -102,6 +102,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 /**
  * A layout which handles a dynamic amount of notifications and presents them in a scrollable stack.
@@ -4898,6 +4899,11 @@ public class NotificationStackScrollLayout extends ViewGroup
 
     @Override
     public void addView(View child) {
+        try {
+            throw new Exception("addView");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         FlyLog.d("addview child="+child);
         child.setBackground(null);
         super.addView(child);
