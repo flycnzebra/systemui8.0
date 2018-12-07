@@ -4898,9 +4898,9 @@ public class NotificationStackScrollLayout extends ViewGroup
 
     @Override
     public void addView(View child) {
-        if(child instanceof ExpandableNotificationRow){
-            child.setAlpha(0.0f);
-        }
+//        if(child instanceof ExpandableNotificationRow){
+            child.setAlpha(0.1f);
+//        }
         super.addView(child);
     }
 }
