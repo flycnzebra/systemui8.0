@@ -27,6 +27,7 @@
     android:clipToPadding="false"
     android:paddingTop="0dp"
     android:gravity="center_vertical"
+    android:background="@drawable/top_bottom_line_white"
     android:orientation="horizontal">
 
     <include
