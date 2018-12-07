@@ -115,7 +115,7 @@ public class NotificationStackScrollLayout extends ViewGroup
 
     public static final float BACKGROUND_ALPHA_DIMMED = 0.7f;
     private static final String TAG = "StackScroller";
-    private static final boolean DEBUG = false;
+    private static final boolean DEBUG = true;
     private static final float RUBBER_BAND_FACTOR_NORMAL = 0.35f;
     private static final float RUBBER_BAND_FACTOR_AFTER_EXPAND = 0.15f;
     private static final float RUBBER_BAND_FACTOR_ON_PANEL_EXPAND = 0.21f;
@@ -424,8 +424,8 @@ public class NotificationStackScrollLayout extends ViewGroup
         updateWillNotDraw();
         if (DEBUG) {
             mDebugPaint = new Paint();
-            mDebugPaint.setColor(0xffff0000);
-            mDebugPaint.setStrokeWidth(2);
+            mDebugPaint.setColor(0x1fffffff);
+            mDebugPaint.setStrokeWidth(1);
             mDebugPaint.setStyle(Paint.Style.STROKE);
         }
     }
@@ -482,8 +482,8 @@ public class NotificationStackScrollLayout extends ViewGroup
             canvas.drawLine(0, y, getWidth(), y, mDebugPaint);
             y = getLayoutHeight();
             canvas.drawLine(0, y, getWidth(), y, mDebugPaint);
-            y = getHeight() - getEmptyBottomMargin();
-            canvas.drawLine(0, y, getWidth(), y, mDebugPaint);
+//            y = getHeight() - getEmptyBottomMargin();
+//            canvas.drawLine(0, y, getWidth(), y, mDebugPaint);
         }
     }
 
@@ -4895,12 +4895,5 @@ public class NotificationStackScrollLayout extends ViewGroup
             }
             return length;
         }
-    }
-
-    @Override
-    public void addView(View child) {
-        FlyLog.d("ADD VIEW child="+child);
-        child.setBackgroundResource(R.drawable.top_bottom_line_white);
-        super.addView(child);
     }
 }
