@@ -11,7 +11,7 @@ import android.renderscript.ScriptIntrinsicBlur;
 
 public class BlurUtil {
     private static final float BITMAP_SCALE = 0.8f;
-    private static final int BLUR_RADIUS = 2;
+    private static final int BLUR_RADIUS = 8;
     public static final int BLUR_RADIUS_MAX = 4;
 
     public static Bitmap blur(Context context, Bitmap bitmap) {

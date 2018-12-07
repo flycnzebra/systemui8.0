@@ -259,8 +259,7 @@ public class NotificationPanelView extends PanelView implements
                 FlyLog.d("setBlurBackground bitmap == null");
                 return;
             }
-            Bitmap blurBitmap = BlurUtil.blur(getContext(), BlurUtil.blur(getContext(),
-                    bitmap, BlurUtil.BLUR_RADIUS_MAX), BlurUtil.BLUR_RADIUS_MAX);
+            Bitmap blurBitmap = BlurUtil.blur(getContext(),bitmap);
             BitmapUtils.recycleImageView(mBlurView);
             mBlurView.setImageBitmap(blurBitmap);
         }
