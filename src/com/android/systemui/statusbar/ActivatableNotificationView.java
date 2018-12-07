@@ -216,10 +216,10 @@ public abstract class ActivatableNotificationView extends ExpandableOutlineView 
         mBackgroundDimmed = findViewById(R.id.backgroundDimmed);
         mDimmedAlpha = Color.alpha(mContext.getColor(
                 R.color.notification_material_background_dimmed_color));
-        initBackground();
-        updateBackground();
-        updateBackgroundTint();
-        updateOutlineAlpha();
+//        initBackground();
+//        updateBackground();
+//        updateBackgroundTint();
+//        updateOutlineAlpha();
     }
 
     /**

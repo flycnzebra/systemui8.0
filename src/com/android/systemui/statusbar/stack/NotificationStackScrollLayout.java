@@ -3469,6 +3469,7 @@ public class NotificationStackScrollLayout extends ViewGroup
 
     @Override
     public void onHeightChanged(ExpandableView view, boolean needsAnimation) {
+        FlyLog.d("onHeightChanged");
         updateContentHeight();
         updateScrollPositionOnExpandInBottom(view);
         clampScrollPosition();
