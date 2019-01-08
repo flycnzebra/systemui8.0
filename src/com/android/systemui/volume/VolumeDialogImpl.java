@@ -511,7 +511,14 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
         mHandler.removeMessages(H.SHOW);
         mHandler.removeMessages(H.DISMISS);
         rescheduleTimeoutH();
-        if (mShowing) return;
+
+//        if (mShowing) return;
+        //解决有时音量条不显示的BUG
+        try {
+            if (mShowing && mDialog.isShowing()) return;
+        } catch (Exception e) {
+            FlyLog.e(e.toString());
+        }
         mShowing = true;
         mMotion.startShow();
         Events.writeEvent(mContext, Events.EVENT_SHOW_DIALOG, reason, mKeyguard.isKeyguardLocked());
@@ -545,7 +552,12 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
         }
         mHandler.removeMessages(H.DISMISS);
         mHandler.removeMessages(H.SHOW);
-        if (!mShowing) return;
+//        if (!mShowing) return;
+        try {
+            if (!mShowing && !mDialog.isShowing()) return;
+        } catch (Exception e) {
+            FlyLog.e(e.toString());
+        }
         mShowing = false;
         mMotion.startDismiss(new Runnable() {
             @Override
@@ -697,6 +709,8 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
     }
 
     private void onStateChangedH(State state) {
+        FlyLog.d("mActiveStream stream=%d,state.activeStream=%d", mActiveStream, state.activeStream);
+        mHandler.removeCallbacks(hideDialog);
         final boolean animating = mMotion.isAnimating();
         if (D.BUG) Log.d(TAG, "onStateChangedH animating=" + animating);
         mState = state;
@@ -1214,7 +1228,14 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
         public boolean onTouchEvent(MotionEvent event) {
             if (isShowing()) {
                 if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
-                    dismissH(Events.DISMISS_REASON_TOUCH_OUTSIDE);
+//                    dismissH(Events.DISMISS_REASON_TOUCH_OUTSIDE);
+//                    return true;
+                    /**
+                     * 取消触摸空白地区关闭音量条
+                     */
+                    FlyLog.d("event = %s", event.toString());
+                    mHandler.removeCallbacks(hideDialog);
+                    mHandler.postDelayed(hideDialog, 200);
                     return true;
                 }
             }
@@ -1242,6 +1263,13 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
             return false;
         }
     }
+
+    private Runnable hideDialog = new Runnable() {
+        @Override
+        public void run() {
+            dismissH(Events.DISMISS_REASON_TOUCH_OUTSIDE);
+        }
+    };
 
     private final class VolumeSeekBarChangeListener implements OnSeekBarChangeListener {
         private final VolumeRow mRow;
