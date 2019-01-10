@@ -1291,33 +1291,11 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
                 FlyLog.d("states setText2 volume %d,stream=%d", userLevel1, mRow.stream);
             }
 
-            if (mRow.ss.levelMin > 0) {
-                final int minProgress = mRow.ss.levelMin * 100;
-                if (progress < minProgress) {
-                    seekBar.setProgress(minProgress);
-                    progress = minProgress;
-                }
-            }
-            final int userLevel2 = getImpliedLevel(seekBar, progress);
-            if (mRow.ss.level != userLevel2 || mRow.ss.muted && userLevel2 > 0) {
-                mRow.userAttempt = SystemClock.uptimeMillis();
-                if (mRow.requestedLevel != userLevel2) {
-                    mController.setStreamVolume(mRow.stream, userLevel2);
-                    mRow.requestedLevel = userLevel2;
-                    Events.writeEvent(mContext, Events.EVENT_TOUCH_LEVEL_CHANGED, mRow.stream,
-                            userLevel2);
-                }
-            }
         }
 
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
             if (D.BUG) Log.d(TAG, "onStartTrackingTouch"+ " " + mRow.stream);
-            try {
-                mAudioManager.adjustStreamVolume(mRow.stream, AudioManager.ADJUST_UNMUTE, 0);
-            }catch (Exception e){
-                FlyLog.e(e.toString());
-            }
             mController.setActiveStream(mRow.stream);
             mRow.tracking = true;
         }
@@ -1337,6 +1315,26 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
             if (mRow.ss.level != userLevel) {
                 mHandler.sendMessageDelayed(mHandler.obtainMessage(H.RECHECK, mRow),
                         USER_ATTEMPT_GRACE_PERIOD);
+            }
+
+            int progress = seekBar.getProgress();
+
+            if (mRow.ss.levelMin > 0) {
+                final int minProgress = mRow.ss.levelMin * 100;
+                if (progress < minProgress) {
+                    seekBar.setProgress(minProgress);
+                    progress = minProgress;
+                }
+            }
+            final int userLevel2 = getImpliedLevel(seekBar, progress);
+            if (mRow.ss.level != userLevel2 || mRow.ss.muted && userLevel2 > 0) {
+                mRow.userAttempt = SystemClock.uptimeMillis();
+                if (mRow.requestedLevel != userLevel2) {
+                    mController.setStreamVolume(mRow.stream, userLevel2);
+                    mRow.requestedLevel = userLevel2;
+                    Events.writeEvent(mContext, Events.EVENT_TOUCH_LEVEL_CHANGED, mRow.stream,
+                            userLevel2);
+                }
             }
         }
     }
