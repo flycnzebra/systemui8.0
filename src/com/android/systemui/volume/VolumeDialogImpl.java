@@ -16,9 +16,6 @@
 
 package com.android.systemui.volume;
 
-import static android.accessibilityservice.AccessibilityServiceInfo.FEEDBACK_ALL_MASK;
-import static android.accessibilityservice.AccessibilityServiceInfo.FEEDBACK_GENERIC;
-
 import android.accessibilityservice.AccessibilityServiceInfo;
 import android.animation.ObjectAnimator;
 import android.annotation.NonNull;
@@ -73,10 +70,8 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
-import com.android.settingslib.Utils;
 import com.android.systemui.Dependency;
 import com.android.systemui.Interpolators;
-import com.android.systemui.Prefs;
 import com.android.systemui.R;
 import com.android.systemui.jancar.FlyLog;
 import com.android.systemui.plugins.VolumeDialog;
@@ -92,6 +87,9 @@ import com.jancar.key.KeyDef;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.accessibilityservice.AccessibilityServiceInfo.FEEDBACK_ALL_MASK;
+import static android.accessibilityservice.AccessibilityServiceInfo.FEEDBACK_GENERIC;
 
 /**
  * Visual presentation of the volume dialog.
@@ -894,8 +892,7 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
 
         // update slider
         final boolean enableSlider = !zenMuted;
-        final int vlevel = row.ss.muted && (!isRingStream && !zenMuted) ? 0
-                : row.ss.level;
+        final int vlevel =  row.ss.level;
         updateVolumeRowSliderH(row, enableSlider, vlevel);
     }
 
