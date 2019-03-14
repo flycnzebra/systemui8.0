@@ -13,16 +13,15 @@
      limitations under the License.
 -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="1024px"
-    android:layout_height="600px">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_marginTop="-6px"
         android:layout_width="176px"
-        android:paddingEnd="4px"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
+        android:layout_marginTop="-6px"
         android:background="@drawable/menubak"
         android:gravity="center|top"
         android:orientation="vertical">
