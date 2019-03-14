@@ -34,7 +34,6 @@ import com.android.systemui.Dependency;
 import com.android.systemui.EventLogTags;
 import com.android.systemui.R;
 import com.android.systemui.jancar.FlyLog;
-import com.android.systemui.plugins.ActivityStarter;
 import com.android.systemui.statusbar.policy.DarkIconDispatcher;
 import com.android.systemui.statusbar.policy.DarkIconDispatcher.DarkReceiver;
 import com.jancar.JancarManager;
@@ -97,31 +96,25 @@ public class PhoneStatusBarView extends PanelBar {
             mClose.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
-//                    FlyLog.d();
-//                    try {
-//                        if (DEBUG) Log.v(TAG, "btn_close_screen: onClick");
-//                        JancarManager jancarManager = (JancarManager) getContext().getSystemService("jancar_manager");
-//                        jancarManager.requestDisplay(false);
-//                    }catch (Exception e){
-//                        FlyLog.e(e.toString());
-//                    }
-                    ComponentName toActivityBrightness = new ComponentName("com.android.systemui",
-                            "com.android.systemui.settings.BrightnessDialog2");
-                    Intent intentBrightness = new Intent();
-                    intentBrightness.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intentBrightness.setComponent(toActivityBrightness);
-                    getContext().startActivity(intentBrightness);
+                    FlyLog.d();
+                    try {
+                        if (DEBUG) Log.v(TAG, "btn_close_screen: onClick");
+                        JancarManager jancarManager = (JancarManager) getContext().getSystemService("jancar_manager");
+                        jancarManager.requestDisplay(false);
+                    }catch (Exception e){
+                        FlyLog.e(e.toString());
+                    }
                 }
             });
             mJacMenu = findViewById(R.id.jancar_menu);
             mJacMenu.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ComponentName toActivityBrightness = new ComponentName("com.android.systemui",
-                            "com.android.systemui.settings.BrightnessDialog");
+                    ComponentName toActivityJancarmenu = new ComponentName("com.android.systemui",
+                            "com.android.systemui.jancar.JancarMenu");
                     Intent intentBrightness = new Intent();
                     intentBrightness.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intentBrightness.setComponent(toActivityBrightness);
+                    intentBrightness.setComponent(toActivityJancarmenu);
                     getContext().startActivity(intentBrightness);
                 }
             });
