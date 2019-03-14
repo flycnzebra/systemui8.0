@@ -530,44 +530,33 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".settings.BrightnessDialog"
-            android:label="@string/quick_settings_brightness_dialog_title"
-            android:theme="@style/BrightnessTheme"
-            android:finishOnCloseSystemDialogs="true"
-            android:launchMode="singleInstance"
-            android:excludeFromRecents="false"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="com.android.intent.action.SHOW_BRIGHTNESS_DIALOG" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+        <!--<activity-->
+            <!--android:name=".settings.BrightnessDialog"-->
+            <!--android:label="@string/quick_settings_brightness_dialog_title"-->
+            <!--android:theme="@style/BrightnessTheme"-->
+            <!--android:finishOnCloseSystemDialogs="true"-->
+            <!--android:launchMode="singleInstance"-->
+            <!--android:excludeFromRecents="false"-->
+            <!--android:exported="true">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="com.android.intent.action.SHOW_BRIGHTNESS_DIALOG" />-->
+                <!--<category android:name="android.intent.category.DEFAULT" />-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
 
-        <activity
-            android:name=".settings.BrightnessDialog2"
-            android:label="@string/quick_settings_brightness_dialog_title"
-            android:theme="@style/BrightnessTheme"
-            android:finishOnCloseSystemDialogs="true"
-            android:launchMode="singleInstance"
-            android:excludeFromRecents="false"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="com.android.intent.action.SHOW_BRIGHTNESS_DIALOG2" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".settings.JancarMenu"
-            android:launchMode="singleInstance"
-            android:excludeFromRecents="false"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="com.android.intent.action.SHOW_JANCARMENU" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+        <!--<activity-->
+            <!--android:name=".settings.BrightnessDialog2"-->
+            <!--android:label="@string/quick_settings_brightness_dialog_title"-->
+            <!--android:theme="@style/BrightnessTheme"-->
+            <!--android:finishOnCloseSystemDialogs="true"-->
+            <!--android:launchMode="singleInstance"-->
+            <!--android:excludeFromRecents="false"-->
+            <!--android:exported="true">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="com.android.intent.action.SHOW_BRIGHTNESS_DIALOG2" />-->
+                <!--<category android:name="android.intent.category.DEFAULT" />-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
 
         <activity android:name=".ForegroundServicesDialog"
             android:process=":fgservices"
