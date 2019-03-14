@@ -125,20 +125,6 @@ public class JancarMenu extends Activity {
     }
 
     @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        View view = getWindow().getDecorView();
-        WindowManager.LayoutParams lp = (WindowManager.LayoutParams) view.getLayoutParams();
-        WindowManager manager = getWindowManager();
-        DisplayMetrics outMetrics = new DisplayMetrics();
-        manager.getDefaultDisplay().getMetrics(outMetrics);
-        int width = outMetrics.widthPixels;
-        lp.x = width-lp.width;
-        lp.y = 53;
-        getWindowManager().updateViewLayout(view, lp);
-    }
-
-    @Override
     public void finish() {
         super.finish();
         overridePendingTransition(0, 0);
