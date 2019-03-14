@@ -115,6 +115,13 @@ public class JancarMenu extends Activity {
             }
         });
 
+        FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) view.getLayoutParams();
+        if (view.getWindowSystemUiVisibility() == 0) {
+            lp.topMargin = -6;
+        } else {
+            lp.topMargin = 53;
+        }
+
         mHander.postDelayed(hideUI, 3000);
 
     }
