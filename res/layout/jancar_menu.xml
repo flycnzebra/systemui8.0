@@ -13,12 +13,14 @@
      limitations under the License.
 -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="1024px"
-    android:layout_height="600px">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
+        android:layout_marginTop="-4px"
         android:layout_width="176px"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:background="@drawable/menubak"
         android:gravity="center"
@@ -26,23 +28,23 @@
 
         <com.android.systemui.statusbar.policy.KeyButtonView
             android:id="@+id/close_screen"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20px"
+            android:padding="8px"
             android:src="@drawable/jancar_closescreen" />
 
         <com.android.systemui.statusbar.policy.KeyButtonView
             android:id="@+id/show_recents"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20px"
+            android:padding="8px"
             android:src="@drawable/jancar_recent" />
 
         <com.android.systemui.statusbar.policy.KeyButtonView
             android:id="@+id/set_wallpager"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20px"
+            android:padding="8px"
             android:src="@drawable/jancar_wall" />
 
     </LinearLayout>
