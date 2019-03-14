@@ -24,7 +24,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:background="@drawable/menubak"
-        android:gravity="center"
+        android:gravity="center|top"
         android:orientation="vertical">
 
         <com.android.systemui.statusbar.policy.KeyButtonView
