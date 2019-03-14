@@ -22,10 +22,10 @@ public class JancarBrightnessTile extends QSTileImpl<QSTile.BooleanState> {
 
     @Override
     protected void handleClick() {
-        ComponentName toActivityCarsetting = new ComponentName("com.android.systemui", "com.android.systemui.settings.BrightnessDialog");
+        ComponentName toActivityBrightness = new ComponentName("com.android.systemui", "com.android.systemui.settings.BrightnessDialog");
         Intent intentBrightness = new Intent();
         intentBrightness.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intentBrightness.setComponent(toActivityCarsetting);
+        intentBrightness.setComponent(toActivityBrightness);
 //        mContext.startActivity(intentCarsetting);
         Dependency.get(ActivityStarter.class)
                 .postStartActivityDismissingKeyguard(intentBrightness, 0);

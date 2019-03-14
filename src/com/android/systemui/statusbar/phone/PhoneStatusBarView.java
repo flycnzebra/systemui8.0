@@ -111,13 +111,11 @@ public class PhoneStatusBarView extends PanelBar {
             mJacMenu.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
-                    ComponentName toActivityCarsetting = new ComponentName("com.android.systemui", "com.android.systemui.settings.JancarMenu");
+                    ComponentName toActivityBrightness = new ComponentName("com.android.systemui", "com.android.systemui.settings.BrightnessDialog");
                     Intent intentBrightness = new Intent();
                     intentBrightness.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intentBrightness.setComponent(toActivityCarsetting);
-                    Dependency.get(ActivityStarter.class)
-                            .postStartActivityDismissingKeyguard(intentBrightness, 0);
+                    intentBrightness.setComponent(toActivityBrightness);
+                    getContext().startActivity(intentBrightness);
                 }
             });
         }
