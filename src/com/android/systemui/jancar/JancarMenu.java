@@ -133,8 +133,8 @@ public class JancarMenu extends Activity {
         DisplayMetrics outMetrics = new DisplayMetrics();
         manager.getDefaultDisplay().getMetrics(outMetrics);
         int width = outMetrics.widthPixels;
-        lp.y = width-lp.width;
-        lp.x = 56;
+        lp.x = width-lp.width;
+        lp.y = 53;
         getWindowManager().updateViewLayout(view, lp);
     }
 
