@@ -19,7 +19,7 @@
     <LinearLayout
         android:layout_marginTop="-4px"
         android:layout_width="176px"
-        android:paddingStart="4px"
+        android:paddingStart="10px"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
