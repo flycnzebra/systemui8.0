@@ -41,7 +41,7 @@ public class JancarMenu extends Activity {
 
         final Window window = getWindow();
 
-        window.setGravity(Gravity.CENTER);
+        window.setGravity(Gravity.RIGHT);
         window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         window.requestFeature(Window.FEATURE_NO_TITLE);
         window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -58,7 +58,7 @@ public class JancarMenu extends Activity {
                     FlyLog.d("btn_close_screen: onClick");
                     JancarManager jancarManager = (JancarManager)getSystemService("jancar_manager");
                     jancarManager.requestDisplay(false);
-                    finish();
+//                    finish();
                 } catch (Exception e) {
                     FlyLog.e(e.toString());
                 }
