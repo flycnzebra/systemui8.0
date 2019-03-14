@@ -18,6 +18,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/menubak"
     android:gravity="center|top"
+    android:paddingStart="10px"
     android:orientation="vertical">
 
     <com.android.systemui.statusbar.policy.KeyButtonView
