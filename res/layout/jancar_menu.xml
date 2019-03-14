@@ -21,30 +21,30 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:paddingStart="10px"
         android:background="@drawable/menubak"
         android:gravity="center|top"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingStart="10px">
 
         <com.android.systemui.statusbar.policy.KeyButtonView
             android:id="@+id/close_screen"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10px"
+            android:layout_height="80px"
+            android:scaleType="center"
             android:src="@drawable/jancar_closescreen" />
 
         <com.android.systemui.statusbar.policy.KeyButtonView
             android:id="@+id/show_recents"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10px"
+            android:layout_height="80px"
+            android:scaleType="center"
             android:src="@drawable/jancar_recent" />
 
         <com.android.systemui.statusbar.policy.KeyButtonView
             android:id="@+id/set_wallpager"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10px"
+            android:layout_height="80px"
+            android:scaleType="center"
             android:src="@drawable/jancar_wall" />
 
     </LinearLayout>
