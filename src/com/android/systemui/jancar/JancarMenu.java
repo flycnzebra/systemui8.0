@@ -41,7 +41,6 @@ public class JancarMenu extends Activity {
 
         final Window window = getWindow();
 
-        window.setGravity(Gravity.RIGHT);
         window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         window.requestFeature(Window.FEATURE_NO_TITLE);
         window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));

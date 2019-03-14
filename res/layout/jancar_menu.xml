@@ -13,12 +13,13 @@
      limitations under the License.
 -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="1024px"
+    android:layout_height="600px">
 
     <LinearLayout
         android:layout_marginTop="-4px"
         android:layout_width="176px"
+        android:paddingStart="4px"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
