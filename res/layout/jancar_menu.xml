@@ -24,20 +24,23 @@
         android:gravity="center|top"
         android:orientation="horizontal">
 
-        <ImageView
+        <com.android.systemui.statusbar.policy.KeyButtonView
             android:padding="20px"
+            android:id="@+id/close_screen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/jancar_closescreen" />
 
-        <ImageView
+        <com.android.systemui.statusbar.policy.KeyButtonView
             android:padding="20px"
+            android:id="@+id/show_recents"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/jancar_recent" />
 
-        <ImageView
+        <com.android.systemui.statusbar.policy.KeyButtonView
             android:padding="20px"
+            android:id="@+id/set_wallpager"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/jancar_wall" />

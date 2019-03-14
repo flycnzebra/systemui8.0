@@ -58,7 +58,6 @@ public class BrightnessDialog extends Activity {
     private Runnable hideUI = new Runnable() {
         public void run() {
             finish();
-            mHander.postDelayed(hideUI, 3000);
         }
     };
 

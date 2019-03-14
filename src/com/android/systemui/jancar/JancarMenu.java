@@ -1,42 +1,39 @@
 package com.android.systemui.jancar;
 
 import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
+
 import com.android.systemui.R;
+import com.jancar.JancarManager;
 
 /**
  * A dialog that provides controls for adjusting the screen brightness.
  */
 public class JancarMenu extends Activity {
-    private boolean isStop = true;
-    private Handler mHander = new Handler() {
-        public void handleMessage(Message m) {
-            super.handleMessage(m);
-            switch (m.what) {
-                case 1:
-                    if (!isStop) {
-                        removeCallbacks(hideUI);
-                        postDelayed(hideUI, 3000);
-                    }
-                    break;
-            }
-        }
-    };
+    private Handler mHander = new Handler(Looper.getMainLooper());
     private Runnable hideUI = new Runnable() {
         public void run() {
             finish();
-            mHander.postDelayed(hideUI, 3000);
         }
     };
+
+    private ImageView close_screen;
+    private ImageView show_recents;
+    private ImageView set_wallpager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,18 +47,58 @@ public class JancarMenu extends Activity {
         window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         setContentView(R.layout.jancar_menu);
 
+        close_screen = findViewById(R.id.close_screen);
+        show_recents = findViewById(R.id.show_recents);
+        set_wallpager = findViewById(R.id.set_wallpager);
+
+        close_screen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    FlyLog.d("btn_close_screen: onClick");
+                    JancarManager jancarManager = (JancarManager)getSystemService("jancar_manager");
+                    jancarManager.requestDisplay(false);
+                    finish();
+                } catch (Exception e) {
+                    FlyLog.e(e.toString());
+                }
+            }
+        });
+
+        show_recents.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ComponentName toActivityJancarmenu = new ComponentName( "com.android.systemui",
+                        "com.android.systemui.recents.RecentsActivity");
+                Intent intentBrightness = new Intent();
+                intentBrightness.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intentBrightness.setComponent(toActivityJancarmenu);
+                startActivity(intentBrightness);
+                finish();
+            }
+        });
+
+        set_wallpager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ComponentName toActivityJancarmenu = new ComponentName( "com.android.launcher3",
+                        "com.android.launcher3.WallpaperPickerActivity");
+                Intent intentBrightness = new Intent();
+                intentBrightness.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intentBrightness.setComponent(toActivityJancarmenu);
+                startActivity(intentBrightness);
+                finish();
+            }
+        });
+
+        mHander.postDelayed(hideUI, 3000);
+
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        isStop = false;
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        isStop = true;
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        finish();
     }
 
     @Override
@@ -81,18 +118,18 @@ public class JancarMenu extends Activity {
         return super.onKeyDown(keyCode, event);
     }
 
-    @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        View view = getWindow().getDecorView();
-        WindowManager.LayoutParams lp = (WindowManager.LayoutParams) view.getLayoutParams();
-        lp.y = lp.y - 30;
-        getWindowManager().updateViewLayout(view, lp);
-    }
+//    @Override
+//    public void onAttachedToWindow() {
+//        super.onAttachedToWindow();
+//        View view = getWindow().getDecorView();
+//        WindowManager.LayoutParams lp = (WindowManager.LayoutParams) view.getLayoutParams();
+//        lp.y = lp.y - 30;
+//        getWindowManager().updateViewLayout(view, lp);
+//    }
 
     @Override
     public void finish() {
         super.finish();
-        overridePendingTransition(0,0);
+        overridePendingTransition(0, 0);
     }
 }
