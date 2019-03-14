@@ -1434,8 +1434,8 @@ public class StatusBar extends SystemUI implements DemoMode,
     };
 
     private View getStatusBarViewRecentsButton() {
-        return mStatusBarView.findViewById(R.id.recent_apps007);
-        //return null;
+//        return mStatusBarView.findViewById(R.id.recent_apps007);
+        return null;
     }
 
     private void setRecentsButton() {

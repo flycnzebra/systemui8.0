@@ -17,6 +17,7 @@
 package com.android.systemui.statusbar.phone;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.AttributeSet;
 import android.util.EventLog;
 import android.util.Log;
@@ -34,6 +35,7 @@ import com.android.systemui.Dependency;
 import com.android.systemui.EventLogTags;
 import com.android.systemui.R;
 import com.android.systemui.jancar.FlyLog;
+import com.android.systemui.jancar.JancarMenu;
 import com.android.systemui.statusbar.policy.DarkIconDispatcher;
 import com.android.systemui.statusbar.policy.DarkIconDispatcher.DarkReceiver;
 import com.jancar.JancarManager;
@@ -63,6 +65,7 @@ public class PhoneStatusBarView extends PanelBar {
     private ImageView mBack;
     private ImageView mRecent;
     private ImageView mClose;
+    private ImageView mJacMenu;
 
     public PhoneStatusBarView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -102,6 +105,13 @@ public class PhoneStatusBarView extends PanelBar {
                     }catch (Exception e){
                         FlyLog.e(e.toString());
                     }
+                }
+            });
+            mJacMenu = findViewById(R.id.jancar_menu);
+            mJacMenu.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    getContext().startActivity(new Intent(getContext(),JancarMenu.class));
                 }
             });
         }
