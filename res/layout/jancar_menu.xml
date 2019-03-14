@@ -20,19 +20,25 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/menubak"
+        android:gravity="center"
+        android:padding="4px"
         android:orientation="horizontal">
 
         <ImageView
+            android:padding="20px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/jancar_closescreen" />
 
         <ImageView
+            android:padding="20px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/jancar_recent" />
 
         <ImageView
+            android:padding="20px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/jancar_wall" />
