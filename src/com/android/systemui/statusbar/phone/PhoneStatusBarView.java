@@ -112,7 +112,7 @@ public class PhoneStatusBarView extends PanelBar {
                 @Override
                 public void onClick(View view) {
                     ComponentName toActivityBrightness = new ComponentName("com.android.systemui",
-                            "com.android.systemui.settings.BrightnessDialog2");
+                            "com.android.systemui.settings.BrightnessDialog");
                     Intent intentBrightness = new Intent();
                     intentBrightness.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intentBrightness.setComponent(toActivityBrightness);
