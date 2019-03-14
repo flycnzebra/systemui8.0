@@ -58,7 +58,12 @@ public class JancarMenu extends Activity {
                     FlyLog.d("btn_close_screen: onClick");
                     JancarManager jancarManager = (JancarManager)getSystemService("jancar_manager");
                     jancarManager.requestDisplay(false);
-//                    finish();
+                    mHander.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            finish();
+                        }
+                    },300);
                 } catch (Exception e) {
                     FlyLog.e(e.toString());
                 }
