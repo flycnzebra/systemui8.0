@@ -62,7 +62,7 @@ public class JancarMenu extends Activity {
                         public void run() {
                             finish();
                         }
-                    },300);
+                    },1000);
                 } catch (Exception e) {
                     FlyLog.e(e.toString());
                 }
