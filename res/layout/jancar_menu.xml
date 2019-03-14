@@ -12,35 +12,41 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="152px"
-    android:layout_height="wrap_content"
-    android:background="@drawable/menubak"
-    android:gravity="center|top"
-    android:paddingStart="10px"
-    android:orientation="vertical">
-
-    <com.android.systemui.statusbar.policy.KeyButtonView
-        android:id="@+id/close_screen"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="152px"
         android:layout_height="wrap_content"
-        android:padding="10px"
-        android:src="@drawable/jancar_closescreen" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:paddingStart="10px"
+        android:background="@drawable/menubak"
+        android:gravity="center|top"
+        android:orientation="vertical">
 
-    <com.android.systemui.statusbar.policy.KeyButtonView
-        android:id="@+id/show_recents"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10px"
-        android:src="@drawable/jancar_recent" />
+        <com.android.systemui.statusbar.policy.KeyButtonView
+            android:id="@+id/close_screen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10px"
+            android:src="@drawable/jancar_closescreen" />
 
-    <com.android.systemui.statusbar.policy.KeyButtonView
-        android:id="@+id/set_wallpager"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10px"
-        android:src="@drawable/jancar_wall" />
+        <com.android.systemui.statusbar.policy.KeyButtonView
+            android:id="@+id/show_recents"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10px"
+            android:src="@drawable/jancar_recent" />
 
-</LinearLayout>
+        <com.android.systemui.statusbar.policy.KeyButtonView
+            android:id="@+id/set_wallpager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10px"
+            android:src="@drawable/jancar_wall" />
 
+    </LinearLayout>
+
+</RelativeLayout>
