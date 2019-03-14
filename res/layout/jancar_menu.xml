@@ -17,9 +17,9 @@
     android:layout_height="600px">
 
     <LinearLayout
-        android:layout_marginTop="-4px"
+        android:layout_marginTop="-6px"
         android:layout_width="176px"
-        android:paddingStart="10px"
+        android:paddingEnd="4px"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
@@ -31,21 +31,21 @@
             android:id="@+id/close_screen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8px"
+            android:padding="10px"
             android:src="@drawable/jancar_closescreen" />
 
         <com.android.systemui.statusbar.policy.KeyButtonView
             android:id="@+id/show_recents"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8px"
+            android:padding="10px"
             android:src="@drawable/jancar_recent" />
 
         <com.android.systemui.statusbar.policy.KeyButtonView
             android:id="@+id/set_wallpager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8px"
+            android:padding="10px"
             android:src="@drawable/jancar_wall" />
 
     </LinearLayout>
