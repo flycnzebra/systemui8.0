@@ -103,7 +103,7 @@
             android:layout_height="match_parent"
             android:contentDescription="@string/accessibility_recent"
             android:src="@drawable/jac_sbt_close_screen_01"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
         <com.android.systemui.statusbar.policy.KeyButtonView
             android:id="@+id/jancar_menu"

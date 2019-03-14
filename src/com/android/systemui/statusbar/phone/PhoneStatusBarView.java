@@ -97,14 +97,20 @@ public class PhoneStatusBarView extends PanelBar {
             mClose.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    FlyLog.d();
-                    try {
-                        if (DEBUG) Log.v(TAG, "btn_close_screen: onClick");
-                        JancarManager jancarManager = (JancarManager) getContext().getSystemService("jancar_manager");
-                        jancarManager.requestDisplay(false);
-                    }catch (Exception e){
-                        FlyLog.e(e.toString());
-                    }
+//                    FlyLog.d();
+//                    try {
+//                        if (DEBUG) Log.v(TAG, "btn_close_screen: onClick");
+//                        JancarManager jancarManager = (JancarManager) getContext().getSystemService("jancar_manager");
+//                        jancarManager.requestDisplay(false);
+//                    }catch (Exception e){
+//                        FlyLog.e(e.toString());
+//                    }
+                    ComponentName toActivityBrightness = new ComponentName("com.android.systemui",
+                            "com.android.systemui.settings.BrightnessDialog2");
+                    Intent intentBrightness = new Intent();
+                    intentBrightness.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intentBrightness.setComponent(toActivityBrightness);
+                    getContext().startActivity(intentBrightness);
                 }
             });
             mJacMenu = findViewById(R.id.jancar_menu);
