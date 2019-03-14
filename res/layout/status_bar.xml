@@ -47,10 +47,10 @@
         <!--com.android.systemui.statusbar.policy.KeyButtonView /-->
         <com.android.systemui.statusbar.policy.KeyButtonView
             android:id="@+id/home"
-            android:layout_width="59px"
+            android:layout_width="64px"
             android:layout_height="match_parent"
             android:contentDescription="@string/accessibility_home"
-            android:src="@drawable/jac_sbt_home_01"
+            android:src="@drawable/jancar_home"
             systemui:keyCode="3"
             systemui:keyRepeat="false" />
 
@@ -94,7 +94,8 @@
             android:layout_height="match_parent"
             android:contentDescription="@string/accessibility_recent"
             android:scaleType="center"
-            android:src="@drawable/jac_sbt_bake_recent_01" />
+            android:src="@drawable/jac_sbt_bake_recent_01"
+            android:visibility="gone"/>
 
         <com.android.systemui.statusbar.policy.KeyButtonView
             android:id="@+id/close_screen"
@@ -102,14 +103,22 @@
             android:layout_height="match_parent"
             android:contentDescription="@string/accessibility_recent"
             android:src="@drawable/jac_sbt_close_screen_01"
+            android:visibility="gone" />
+
+        <com.android.systemui.statusbar.policy.KeyButtonView
+            android:id="@+id/jancar_menu"
+            android:layout_width="59px"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/accessibility_recent"
+            android:src="@drawable/jancar_menu"
             android:visibility="visible" />
 
         <com.android.systemui.statusbar.policy.KeyButtonView
             android:id="@+id/back"
-            android:layout_width="67px"
+            android:layout_width="112px"
             android:layout_height="match_parent"
             android:contentDescription="@string/accessibility_back"
-            android:src="@drawable/jac_sbt_bake_01"
+            android:src="@drawable/jancar_back"
             android:paddingEnd="8px"
             systemui:keyCode="4" />
 
