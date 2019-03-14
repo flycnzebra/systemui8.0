@@ -47,7 +47,7 @@
         <!--com.android.systemui.statusbar.policy.KeyButtonView /-->
         <com.android.systemui.statusbar.policy.KeyButtonView
             android:id="@+id/home"
-            android:layout_width="64px"
+            android:layout_width="112px"
             android:layout_height="match_parent"
             android:contentDescription="@string/accessibility_home"
             android:src="@drawable/jancar_home"

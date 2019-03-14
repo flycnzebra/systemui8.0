@@ -98,6 +98,7 @@ public class PhoneStatusBarView extends PanelBar {
             mClose.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    FlyLog.d();
                     try {
                         if (DEBUG) Log.v(TAG, "btn_close_screen: onClick");
                         JancarManager jancarManager = (JancarManager) getContext().getSystemService("jancar_manager");
@@ -111,6 +112,7 @@ public class PhoneStatusBarView extends PanelBar {
             mJacMenu.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    FlyLog.d();
                     getContext().startActivity(new Intent(getContext(),JancarMenu.class));
                 }
             });
