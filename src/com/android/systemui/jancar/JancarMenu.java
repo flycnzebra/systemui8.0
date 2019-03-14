@@ -11,13 +11,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
-
-import com.android.internal.logging.MetricsLogger;
-import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 import com.android.systemui.R;
-import com.android.systemui.settings.BrightnessController;
-import com.android.systemui.settings.ToggleSliderView;
 
 /**
  * A dialog that provides controls for adjusting the screen brightness.

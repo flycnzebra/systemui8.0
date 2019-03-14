@@ -546,13 +546,12 @@
 
         <activity
             android:name=".jancar.JancarMenu"
-            android:theme="@style/BrightnessTheme"
             android:finishOnCloseSystemDialogs="true"
             android:launchMode="singleInstance"
             android:excludeFromRecents="false"
             android:exported="true">
             <intent-filter>
-                <action android:name="com.android.intent.action.SHOW_BRIGHTNESS_DIALOG" />
+                <action android:name="com.android.intent.action.SHOW_JANCARMENU" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
