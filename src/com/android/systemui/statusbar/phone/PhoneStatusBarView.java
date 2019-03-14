@@ -111,7 +111,8 @@ public class PhoneStatusBarView extends PanelBar {
             mJacMenu.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ComponentName toActivityBrightness = new ComponentName("com.android.systemui", "com.android.systemui.settings.BrightnessDialog");
+                    ComponentName toActivityBrightness = new ComponentName("com.android.systemui",
+                            "com.android.systemui.settings.BrightnessDialog2");
                     Intent intentBrightness = new Intent();
                     intentBrightness.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intentBrightness.setComponent(toActivityBrightness);
