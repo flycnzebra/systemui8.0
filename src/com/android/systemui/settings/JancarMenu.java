@@ -1,4 +1,4 @@
-package com.android.systemui.jancar;
+package com.android.systemui.settings;
 
 import android.app.Activity;
 import android.graphics.Color;

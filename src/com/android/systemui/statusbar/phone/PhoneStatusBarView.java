@@ -16,6 +16,7 @@
 
 package com.android.systemui.statusbar.phone;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.util.AttributeSet;
@@ -29,13 +30,11 @@ import android.widget.ImageView;
 
 import android.os.SystemProperties;
 
-import com.android.systemui.BatteryMeterView;
-import com.android.systemui.DejankUtils;
 import com.android.systemui.Dependency;
 import com.android.systemui.EventLogTags;
 import com.android.systemui.R;
 import com.android.systemui.jancar.FlyLog;
-import com.android.systemui.jancar.JancarMenu;
+import com.android.systemui.plugins.ActivityStarter;
 import com.android.systemui.statusbar.policy.DarkIconDispatcher;
 import com.android.systemui.statusbar.policy.DarkIconDispatcher.DarkReceiver;
 import com.jancar.JancarManager;
@@ -112,8 +111,13 @@ public class PhoneStatusBarView extends PanelBar {
             mJacMenu.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    FlyLog.d();
-                    getContext().startActivity(new Intent(getContext(),JancarMenu.class));
+
+                    ComponentName toActivityCarsetting = new ComponentName("com.android.systemui", "com.android.systemui.settings.JancarMenu");
+                    Intent intentBrightness = new Intent();
+                    intentBrightness.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intentBrightness.setComponent(toActivityCarsetting);
+                    Dependency.get(ActivityStarter.class)
+                            .postStartActivityDismissingKeyguard(intentBrightness, 0);
                 }
             });
         }

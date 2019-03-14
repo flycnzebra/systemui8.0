@@ -545,8 +545,7 @@
         </activity>
 
         <activity
-            android:name=".jancar.JancarMenu"
-            android:finishOnCloseSystemDialogs="true"
+            android:name=".settings.JancarMenu"
             android:launchMode="singleInstance"
             android:excludeFromRecents="false"
             android:exported="true">
