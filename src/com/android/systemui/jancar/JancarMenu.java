@@ -16,6 +16,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.android.systemui.R;
@@ -35,6 +36,7 @@ public class JancarMenu extends Activity {
     private ImageView close_screen;
     private ImageView show_recents;
     private ImageView set_wallpager;
+    private View view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,8 @@ public class JancarMenu extends Activity {
 
         window.setGravity(Gravity.END|Gravity.TOP);
         window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        window.setFlags(WindowManager.LayoutParams. FLAG_FULLSCREEN ,
+                WindowManager.LayoutParams. FLAG_FULLSCREEN);
         window.requestFeature(Window.FEATURE_NO_TITLE);
         window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         setContentView(R.layout.jancar_menu);
@@ -51,6 +55,7 @@ public class JancarMenu extends Activity {
         close_screen = findViewById(R.id.close_screen);
         show_recents = findViewById(R.id.show_recents);
         set_wallpager = findViewById(R.id.set_wallpager);
+        view = findViewById(R.id.rootview);
 
         close_screen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,6 +99,19 @@ public class JancarMenu extends Activity {
                 intentBrightness.setComponent(toActivityJancarmenu);
                 startActivity(intentBrightness);
                 finish();
+            }
+        });
+
+        view.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
+            @Override
+            public void onSystemUiVisibilityChange(int visibility) {
+                FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) view.getLayoutParams();
+                if (visibility == 0) {
+                    lp.topMargin = -6;
+                }else{
+                    lp.topMargin = 53;
+                }
+                view.setLayoutParams(lp);
             }
         });
 
