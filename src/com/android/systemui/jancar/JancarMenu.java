@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -123,14 +124,19 @@ public class JancarMenu extends Activity {
         return super.onKeyDown(keyCode, event);
     }
 
-//    @Override
-//    public void onAttachedToWindow() {
-//        super.onAttachedToWindow();
-//        View view = getWindow().getDecorView();
-//        WindowManager.LayoutParams lp = (WindowManager.LayoutParams) view.getLayoutParams();
-//        lp.y = lp.y - 30;
-//        getWindowManager().updateViewLayout(view, lp);
-//    }
+    @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        View view = getWindow().getDecorView();
+        WindowManager.LayoutParams lp = (WindowManager.LayoutParams) view.getLayoutParams();
+        WindowManager manager = getWindowManager();
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        manager.getDefaultDisplay().getMetrics(outMetrics);
+        int width = outMetrics.widthPixels;
+        lp.y = width-lp.width;
+        lp.x = 56;
+        getWindowManager().updateViewLayout(view, lp);
+    }
 
     @Override
     public void finish() {
