@@ -55,7 +55,6 @@ public class JancarMenu extends Activity {
         close_screen = findViewById(R.id.close_screen);
         show_recents = findViewById(R.id.show_recents);
         set_wallpager = findViewById(R.id.set_wallpager);
-        view = findViewById(R.id.rootview);
 
         close_screen.setOnClickListener(new View.OnClickListener() {
             @Override
