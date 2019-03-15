@@ -546,7 +546,7 @@
 
         <activity
             android:name=".jancar.JancarMenu"
-            android:theme="@style/Theme.DeviceDefault.Settings.Dialog"
+            android:theme="@*android/Theme.DeviceDefault.Settings.Dialog"
             android:finishOnCloseSystemDialogs="true"
             android:launchMode="singleInstance"
             android:excludeFromRecents="false"

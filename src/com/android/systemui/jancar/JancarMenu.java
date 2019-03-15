@@ -32,7 +32,6 @@ public class JancarMenu extends Activity {
     private ImageView close_screen;
     private ImageView show_recents;
     private ImageView set_wallpager;
-    private View view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
