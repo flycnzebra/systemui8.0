@@ -44,7 +44,7 @@ public class JancarMenu extends Activity {
 
         final Window window = getWindow();
 
-        window.setGravity(Gravity.END|Gravity.TOP);
+        window.setGravity(Gravity.END|Gravity.BOTTOM);
         window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         window.setFlags(WindowManager.LayoutParams. FLAG_FULLSCREEN ,
                 WindowManager.LayoutParams. FLAG_FULLSCREEN);
@@ -101,26 +101,6 @@ public class JancarMenu extends Activity {
                 finish();
             }
         });
-
-        view.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
-            @Override
-            public void onSystemUiVisibilityChange(int visibility) {
-                FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) view.getLayoutParams();
-                if (visibility == 0) {
-                    lp.topMargin = -6;
-                }else{
-                    lp.topMargin = 53;
-                }
-                view.setLayoutParams(lp);
-            }
-        });
-
-        FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) view.getLayoutParams();
-        if (view.getWindowSystemUiVisibility() == 0) {
-            lp.topMargin = -6;
-        } else {
-            lp.topMargin = 53;
-        }
 
         mHander.postDelayed(hideUI, 3000);
 
