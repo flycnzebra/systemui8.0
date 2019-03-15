@@ -65,12 +65,13 @@ public class BrightnessDialog extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final Window window = getWindow();
+        final Window mWindow = getWindow();
 
-        window.setGravity(Gravity.CENTER);
-        window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-        window.requestFeature(Window.FEATURE_NO_TITLE);
-        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        mWindow.setGravity(Gravity.CENTER);
+        mWindow.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        mWindow.requestFeature(Window.FEATURE_NO_TITLE);
+        mWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        mWindow.setType(WindowManager.LayoutParams.TYPE_VOLUME_OVERLAY);
 
         // Use a dialog theme as the activity theme, but inflate the content as
         // the QS content.
