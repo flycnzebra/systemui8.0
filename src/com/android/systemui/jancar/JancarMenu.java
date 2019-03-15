@@ -49,7 +49,7 @@ public class JancarMenu extends Activity {
                 | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
                 | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH
                 | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
-        mWindow.setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+        mWindow.setType(WindowManager.LayoutParams.TYPE_VOLUME_OVERLAY);
         setContentView(R.layout.jancar_menu);
 
         close_screen = findViewById(R.id.close_screen);
