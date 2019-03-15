@@ -40,15 +40,9 @@ public class JancarMenu extends Activity {
         final Window mWindow = getWindow();
 
         mWindow.setGravity(Gravity.END|Gravity.BOTTOM);
+        mWindow.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         mWindow.requestFeature(Window.FEATURE_NO_TITLE);
         mWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        mWindow.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-        mWindow.addFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-                | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
-                | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
-                | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
-                | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH
-                | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
         mWindow.setType(WindowManager.LayoutParams.TYPE_VOLUME_OVERLAY);
         setContentView(R.layout.jancar_menu);
 
