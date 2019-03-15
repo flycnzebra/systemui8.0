@@ -8,15 +8,11 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.Message;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.android.systemui.R;
@@ -42,14 +38,18 @@ public class JancarMenu extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final Window window = getWindow();
+        final Window mWindow = getWindow();
 
-        window.setGravity(Gravity.END|Gravity.BOTTOM);
-        window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-        window.setFlags(WindowManager.LayoutParams. FLAG_FULLSCREEN ,
-                WindowManager.LayoutParams. FLAG_FULLSCREEN);
-        window.requestFeature(Window.FEATURE_NO_TITLE);
-        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        mWindow.setGravity(Gravity.END|Gravity.BOTTOM);
+        mWindow.requestFeature(Window.FEATURE_NO_TITLE);
+        mWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        mWindow.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        mWindow.addFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+                | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+                | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+                | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH
+                | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
         setContentView(R.layout.jancar_menu);
 
         close_screen = findViewById(R.id.close_screen);
@@ -64,12 +64,6 @@ public class JancarMenu extends Activity {
                     FlyLog.d("btn_close_screen: onClick");
                     JancarManager jancarManager = (JancarManager)getSystemService("jancar_manager");
                     jancarManager.requestDisplay(false);
-                    mHander.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            finish();
-                        }
-                    },1000);
                 } catch (Exception e) {
                     FlyLog.e(e.toString());
                 }
