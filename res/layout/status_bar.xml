@@ -123,7 +123,6 @@
             android:layout_width="112px"
             android:layout_height="match_parent"
             android:contentDescription="@string/accessibility_back"
-            android:paddingEnd="8px"
             android:scaleType="centerCrop"
             android:src="@drawable/jancar_back"
             systemui:keyCode="4" />
