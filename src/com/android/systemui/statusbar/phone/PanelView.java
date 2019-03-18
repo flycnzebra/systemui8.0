@@ -327,7 +327,7 @@ public abstract class PanelView extends FrameLayout {
                     cancelPeek();
                     onTrackingStarted();
                 }
-                if (y <= 8 && isFullyCollapsed() && !mHeadsUpManager.hasPinnedHeadsUp()) {
+                if (isFullyCollapsed() && !mHeadsUpManager.hasPinnedHeadsUp()) {
                     startOpening();
                 }
                 break;
@@ -404,7 +404,6 @@ public abstract class PanelView extends FrameLayout {
     }
 
     private void startOpening() {
-        ;
         runPeekAnimation(INITIAL_OPENING_PEEK_DURATION, getOpeningHeight(),
                 false /* collapseWhenFinished */);
         notifyBarPanelExpansionChanged();
