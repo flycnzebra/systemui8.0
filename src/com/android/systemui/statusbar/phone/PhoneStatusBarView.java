@@ -34,6 +34,7 @@ import com.android.systemui.Dependency;
 import com.android.systemui.EventLogTags;
 import com.android.systemui.R;
 import com.android.systemui.jancar.FlyLog;
+import com.android.systemui.jancar.JancarMenuDialog;
 import com.android.systemui.statusbar.policy.DarkIconDispatcher;
 import com.android.systemui.statusbar.policy.DarkIconDispatcher.DarkReceiver;
 import com.jancar.JancarManager;
@@ -110,12 +111,13 @@ public class PhoneStatusBarView extends PanelBar {
             mJacMenu.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ComponentName toActivityJancarmenu = new ComponentName("com.android.systemui",
-                            "com.android.systemui.jancar.JancarMenu");
-                    Intent intentBrightness = new Intent();
-                    intentBrightness.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intentBrightness.setComponent(toActivityJancarmenu);
-                    getContext().startActivity(intentBrightness);
+//                    ComponentName toActivityJancarmenu = new ComponentName("com.android.systemui",
+//                            "com.android.systemui.jancar.JancarMenu");
+//                    Intent intentBrightness = new Intent();
+//                    intentBrightness.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                    intentBrightness.setComponent(toActivityJancarmenu);
+//                    getContext().startActivity(intentBrightness);
+                    JancarMenuDialog
                 }
             });
         }
