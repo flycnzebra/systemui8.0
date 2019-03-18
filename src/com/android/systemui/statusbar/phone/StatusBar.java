@@ -2081,6 +2081,14 @@ public class StatusBar extends SystemUI implements DemoMode,
         final int N = activeNotifications.size();
         for (int i=0; i<N; i++) {
             Entry ent = activeNotifications.get(i);
+
+            //@FlyZebra 禁用应用在通知栏显示
+            if ("com.mediatek.security".equals(ent.notification.getPackageName())
+                    ||"com.jancar.bluetooth.phone".equals(ent.notification.getPackageName())) {
+                FlyLog.e("Do not show Notification, packname=%s",ent.notification.getPackageName());
+                continue;
+            }
+
             if (ent.row.isDismissed() || ent.row.isRemoved()) {
                 // we don't want to update removed notifications because they could
                 // temporarily become children if they were isolated before.
