@@ -328,7 +328,7 @@ public abstract class PanelView extends FrameLayout {
                     onTrackingStarted();
                 }
                 if (isFullyCollapsed() && !mHeadsUpManager.hasPinnedHeadsUp()) {
-                    startOpening();
+//                    startOpening();
                 }
                 break;
 
