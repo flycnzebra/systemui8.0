@@ -117,7 +117,7 @@ public class PhoneStatusBarView extends PanelBar {
 //                    intentBrightness.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //                    intentBrightness.setComponent(toActivityJancarmenu);
 //                    getContext().startActivity(intentBrightness);
-                    JancarMenuDialog
+                    JancarMenuDialog.getInstance(getContext()).show();
                 }
             });
         }
