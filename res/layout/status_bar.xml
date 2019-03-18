@@ -41,6 +41,7 @@
         android:id="@+id/status_bar_contents"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="1px"
         android:orientation="horizontal"
         android:paddingStart="6dp">
 
