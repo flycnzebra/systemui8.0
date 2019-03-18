@@ -15,6 +15,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import com.android.systemui.R;
 import com.jancar.JancarManager;
 
 
