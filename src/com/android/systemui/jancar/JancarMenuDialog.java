@@ -113,12 +113,13 @@ public class JancarMenuDialog extends Dialog {
 
     @Override
     public void show() {
-        super.show();
         if (isShowing()) {
             dismiss();
         } else {
+            super.show();
             mHander.postDelayed(hideUI, 3000);
         }
+
     }
 
     @Override
