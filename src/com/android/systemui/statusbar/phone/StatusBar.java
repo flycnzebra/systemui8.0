@@ -279,6 +279,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
+import java.util.LinkedList;
 
 public class StatusBar extends SystemUI implements DemoMode,
         DragDownHelper.DragDownCallback, ActivityStarter, OnUnlockMethodChangedListener,
@@ -785,6 +786,7 @@ public class StatusBar extends SystemUI implements DemoMode,
     private ScreenLifecycle mScreenLifecycle;
     @VisibleForTesting
     WakefulnessLifecycle mWakefulnessLifecycle;
+    private LinkedList<String> stackActivities = new LinkedList<>();
 
     private void recycleAllVisibilityObjects(ArraySet<NotificationVisibility> array) {
         final int N = array.size();
@@ -794,7 +796,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         array.clear();
     }
 
-    private final View.OnClickListener mGoToLockedShadeListener = v -> {
+    private final OnClickListener mGoToLockedShadeListener = v -> {
         if (mState == StatusBarState.KEYGUARD) {
             wakeUpIfDozing(SystemClock.uptimeMillis(), v);
             goToLockedShade(null);
@@ -961,6 +963,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         filter.addAction(Intent.ACTION_USER_SWITCHED);
         filter.addAction(Intent.ACTION_USER_ADDED);
         filter.addAction(Intent.ACTION_USER_PRESENT);
+        filter.addAction(ActivityThread.ACTION_ACTIVITY_STATE_CHANGED);
         mContext.registerReceiver(mBaseBroadcastReceiver, filter);
 
         IntentFilter internalFilter = new IntentFilter();
@@ -971,7 +974,6 @@ public class StatusBar extends SystemUI implements DemoMode,
         /**
          * 监听Activity变化
          */
-        internalFilter.addAction(ActivityThread.ACTION_ACTIVITY_STATE_CHANGED);
 
         mContext.registerReceiver(mBaseBroadcastReceiver, internalFilter, PERMISSION_SELF, null);
 
@@ -1385,7 +1387,7 @@ public class StatusBar extends SystemUI implements DemoMode,
     }
 
     /**
-     * Returns the {@link android.view.View.OnTouchListener} that will be invoked when the
+     * Returns the {@link View.OnTouchListener} that will be invoked when the
      * background window of the status bar is clicked.
      */
     protected View.OnTouchListener getStatusBarWindowTouchListener() {
@@ -1438,7 +1440,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         reevaluateStyles();
     }
 
-    private View.OnClickListener mRecentsClickListener = new View.OnClickListener() {
+    private OnClickListener mRecentsClickListener = new OnClickListener() {
         public void onClick(View v) {
             awakenDreams();
             mCommandQueue.toggleRecentApps();
@@ -1572,7 +1574,7 @@ public class StatusBar extends SystemUI implements DemoMode,
 
         mDismissView = (DismissView) LayoutInflater.from(mContext).inflate(
                 R.layout.status_bar_notification_dismiss_all, mStackScroller, false);
-        mDismissView.setOnButtonClickListener(new View.OnClickListener() {
+        mDismissView.setOnButtonClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 mMetricsLogger.action(MetricsEvent.ACTION_DISMISS_ALL_NOTES);
@@ -2872,7 +2874,7 @@ public class StatusBar extends SystemUI implements DemoMode,
     }
 
     protected H createHandler() {
-        return new StatusBar.H();
+        return new H();
     }
 
     @Override
@@ -4102,7 +4104,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         ArrayList<Entry> activeNotifications = mNotificationData.getActiveNotifications();
         final int notificationCount = activeNotifications.size();
         for (int i = 0; i < notificationCount; i++) {
-            NotificationData.Entry entry = activeNotifications.get(i);
+            Entry entry = activeNotifications.get(i);
             if (entry.row != null) {
                 entry.row.resetUserExpansion();
             }
@@ -4362,7 +4364,7 @@ public class StatusBar extends SystemUI implements DemoMode,
     }
 
     void vibrate() {
-        android.os.Vibrator vib = (android.os.Vibrator) mContext.getSystemService(
+        Vibrator vib = (Vibrator) mContext.getSystemService(
                 Context.VIBRATOR_SERVICE);
         vib.vibrate(250, VIBRATION_ATTRIBUTES);
     }
@@ -6397,11 +6399,26 @@ public class StatusBar extends SystemUI implements DemoMode,
                         String strclass = bundle.getString("class");
                         String strstate = bundle.getString("state");
                         FlyLog.d("Activity change intent=%s", intent.toUri(0));
+
+                        String current = strpackage + "/" + strclass;
+                        String top = stackActivities.peek();
                         if (strstate.equals("foreground")) {
+                            if (!TextUtils.equals(current, top)) {
+                                stackActivities.push(current);
+                            }
+                        } else if (strstate.equals("background")) {
+                            if (TextUtils.equals(current, top)) {
+                                stackActivities.pop();
+                            }
+                        }
+
+                        String topPackage = stackActivities.peek();
+                        if (topPackage != null && topPackage.contains("/")) {
+                            String[] app = topPackage.split("/");
                             /**
                              * 显示标题
                              */
-                            switch (strpackage) {
+                            switch (app[0]) {
                                 case "com.android.systemui":
                                     break;
                                 case "com.jancar.launcher":
@@ -6413,9 +6430,9 @@ public class StatusBar extends SystemUI implements DemoMode,
 //                                    btn_back.setVisibility(View.VISIBLE);
                                     break;
                                 default:
-                                    List<LauncherActivityInfo> list = PkUtils.getLauncgerActivitys(strpackage, context);
+                                    List<LauncherActivityInfo> list = PkUtils.getLauncgerActivitys(app[0], context);
                                     for (LauncherActivityInfo info : list) {
-                                        if (strclass.equals(info.getComponentName().getClassName())) {
+                                        if (app[1].equals(info.getComponentName().getClassName())) {
                                             FlyLog.d("activity info =%s", info.getName());
                                             apptitle.setText(info.getLabel());
                                             break;
@@ -6638,7 +6655,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         return mGroupManager;
     }
 
-    public boolean isMediaNotification(NotificationData.Entry entry) {
+    public boolean isMediaNotification(Entry entry) {
         // TODO: confirm that there's a valid media key
         return entry.getExpandedContentView() != null &&
                 entry.getExpandedContentView()
@@ -6742,7 +6759,7 @@ public class StatusBar extends SystemUI implements DemoMode,
                 guts.resetFalsingCheck();
                 startNotificationGutsIntent(intent, sbn.getUid());
             };
-            final View.OnClickListener onDoneClick = (View v) -> {
+            final OnClickListener onDoneClick = (View v) -> {
                 saveAndCloseNotificationMenu(info, row, guts, v);
             };
             final NotificationInfo.CheckSaveListener checkSaveListener =
@@ -7072,7 +7089,7 @@ public class StatusBar extends SystemUI implements DemoMode,
                     notification.getTag(),
                     notification.getId(),
                     notification.getUserId());
-        } catch (android.os.RemoteException ex) {
+        } catch (RemoteException ex) {
             // oh well
         }
     }
@@ -7282,7 +7299,7 @@ public class StatusBar extends SystemUI implements DemoMode,
     }
 
 
-    private final class NotificationClicker implements View.OnClickListener {
+    private final class NotificationClicker implements OnClickListener {
 
         @Override
         public void onClick(final View v) {
@@ -7519,7 +7536,7 @@ public class StatusBar extends SystemUI implements DemoMode,
     }
 
     protected StatusBarNotification removeNotificationViews(String key, RankingMap ranking) {
-        NotificationData.Entry entry = mNotificationData.remove(key, ranking);
+        Entry entry = mNotificationData.remove(key, ranking);
         if (entry == null) {
             Log.w(TAG, "removeNotification for unknown key: " + key);
             return null;
@@ -7529,12 +7546,12 @@ public class StatusBar extends SystemUI implements DemoMode,
         return entry.notification;
     }
 
-    protected NotificationData.Entry createNotificationViews(StatusBarNotification sbn)
+    protected Entry createNotificationViews(StatusBarNotification sbn)
             throws InflationException {
         if (DEBUG) {
             Log.d(TAG, "createNotificationViews(notification=" + sbn);
         }
-        NotificationData.Entry entry = new NotificationData.Entry(sbn);
+        Entry entry = new Entry(sbn);
         Dependency.get(LeakDetector.class).trackInstance(entry);
         entry.createIcons(mContext, sbn);
         // Construct the expanded view.
@@ -7574,7 +7591,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         }
         while (!stack.isEmpty()) {
             ExpandableNotificationRow row = stack.pop();
-            NotificationData.Entry entry = row.getEntry();
+            Entry entry = row.getEntry();
             boolean isChildNotification =
                     mGroupManager.isChildInGroupWithSummary(entry.notification);
 
