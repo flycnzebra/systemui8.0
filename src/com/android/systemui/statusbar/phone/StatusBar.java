@@ -6400,18 +6400,14 @@ public class StatusBar extends SystemUI implements DemoMode,
                         String strstate = bundle.getString("state");
                         FlyLog.d("Activity change intent=%s", intent.toUri(0));
 
-                        String current = strpackage + "/" + strclass;
-                        String top = stackActivities.peek();
-                        if (strstate.equals("foreground")) {
-                            if (!TextUtils.equals(current, top)) {
-                                stackActivities.push(current);
-                            }
-                        } else if (strstate.equals("background")) {
-                            if (TextUtils.equals(current, top)) {
-                                stackActivities.pop();
-                            }
-                        }
-
+                        String current = strpackage + "/" + strclass;						
+						// 移除改变的activity
+						stackActivities.remove(current);
+						if (strstate.equals("foreground")) {
+							// 显示的activity插到队尾
+							stackActivities.push(current);
+						}
+						
                         String topPackage = stackActivities.peek();
                         if (topPackage != null && topPackage.contains("/")) {
                             String[] app = topPackage.split("/");
