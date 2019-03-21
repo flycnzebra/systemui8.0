@@ -1310,11 +1310,11 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
             if (D.BUG) Log.d(TAG, "onStartTrackingTouch"+ " " + mRow.stream);
-            try {
-                mAudioManager.adjustStreamVolume(mRow.stream, AudioManager.ADJUST_UNMUTE, 0);
-            }catch (Exception e){
-                FlyLog.e(e.toString());
-            }
+//            try {
+//                mAudioManager.adjustStreamVolume(mRow.stream, AudioManager.ADJUST_UNMUTE, 0);
+//            }catch (Exception e){
+//                FlyLog.e(e.toString());
+//            }
             mController.setActiveStream(mRow.stream);
             mRow.tracking = true;
         }
