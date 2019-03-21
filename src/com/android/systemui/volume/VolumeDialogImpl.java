@@ -1295,6 +1295,9 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
 
     private int setNum = 0;
 
+    private Handler mHander = new Handler(Looper.getMainLooper());
+    private boolean isFirst = true;
+
     private final class VolumeSeekBarChangeListener implements OnSeekBarChangeListener {
         private final VolumeRow mRow;
 
@@ -1330,25 +1333,54 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
                 mRow.userAttempt = SystemClock.uptimeMillis();
                 if (mRow.requestedLevel != userLevel2) {
 //                    mController.setStreamVolume(mRow.stream, userLevel2);
-                    while (setNum < userLevel2) {
-                        setNum++;
-                        mRow.vulumeText.setText("" + setNum);
-                        mAudioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, 0);
-                        if (setNum != userLevel2) {
-                            setNum = userLevel2;
+                    if (isFirst) {
+                        isFirst = false;
+                        while (setNum < userLevel2) {
+                            setNum++;
                             mRow.vulumeText.setText("" + setNum);
-                            mController.setStreamVolume(mRow.stream, setNum);
+                            mAudioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, 0);
+                            if (setNum != userLevel2) {
+                                setNum = userLevel2;
+                                mRow.vulumeText.setText("" + setNum);
+                                mController.setStreamVolume(mRow.stream, setNum);
+                            }
                         }
-                    }
-                    while (setNum > userLevel2) {
-                        setNum--;
-                        mRow.vulumeText.setText("" + setNum);
-                        mAudioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, 0);
-                        if (setNum != userLevel2) {
-                            setNum = userLevel2;
+                        while (setNum > userLevel2) {
+                            setNum--;
                             mRow.vulumeText.setText("" + setNum);
-                            mController.setStreamVolume(mRow.stream, setNum);
+                            mAudioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, 0);
+                            if (setNum != userLevel2) {
+                                setNum = userLevel2;
+                                mRow.vulumeText.setText("" + setNum);
+                                mController.setStreamVolume(mRow.stream, setNum);
+                            }
                         }
+                    } else {
+                        mHandler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                while (setNum < userLevel2) {
+                                    setNum++;
+                                    mRow.vulumeText.setText("" + setNum);
+                                    mAudioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, 0);
+                                    if (setNum != userLevel2) {
+                                        setNum = userLevel2;
+                                        mRow.vulumeText.setText("" + setNum);
+                                        mController.setStreamVolume(mRow.stream, setNum);
+                                    }
+                                }
+                                while (setNum > userLevel2) {
+                                    setNum--;
+                                    mRow.vulumeText.setText("" + setNum);
+                                    mAudioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, 0);
+                                    if (setNum != userLevel2) {
+                                        setNum = userLevel2;
+                                        mRow.vulumeText.setText("" + setNum);
+                                        mController.setStreamVolume(mRow.stream, setNum);
+                                    }
+                                }
+                            }
+                        }, 200);
                     }
                     FlyLog.d("finish set volume=%d", setNum);
                     mRow.requestedLevel = userLevel2;
@@ -1370,6 +1402,7 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
 //            }
             mController.setActiveStream(mRow.stream);
             mRow.tracking = true;
+            isFirst = true;
             setNum = getImpliedLevel(seekBar, seekBar.getProgress());
         }
 
