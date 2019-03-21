@@ -1358,9 +1358,11 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
                         }
                     } else {//第二次设置延时设置，将设置操作放入队列并清除队列中原有的值
                         setHandler.removeCallbacks(null);
+                        FlyLog.d("start task set volumn!");
                         setHandler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
+
                                 while (setNum < userLevel2) {
                                     setNum++;
                                     mRow.vulumeText.setText("" + setNum);
@@ -1381,6 +1383,7 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
                                         mController.setStreamVolume(mRow.stream, setNum);
                                     }
                                 }
+                                FlyLog.d("finish task set volumn!");
                             }
                         }, 1);
                     }
