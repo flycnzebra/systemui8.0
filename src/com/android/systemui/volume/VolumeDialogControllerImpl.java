@@ -166,9 +166,6 @@ public class VolumeDialogControllerImpl implements VolumeDialogController, Dumpa
     }
 
     protected void setAudioManagerStreamVolume(int stream, int level, int flag) {
-        if (level != 0) {
-            mAudio.adjustStreamVolume(stream, AudioManager.ADJUST_UNMUTE, 0);
-        }
         mAudio.setStreamVolume(stream, level, flag);
     }
 
