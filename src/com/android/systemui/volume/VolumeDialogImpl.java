@@ -1356,6 +1356,7 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
                             }
                         }
                     } else {
+                        mHandler.removeCallbacks(null);
                         mHandler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
