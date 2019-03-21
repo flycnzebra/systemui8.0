@@ -93,9 +93,9 @@ import static android.accessibilityservice.AccessibilityServiceInfo.FEEDBACK_GEN
 
 /**
  * Visual presentation of the volume dialog.
- *
+ * <p>
  * A client of VolumeDialogControllerImpl and its state model.
- *
+ * <p>
  * Methods ending in "H" must be called on the (ui) handler.
  */
 public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
@@ -126,7 +126,7 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
     private ZenFooter mZenFooter;
     private final Object mSafetyWarningLock = new Object();
     private final Accessibility mAccessibility = new Accessibility();
-//    private final ColorStateList mActiveSliderTint;
+    //    private final ColorStateList mActiveSliderTint;
 //    private final ColorStateList mInactiveSliderTint;
     private VolumeDialogMotion mMotion;
     private int mWindowType;
@@ -342,7 +342,7 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
     }
 
     private void addRow(int stream, int iconRes, int iconMuteRes, boolean important,
-            boolean dynamic) {
+                        boolean dynamic) {
         VolumeRow row = new VolumeRow();
         initRow(row, stream, iconRes, iconMuteRes, important);
         int rowSize;
@@ -390,15 +390,22 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
 
     public void dump(PrintWriter writer) {
         writer.println(VolumeDialogImpl.class.getSimpleName() + " state:");
-        writer.print("  mShowing: "); writer.println(mShowing);
-        writer.print("  mExpanded: "); writer.println(mExpanded);
+        writer.print("  mShowing: ");
+        writer.println(mShowing);
+        writer.print("  mExpanded: ");
+        writer.println(mExpanded);
         writer.print("  mExpandButtonAnimationRunning: ");
         writer.println(mExpandButtonAnimationRunning);
-        writer.print("  mActiveStream: "); writer.println(mActiveStream);
-        writer.print("  mDynamic: "); writer.println(mDynamic);
-        writer.print("  mAutomute: "); writer.println(mAutomute);
-        writer.print("  mSilentMode: "); writer.println(mSilentMode);
-        writer.print("  mCollapseTime: "); writer.println(mCollapseTime);
+        writer.print("  mActiveStream: ");
+        writer.println(mActiveStream);
+        writer.print("  mDynamic: ");
+        writer.println(mDynamic);
+        writer.print("  mAutomute: ");
+        writer.println(mAutomute);
+        writer.print("  mSilentMode: ");
+        writer.println(mSilentMode);
+        writer.print("  mCollapseTime: ");
+        writer.println(mCollapseTime);
         writer.print("  mAccessibility.mFeedbackEnabled: ");
         writer.println(mAccessibility.mFeedbackEnabled);
     }
@@ -407,13 +414,13 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
         final int m = seekBar.getMax();
         final int n = m / 100 - 1;
         final int level = progress == 0 ? 0
-                : progress == m ? (m / 100) : (1 + (int)((progress / (float) m) * n));
+                : progress == m ? (m / 100) : (1 + (int) ((progress / (float) m) * n));
         return level;
     }
 
     @SuppressLint("InflateParams")
     private void initRow(final VolumeRow row, final int stream, int iconRes, int iconMuteRes,
-            boolean important) {
+                         boolean important) {
         row.stream = stream;
         row.iconRes = iconRes;
         row.iconMuteRes = iconMuteRes;
@@ -825,12 +832,12 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
         row.icon.setAlpha(iconEnabled ? 1 : 0.5f);
         final int iconRes =
                 isRingVibrate ? R.drawable.ic_volume_ringer_vibrate
-                : isRingSilent || zenMuted ? row.cachedIconRes
-                : ss.routedToBluetooth ?
+                        : isRingSilent || zenMuted ? row.cachedIconRes
+                        : ss.routedToBluetooth ?
                         (ss.muted ? R.drawable.ic_volume_media_bt_mute
                                 : R.drawable.ic_volume_media_bt)
-                : mAutomute && ss.level == 0 ? row.iconMuteRes
-                : (ss.muted ? row.iconMuteRes : row.iconRes);
+                        : mAutomute && ss.level == 0 ? row.iconMuteRes
+                        : (ss.muted ? row.iconMuteRes : row.iconRes);
         if (iconRes != row.cachedIconRes) {
             if (row.cachedIconRes != 0 && isRingVibrate) {
                 mController.vibrate();
@@ -840,11 +847,11 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
         }
         row.iconState =
                 iconRes == R.drawable.ic_volume_ringer_vibrate ? Events.ICON_STATE_VIBRATE
-                : (iconRes == R.drawable.ic_volume_media_bt_mute || iconRes == row.iconMuteRes)
+                        : (iconRes == R.drawable.ic_volume_media_bt_mute || iconRes == row.iconMuteRes)
                         ? Events.ICON_STATE_MUTE
-                : (iconRes == R.drawable.ic_volume_media_bt || iconRes == row.iconRes)
+                        : (iconRes == R.drawable.ic_volume_media_bt || iconRes == row.iconRes)
                         ? Events.ICON_STATE_UNMUTE
-                : Events.ICON_STATE_UNKNOWN;
+                        : Events.ICON_STATE_UNKNOWN;
         if (iconEnabled) {
             if (isRingStream) {
                 if (isRingVibrate) {
@@ -870,9 +877,9 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
                 row.icon.setContentDescription(getStreamLabelH(ss));
             } else {
                 if (ss.muted || mAutomute && ss.level == 0) {
-                   row.icon.setContentDescription(mContext.getString(
-                           R.string.volume_stream_content_description_unmute,
-                           getStreamLabelH(ss)));
+                    row.icon.setContentDescription(mContext.getString(
+                            R.string.volume_stream_content_description_unmute,
+                            getStreamLabelH(ss)));
                 } else {
                     row.icon.setContentDescription(mContext.getString(
                             mShowA11yStream
@@ -892,7 +899,7 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
 
         // update slider
         final boolean enableSlider = !zenMuted;
-        final int vlevel =  row.ss.level;
+        final int vlevel = row.ss.level;
         updateVolumeRowSliderH(row, enableSlider, vlevel);
     }
 
@@ -1185,15 +1192,33 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
-                case SHOW: showH(msg.arg1); break;
-                case DISMISS: dismissH(msg.arg1); break;
-                case RECHECK: recheckH((VolumeRow) msg.obj); break;
-                case RECHECK_ALL: recheckH(null); break;
-                case SET_STREAM_IMPORTANT: setStreamImportantH(msg.arg1, msg.arg2 != 0); break;
-                case RESCHEDULE_TIMEOUT: rescheduleTimeoutH(); break;
-                case STATE_CHANGED: onStateChangedH(mState); break;
-                case UPDATE_BOTTOM_MARGIN: updateDialogBottomMarginH(); break;
-                case UPDATE_FOOTER: updateFooterH(); break;
+                case SHOW:
+                    showH(msg.arg1);
+                    break;
+                case DISMISS:
+                    dismissH(msg.arg1);
+                    break;
+                case RECHECK:
+                    recheckH((VolumeRow) msg.obj);
+                    break;
+                case RECHECK_ALL:
+                    recheckH(null);
+                    break;
+                case SET_STREAM_IMPORTANT:
+                    setStreamImportantH(msg.arg1, msg.arg2 != 0);
+                    break;
+                case RESCHEDULE_TIMEOUT:
+                    rescheduleTimeoutH();
+                    break;
+                case STATE_CHANGED:
+                    onStateChangedH(mState);
+                    break;
+                case UPDATE_BOTTOM_MARGIN:
+                    updateDialogBottomMarginH();
+                    break;
+                case UPDATE_FOOTER:
+                    updateFooterH();
+                    break;
             }
         }
     }
@@ -1268,6 +1293,8 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
         }
     };
 
+    private int setNum = 0;
+
     private final class VolumeSeekBarChangeListener implements OnSeekBarChangeListener {
         private final VolumeRow mRow;
 
@@ -1284,8 +1311,11 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
             final int userLevel1 = getImpliedLevel(seekBar, progress);
             if (mRow.vulumeText != null) {
                 String level = "" + userLevel1;
-                mRow.vulumeText.setText(level);
-                FlyLog.d("states setText2 volume %d,stream=%d", userLevel1, mRow.stream);
+                String setText = (String) mRow.vulumeText.getText();
+                if (level.equals(setText)) {
+                    mRow.vulumeText.setText(level);
+                    FlyLog.d("states setText2 volume %d,stream=%d", userLevel1, mRow.stream);
+                }
             }
 
             if (mRow.ss.levelMin > 0) {
@@ -1299,7 +1329,15 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
             if (mRow.ss.level != userLevel2 || mRow.ss.muted && userLevel2 > 0) {
                 mRow.userAttempt = SystemClock.uptimeMillis();
                 if (mRow.requestedLevel != userLevel2) {
-                    mController.setStreamVolume(mRow.stream, userLevel2);
+//                    mController.setStreamVolume(mRow.stream, userLevel2);
+                    while (setNum < userLevel2) {
+                        setNum++;
+                        mAudioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, 0);
+                    }
+                    while (setNum > userLevel1) {
+                        setNum--;
+                        mAudioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, 0);
+                    }
                     mRow.requestedLevel = userLevel2;
                     Events.writeEvent(mContext, Events.EVENT_TOUCH_LEVEL_CHANGED, mRow.stream,
                             userLevel2);
@@ -1309,19 +1347,22 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
 
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
-            if (D.BUG) Log.d(TAG, "onStartTrackingTouch"+ " " + mRow.stream);
+            if (D.BUG) Log.d(TAG, "onStartTrackingTouch" + " " + mRow.stream);
 //            try {
-//                mAudioManager.adjustStreamVolume(mRow.stream, AudioManager.ADJUST_UNMUTE, 0);
-//            }catch (Exception e){
+//                if (mRow.ss.muted) {
+//                    mAudioManager.adjustStreamVolume(mRow.stream, AudioManager.ADJUST_UNMUTE, 0);
+//                }
+//            } catch (Exception e) {
 //                FlyLog.e(e.toString());
 //            }
             mController.setActiveStream(mRow.stream);
             mRow.tracking = true;
+            setNum = getImpliedLevel(seekBar, seekBar.getProgress());
         }
 
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
-            if (D.BUG) Log.d(TAG, "onStopTrackingTouch"+ " " + mRow.stream);
+            if (D.BUG) Log.d(TAG, "onStopTrackingTouch" + " " + mRow.stream);
             mRow.tracking = false;
             mRow.userAttempt = SystemClock.uptimeMillis();
             final int userLevel = getImpliedLevel(seekBar, seekBar.getProgress());
@@ -1365,7 +1406,7 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
 
         @Override
         public boolean onRequestSendAccessibilityEvent(ViewGroup host, View child,
-                AccessibilityEvent event) {
+                                                       AccessibilityEvent event) {
             rescheduleTimeoutH();
             return super.onRequestSendAccessibilityEvent(host, child, event);
         }
