@@ -1334,7 +1334,7 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
                         setNum++;
                         mAudioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, 0);
                     }
-                    while (setNum > userLevel1) {
+                    while (setNum > userLevel2) {
                         setNum--;
                         mAudioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, 0);
                     }
