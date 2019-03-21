@@ -1337,10 +1337,12 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
                         isFirst = false;
                         while (setNum < userLevel2) {
                             setNum++;
+                            mRow.vulumeText.setText("" + setNum);
                             //先加1解Mute再设置成实际拖动的值
                             mAudioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, 0);
                             if (setNum != userLevel2) {
                                 setNum = userLevel2;
+                                mRow.vulumeText.setText("" + setNum);
                                 mController.setStreamVolume(mRow.stream, setNum);
                             }
                         }
@@ -1350,6 +1352,7 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
                             mAudioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, 0);
                             if (setNum != userLevel2) {
                                 setNum = userLevel2;
+                                mRow.vulumeText.setText("" + setNum);
                                 mController.setStreamVolume(mRow.stream, setNum);
                             }
                         }
@@ -1360,24 +1363,27 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
                             public void run() {
                                 while (setNum < userLevel2) {
                                     setNum++;
+                                    mRow.vulumeText.setText("" + setNum);
                                     mAudioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, 0);
                                     if (setNum != userLevel2) {
                                         setNum = userLevel2;
+                                        mRow.vulumeText.setText("" + setNum);
                                         mController.setStreamVolume(mRow.stream, setNum);
                                     }
                                 }
                                 while (setNum > userLevel2) {
                                     setNum--;
+                                    mRow.vulumeText.setText("" + setNum);
                                     mAudioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, 0);
                                     if (setNum != userLevel2) {
                                         setNum = userLevel2;
+                                        mRow.vulumeText.setText("" + setNum);
                                         mController.setStreamVolume(mRow.stream, setNum);
                                     }
                                 }
                             }
-                        }, 100);
+                        }, 200);
                     }
-                    mRow.vulumeText.setText("" + setNum);
                     FlyLog.d("finish set volume=%d", setNum);
                     mRow.requestedLevel = userLevel2;
                     Events.writeEvent(mContext, Events.EVENT_TOUCH_LEVEL_CHANGED, mRow.stream,
@@ -1408,6 +1414,12 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
             mRow.tracking = false;
             mRow.userAttempt = SystemClock.uptimeMillis();
             final int userLevel = getImpliedLevel(seekBar, seekBar.getProgress());
+            if (setNum != userLevel) {
+                setNum = userLevel;
+                mRow.vulumeText.setText("" + setNum);
+                mController.setStreamVolume(mRow.stream, setNum);
+            }
+
             Events.writeEvent(mContext, Events.EVENT_TOUCH_LEVEL_DONE, mRow.stream, userLevel);
             if (atcEnhancementSupport()) {
                 if (mRow.ss == null) {
