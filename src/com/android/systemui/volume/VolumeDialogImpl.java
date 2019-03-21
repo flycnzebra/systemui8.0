@@ -190,6 +190,7 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
         }
         Dependency.get(TunerService.class).removeTunable(this);
         mHandler.removeCallbacksAndMessages(null);
+        setHandler.removeCallbacksAndMessages(null);
     }
 
     private void initDialog() {
@@ -592,7 +593,7 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
     private void updateDialogBottomMarginH() {
         final long diff = System.currentTimeMillis() - mCollapseTime;
         final boolean collapsing = mCollapseTime != 0 && diff < getConservativeCollapseDuration();
-        final ViewGroup.MarginLayoutParams mlp = (MarginLayoutParams) mDialogView.getLayoutParams();
+        final MarginLayoutParams mlp = (MarginLayoutParams) mDialogView.getLayoutParams();
         final int bottomMargin = collapsing ? mDialogContentView.getHeight() :
                 mContext.getResources().getDimensionPixelSize(R.dimen.volume_dialog_margin_bottom);
         if (bottomMargin != mlp.bottomMargin) {
@@ -1294,6 +1295,10 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
     };
 
 
+    private int setNum = 0;
+    private Handler setHandler = new Handler(Looper.getMainLooper());
+    private boolean isFirst = true;
+
     private final class VolumeSeekBarChangeListener implements OnSeekBarChangeListener {
         private final VolumeRow mRow;
 
@@ -1328,29 +1333,61 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
             if (mRow.ss.level != userLevel2 || mRow.ss.muted && userLevel2 > 0) {
                 mRow.userAttempt = SystemClock.uptimeMillis();
                 if (mRow.requestedLevel != userLevel2) {
-                    mController.setStreamVolume(mRow.stream, userLevel2);
-//                    while (setNum < userLevel2) {
-//                        setNum++;
-//                        mRow.vulumeText.setText("" + setNum);
-//                        //先加1解Mute再设置成实际拖动的值
-//                        mAudioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, 0);
-//                        if (setNum != userLevel2) {
-//                            setNum = userLevel2;
-//                            mRow.vulumeText.setText("" + setNum);
-//                            mController.setStreamVolume(mRow.stream, setNum);
-//                        }
-//                    }
-//                    while (setNum > userLevel2) {
-//                        setNum--;
-//                        mRow.vulumeText.setText("" + setNum);
-//                        mAudioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, 0);
-//                        if (setNum != userLevel2) {
-//                            setNum = userLevel2;
-//                            mRow.vulumeText.setText("" + setNum);
-//                            mController.setStreamVolume(mRow.stream, setNum);
-//                        }
-//                    }
-//                    FlyLog.d("finish set volume=%d", setNum);
+                    if (isFirst) {//首次改变直接设置
+                        isFirst = false;
+                        while (setNum < userLevel2) {
+                            setNum++;
+                            mRow.vulumeText.setText("" + setNum);
+                            //先加1解Mute再设置成实际拖动的值
+                            mAudioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, 0);
+                            if (setNum != userLevel2) {
+                                setNum = userLevel2;
+                                mRow.vulumeText.setText("" + setNum);
+                                mController.setStreamVolume(mRow.stream, setNum);
+                            }
+                        }
+                        while (setNum > userLevel2) {
+                            setNum--;
+                            mRow.vulumeText.setText("" + setNum);
+                            mAudioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, 0);
+                            if (setNum != userLevel2) {
+                                setNum = userLevel2;
+                                mRow.vulumeText.setText("" + setNum);
+                                mController.setStreamVolume(mRow.stream, setNum);
+                            }
+                        }
+                    } else {//第二次设置延时设置，将设置操作放入队列并清除队列中原有的值
+                        setHandler.removeCallbacks(null);
+                        FlyLog.d("start task set volumn!");
+                        setHandler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                while (setNum < userLevel2) {
+                                    setNum++;
+                                    mRow.vulumeText.setText("" + setNum);
+                                    mAudioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, 0);
+                                    if (setNum != userLevel2) {
+                                        setNum = userLevel2;
+                                        mRow.vulumeText.setText("" + setNum);
+                                        mController.setStreamVolume(mRow.stream, setNum);
+                                    }
+                                }
+                                while (setNum > userLevel2) {
+                                    setNum--;
+                                    mRow.vulumeText.setText("" + setNum);
+                                    mAudioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, 0);
+                                    if (setNum != userLevel2) {
+                                        setNum = userLevel2;
+                                        mRow.vulumeText.setText("" + setNum);
+                                        mController.setStreamVolume(mRow.stream, setNum);
+                                    }
+                                }
+                                FlyLog.d("finish task set volumn!");
+                            }
+                        }, 0);
+                    }
+                    FlyLog.d("finish set volume=%d", setNum);
                     mRow.requestedLevel = userLevel2;
                     Events.writeEvent(mContext, Events.EVENT_TOUCH_LEVEL_CHANGED, mRow.stream,
                             userLevel2);
@@ -1370,6 +1407,8 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
 //            }
             mController.setActiveStream(mRow.stream);
             mRow.tracking = true;
+            isFirst = true;
+            setNum = getImpliedLevel(seekBar, seekBar.getProgress());
         }
 
         @Override
@@ -1378,6 +1417,13 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
             mRow.tracking = false;
             mRow.userAttempt = SystemClock.uptimeMillis();
             final int userLevel = getImpliedLevel(seekBar, seekBar.getProgress());
+            if (setNum != userLevel) {
+                setNum = userLevel;
+                mRow.vulumeText.setText("" + setNum);
+                mController.setStreamVolume(mRow.stream, setNum);
+                mRow.requestedLevel = userLevel;
+            }
+
             Events.writeEvent(mContext, Events.EVENT_TOUCH_LEVEL_DONE, mRow.stream, userLevel);
             if (atcEnhancementSupport()) {
                 if (mRow.ss == null) {
