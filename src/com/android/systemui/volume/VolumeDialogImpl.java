@@ -1293,9 +1293,9 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
         }
     };
 
-    private int setNum = 0;
 
-    private Handler mHander = new Handler(Looper.getMainLooper());
+    private int setNum = 0;
+    private Handler setHandler = new Handler(Looper.getMainLooper());
     private boolean isFirst = true;
 
     private final class VolumeSeekBarChangeListener implements OnSeekBarChangeListener {
@@ -1332,7 +1332,6 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
             if (mRow.ss.level != userLevel2 || mRow.ss.muted && userLevel2 > 0) {
                 mRow.userAttempt = SystemClock.uptimeMillis();
                 if (mRow.requestedLevel != userLevel2) {
-//                    mController.setStreamVolume(mRow.stream, userLevel2);
                     if (isFirst) {
                         isFirst = false;
                         while (setNum < userLevel2) {
@@ -1356,8 +1355,8 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
                             }
                         }
                     } else {
-                        mHandler.removeCallbacks(null);
-                        mHandler.postDelayed(new Runnable() {
+                        setHandler.removeCallbacks(null);
+                        setHandler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 while (setNum < userLevel2) {
@@ -1381,7 +1380,7 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
                                     }
                                 }
                             }
-                        }, 200);
+                        }, 100);
                     }
                     FlyLog.d("finish set volume=%d", setNum);
                     mRow.requestedLevel = userLevel2;
