@@ -1308,15 +1308,15 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
             if (D.BUG) Log.d(TAG, AudioSystem.streamToString(mRow.stream)
                     + " onProgressChanged " + progress + " fromUser=" + fromUser);
             if (!fromUser) return;
-            final int userLevel1 = getImpliedLevel(seekBar, progress);
-            if (mRow.vulumeText != null) {
-                String level = "" + userLevel1;
-                String setText = (String) mRow.vulumeText.getText();
-                if (level.equals(setText)) {
-                    mRow.vulumeText.setText(level);
-                    FlyLog.d("states setText2 volume %d,stream=%d", userLevel1, mRow.stream);
-                }
-            }
+//            final int userLevel1 = getImpliedLevel(seekBar, progress);
+//            if (mRow.vulumeText != null) {
+//                String level = "" + userLevel1;
+//                String setText = (String) mRow.vulumeText.getText();
+//                if (level.equals(setText)) {
+//                    mRow.vulumeText.setText(level);
+//                    FlyLog.d("states setText2 volume %d,stream=%d", userLevel1, mRow.stream);
+//                }
+//            }
 
             if (mRow.ss.levelMin > 0) {
                 final int minProgress = mRow.ss.levelMin * 100;
@@ -1333,11 +1333,13 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
                     while (setNum < userLevel2) {
                         setNum++;
                         mAudioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, 0);
+                        mRow.vulumeText.setText(setNum);
                         FlyLog.d("set volume=%d",setNum);
                     }
                     while (setNum > userLevel2) {
                         setNum--;
                         mAudioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, 0);
+                        mRow.vulumeText.setText(setNum);
                         FlyLog.d("set volume=%d",setNum);
                     }
                     mRow.requestedLevel = userLevel2;
