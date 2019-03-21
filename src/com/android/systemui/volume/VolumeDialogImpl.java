@@ -1333,11 +1333,12 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
             if (mRow.ss.level != userLevel2 || mRow.ss.muted && userLevel2 > 0) {
                 mRow.userAttempt = SystemClock.uptimeMillis();
                 if (mRow.requestedLevel != userLevel2) {
-                    if (isFirst) {
+                    if (isFirst) {//首次改变直接设置
                         isFirst = false;
                         while (setNum < userLevel2) {
                             setNum++;
                             mRow.vulumeText.setText("" + setNum);
+                            //先加1解Mute再设置成实际拖动的值
                             mAudioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, 0);
                             if (setNum != userLevel2) {
                                 setNum = userLevel2;
@@ -1355,7 +1356,7 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
                                 mController.setStreamVolume(mRow.stream, setNum);
                             }
                         }
-                    } else {
+                    } else {//第二次设置延时设置，将设置操作放入队列并清除队列中原有的值
                         setHandler.removeCallbacks(null);
                         setHandler.postDelayed(new Runnable() {
                             @Override
@@ -1381,7 +1382,7 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
                                     }
                                 }
                             }
-                        }, 0);
+                        }, 100);
                     }
                     FlyLog.d("finish set volume=%d", setNum);
                     mRow.requestedLevel = userLevel2;
