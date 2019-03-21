@@ -1385,7 +1385,7 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
                                 }
                                 FlyLog.d("finish task set volumn!");
                             }
-                        }, 1);
+                        }, 0);
                     }
                     FlyLog.d("finish set volume=%d", setNum);
                     mRow.requestedLevel = userLevel2;
