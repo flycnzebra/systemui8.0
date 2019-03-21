@@ -1330,9 +1330,6 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
                 }
             }
             final int userLevel2 = getImpliedLevel(seekBar, progress);
-            if (setNum != userLevel2) {
-                mRow.vulumeText.setText("" + setNum);
-            }
             if (mRow.ss.level != userLevel2 || mRow.ss.muted && userLevel2 > 0) {
                 mRow.userAttempt = SystemClock.uptimeMillis();
                 if (mRow.requestedLevel != userLevel2) {
@@ -1380,6 +1377,7 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
                             }
                         }, 100);
                     }
+                    mRow.vulumeText.setText("" + setNum);
                     FlyLog.d("finish set volume=%d", setNum);
                     mRow.requestedLevel = userLevel2;
                     Events.writeEvent(mContext, Events.EVENT_TOUCH_LEVEL_CHANGED, mRow.stream,
