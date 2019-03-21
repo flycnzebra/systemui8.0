@@ -1331,23 +1331,26 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
                 if (mRow.requestedLevel != userLevel2) {
 //                    mController.setStreamVolume(mRow.stream, userLevel2);
                     while (setNum < userLevel2) {
-                        FlyLog.d("start set volume=%d",setNum);
                         setNum++;
-                        mRow.vulumeText.setText(""+setNum);
+                        mRow.vulumeText.setText("" + setNum);
                         mAudioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, 0);
-                        setNum = userLevel2;
-                        mController.setStreamVolume(mRow.stream, setNum);
-                        FlyLog.d("finish set volume=%d",setNum);
+                        if (setNum != userLevel2) {
+                            setNum = userLevel2;
+                            mRow.vulumeText.setText("" + setNum);
+                            mController.setStreamVolume(mRow.stream, setNum);
+                        }
                     }
                     while (setNum > userLevel2) {
-                        FlyLog.d("start set volume=%d",setNum);
                         setNum--;
-                        mRow.vulumeText.setText(""+setNum);
+                        mRow.vulumeText.setText("" + setNum);
                         mAudioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, 0);
-                        setNum = userLevel2;
-                        mController.setStreamVolume(mRow.stream, setNum);
-                        FlyLog.d("finish volume=%d",setNum);
+                        if (setNum != userLevel2) {
+                            setNum = userLevel2;
+                            mRow.vulumeText.setText("" + setNum);
+                            mController.setStreamVolume(mRow.stream, setNum);
+                        }
                     }
+                    FlyLog.d("finish set volume=%d", setNum);
                     mRow.requestedLevel = userLevel2;
                     Events.writeEvent(mContext, Events.EVENT_TOUCH_LEVEL_CHANGED, mRow.stream,
                             userLevel2);
