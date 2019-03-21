@@ -1334,14 +1334,14 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
                         FlyLog.d("start set volume=%d",setNum);
                         setNum++;
                         mRow.vulumeText.setText(""+setNum);
-                        mAudioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, 0);
+//                        mAudioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, 0);
                         FlyLog.d("finish set volume=%d",setNum);
                     }
                     while (setNum > userLevel2) {
                         FlyLog.d("start set volume=%d",setNum);
                         setNum--;
                         mRow.vulumeText.setText(""+setNum);
-                        mAudioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, 0);
+//                        mAudioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, 0);
                         FlyLog.d("finish volume=%d",setNum);
                     }
                     mRow.requestedLevel = userLevel2;
