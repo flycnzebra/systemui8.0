@@ -190,6 +190,7 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
         }
         Dependency.get(TunerService.class).removeTunable(this);
         mHandler.removeCallbacksAndMessages(null);
+        setHandler.removeCallbacksAndMessages(null);
     }
 
     private void initDialog() {
