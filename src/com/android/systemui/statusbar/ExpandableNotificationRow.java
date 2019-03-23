@@ -357,7 +357,7 @@ public class ExpandableNotificationRow extends ActivatableNotificationView
         }
         mIsColorized = mStatusBarNotification.getNotification().isColorized();
         mShowingPublicInitialized = false;
-        updateNotificationColor();
+//        updateNotificationColor();
         if (mMenuRow != null) {
             mMenuRow.onNotificationUpdated(mStatusBarNotification);
         }
