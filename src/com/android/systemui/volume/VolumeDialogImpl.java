@@ -1335,6 +1335,7 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
                 if (mRow.requestedLevel != userLevel2) {
                     if (isFirst) {//首次改变直接设置
                         isFirst = false;
+                        mAudioManager.adjustStreamVolume(mRow.stream, AudioManager.ADJUST_UNMUTE, 0);
                         while (setNum < userLevel2) {
                             setNum++;
                             mRow.vulumeText.setText("" + setNum);
