@@ -10,6 +10,7 @@ import com.android.systemui.plugins.qs.QSTile;
 import com.android.systemui.qs.QSHost;
 import com.android.systemui.qs.tileimpl.QSTileImpl;
 import com.android.systemui.settings.BrightnessDialog2;
+import com.android.systemui.volume.VolumeDialogControllerImpl;
 
 public class JancarBrightnessTile extends QSTileImpl<QSTile.BooleanState> {
     public JancarBrightnessTile(QSHost host) {
@@ -30,6 +31,10 @@ public class JancarBrightnessTile extends QSTileImpl<QSTile.BooleanState> {
 ////        mContext.startActivity(intentCarsetting);
 //        Dependency.get(ActivityStarter.class)
 //                .postStartActivityDismissingKeyguard(intentBrightness, 0);
+        Dependency.get(ActivityStarter.class).postQSRunnableDismissingKeyguard(this::showDialog);
+    }
+
+    private void showDialog(){
         BrightnessDialog2.getInstance(mContext).show();
     }
 
