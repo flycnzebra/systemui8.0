@@ -9,6 +9,7 @@ import com.android.systemui.plugins.ActivityStarter;
 import com.android.systemui.plugins.qs.QSTile;
 import com.android.systemui.qs.QSHost;
 import com.android.systemui.qs.tileimpl.QSTileImpl;
+import com.android.systemui.settings.BrightnessDialog2;
 
 public class JancarBrightnessTile extends QSTileImpl<QSTile.BooleanState> {
     public JancarBrightnessTile(QSHost host) {
@@ -22,13 +23,14 @@ public class JancarBrightnessTile extends QSTileImpl<QSTile.BooleanState> {
 
     @Override
     protected void handleClick() {
-        ComponentName toActivityBrightness = new ComponentName("com.android.systemui", "com.android.systemui.settings.BrightnessDialog");
-        Intent intentBrightness = new Intent();
-        intentBrightness.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intentBrightness.setComponent(toActivityBrightness);
-//        mContext.startActivity(intentCarsetting);
-        Dependency.get(ActivityStarter.class)
-                .postStartActivityDismissingKeyguard(intentBrightness, 0);
+//        ComponentName toActivityBrightness = new ComponentName("com.android.systemui", "com.android.systemui.settings.BrightnessDialog");
+//        Intent intentBrightness = new Intent();
+//        intentBrightness.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        intentBrightness.setComponent(toActivityBrightness);
+////        mContext.startActivity(intentCarsetting);
+//        Dependency.get(ActivityStarter.class)
+//                .postStartActivityDismissingKeyguard(intentBrightness, 0);
+        BrightnessDialog2.getInstance(mContext).show();
     }
 
     @Override
