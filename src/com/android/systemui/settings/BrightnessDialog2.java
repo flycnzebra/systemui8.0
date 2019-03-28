@@ -86,11 +86,17 @@ public class BrightnessDialog2 extends Dialog {
 
         final Window mWindow = getWindow();
 
+//        mWindow.setGravity(Gravity.CENTER);
+//        mWindow.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+//        mWindow.requestFeature(Window.FEATURE_NO_TITLE);
+//        mWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//        mWindow.setType(WindowManager.LayoutParams.TYPE_VOLUME_OVERLAY);
         mWindow.setGravity(Gravity.CENTER);
         mWindow.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        mWindow.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         mWindow.requestFeature(Window.FEATURE_NO_TITLE);
         mWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        mWindow.setType(WindowManager.LayoutParams.TYPE_VOLUME_OVERLAY);
+        mWindow.setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
 
         // Use a dialog theme as the activity theme, but inflate the content as
         // the QS content.
