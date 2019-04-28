@@ -7,7 +7,7 @@
     android:layout_height="282px"
     android:layout_marginTop="-6px"
     android:layout_marginBottom="265px"
-    android:background="@drawable/menubak"
+    android:background="@drawable/jancar_menubak"
     android:gravity="center"
     android:orientation="vertical">
 

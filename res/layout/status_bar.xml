@@ -114,7 +114,16 @@
             android:contentDescription="@string/accessibility_recent"
             android:scaleType="centerCrop"
             android:src="@drawable/jancar_menu"
-            android:visibility="visible" />
+            android:visibility="gone" />
+
+        <com.android.systemui.statusbar.policy.KeyButtonView
+            android:id="@+id/jancar_dvd"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/accessibility_recent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/jancar_dvdopen"
+            android:visibility="gone" />
 
         <com.android.systemui.statusbar.policy.KeyButtonView
             android:id="@+id/back"

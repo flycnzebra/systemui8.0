@@ -202,8 +202,7 @@ public class KeyguardStatusView extends GridLayout {
     }
 
     private void refresh() {
-        AlarmManager.AlarmClockInfo nextAlarm =
-                mAlarmManager.getNextAlarmClock(UserHandle.USER_CURRENT);
+        AlarmManager.AlarmClockInfo nextAlarm = mAlarmManager.getNextAlarmClock(UserHandle.USER_CURRENT);
         Patterns.update(mContext, nextAlarm != null);
 
         refreshTime();

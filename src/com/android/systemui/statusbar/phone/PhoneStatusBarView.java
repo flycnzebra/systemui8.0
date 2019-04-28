@@ -65,6 +65,7 @@ public class PhoneStatusBarView extends PanelBar {
     private ImageView mRecent;
     private ImageView mClose;
     private ImageView mJacMenu;
+    private ImageView mJacDvd;
 
     public PhoneStatusBarView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -102,7 +103,7 @@ public class PhoneStatusBarView extends PanelBar {
                         if (DEBUG) Log.v(TAG, "btn_close_screen: onClick");
                         JancarManager jancarManager = (JancarManager) getContext().getSystemService("jancar_manager");
                         jancarManager.requestDisplay(false);
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         FlyLog.e(e.toString());
                     }
                 }
@@ -118,6 +119,37 @@ public class PhoneStatusBarView extends PanelBar {
 //                    intentBrightness.setComponent(toActivityJancarmenu);
 //                    getContext().startActivity(intentBrightness);
                     JancarMenuDialog.getInstance(getContext()).show();
+                }
+            });
+
+            mJacDvd = findViewById(R.id.jancar_dvd);
+            int showDvD = SystemProperties.getInt("ro.product.support.dvd", 1);
+            if (showDvD == 1) {
+                mJacDvd.setVisibility(VISIBLE);
+            } else {
+                mJacDvd.setVisibility(GONE);
+            }
+            mJacDvd.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    try {
+                        ((JancarManager) getContext().getSystemService(JancarManager.JAC_SERVICE)).simulateKey(0x08);
+                        FlyLog.d("jancarmanage simulateKey 0x08");
+                    } catch (Exception e) {
+                        FlyLog.e(e.toString());
+                    }
+                }
+            });
+            mJacDvd.setOnLongClickListener(new OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    try {
+                        ((JancarManager) getContext().getSystemService(JancarManager.JAC_SERVICE)).simulateKey(0x48);
+                        FlyLog.d("jancarmanage simulateKey 0x48");
+                    } catch (Exception e) {
+                        FlyLog.e(e.toString());
+                    }
+                    return false;
                 }
             });
         }
